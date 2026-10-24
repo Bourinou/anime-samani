@@ -1,13 +1,11 @@
 <div align="center">
   <img src="assets/branding/wordmark.png" alt="Anime Samani" width="760" />
   <h1>Anime Samani</h1>
-  <p>Anime Sama on your PC, with a few extras.</p>
+  <p>Anime Sama, but better!</p>
   <p><a href="https://github.com/JustAJad/anime-samani/releases">Download</a> · <a href="README.md">Français</a> · <a href="https://github.com/JustAJad/anime-samani/issues/new/choose">Report an issue</a></p>
 </div>
 
-Samani brings [Anime Sama](https://anime-sama.to/) to your desktop, with favorites,
-a background you can change and Discord presence. Browse the site as usual and
-keep the app’s settings close by.
+Samani is a fork of [AlexAnimateMp4's](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop) desktop app, and brings many more features!
 
 ## Installation
 
@@ -20,7 +18,7 @@ For **64-bit Windows 10 or 11**. Open [Releases](https://github.com/JustAJad/ani
 These are unsigned preview builds, so Windows may show a publisher warning.
 Source code and SHA-256 checksums are included too.
 
-## What’s in the app
+## Features
 
 - **Favorites** and recent catalogue pages so they’re easy to find again.
 - **Image or video backgrounds**, with blur, brightness and opacity controls.
@@ -34,7 +32,7 @@ Source code and SHA-256 checksums are included too.
 
 *Screenshot using a test page. The catalogue and videos come from Anime Sama.*
 
-## A few useful settings
+## Settings
 
 In **Personalization → Appearance**, pick an image or video smaller than **250 MB**.
 Background videos stay muted and can pause while you watch an episode. Samani
@@ -56,16 +54,16 @@ connection status tells you whether Discord is ready.
 | `Ctrl + Shift + F` | Cinema mode; `Esc` to return |
 | `F11` | Fullscreen |
 
-## A few things to know
+## Note
 
-Samani’s favorites stay on your PC and are separate from website favorites.
+*Samani’s favorites stay on your PC and are separate from website favorites.
 Recent pages are shortcuts, not second-accurate playback saves. The 0.2 profile
-is kept during updates; other older apps aren’t imported automatically.
+is kept during updates; other older apps aren’t imported automatically.*
 
-The language setting applies to the app. Anime Sama’s text and videos keep the
+*The language setting applies to the app. Anime Sama’s text and videos keep the
 website’s language. A real HTTP 500 or an unavailable player may come from the
 website itself. Live playback and a real Discord session still need checking on
-each PC. [Need help?](SUPPORT.md)
+each PC. [Need help?](SUPPORT.md)*
 
 ## Run the project
 
@@ -86,9 +84,9 @@ packages; on Windows, `npm run build:win:installer` adds Setup. Files go to `dis
 
 ---
 
-Made with ❤️ by [Jad](https://github.com/JustAJad). Thanks to
+Made with ❤️ by [Jad](https://github.com/JustAJad). Huge thanks to
 [AlexAnimateMp4](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop) for the
 original app and [raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop)
-for keeping it going.
+for keeping it going with his own fork.
 
-[MPL-2.0 license](LICENSE). Samani is independent of Anime Sama and Discord.
+[MPL-2.0 license](LICENSE). ***Samani is an independent project, not affiliated to Anime Sama and Discord.***
