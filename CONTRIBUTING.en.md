@@ -2,8 +2,8 @@
 
 [Français](CONTRIBUTING.md)
 
-Preserve **Just A Jad**, **AlexAnimateMp4** and **raphael-as** attribution and the
-MPL-2.0 license. Just A Jad’s original logos live in `assets/branding/`.
+Keep the authors’ credits and the MPL-2.0 license. The logos are in
+`assets/branding/`.
 
 ## Report a problem
 

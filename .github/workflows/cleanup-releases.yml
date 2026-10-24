@@ -1,0 +1,26 @@
+name: Nettoyer les anciennes versions
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/cleanup-releases.cjs
+      - docs/releases/**
+      - .github/workflows/cleanup-releases.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    if: github.repository == 'JustAJad/anime-samani'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Vérifier puis nettoyer les descriptions et noms de fichiers
+        run: node scripts/cleanup-releases.cjs --apply
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

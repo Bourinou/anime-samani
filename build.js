@@ -9,7 +9,7 @@ builder.build({
     config: {
         appId: 'io.github.justajad.animesama',
         productName: pkg.displayName,
-        copyright: 'Original application © 2023 AlexAnimateMp4. Community maintenance: raphael-as. Anime Samani © 2026 Just A Jad. MPL-2.0.',
+        copyright: 'Anime Samani. Original application © 2023 AlexAnimateMp4. MPL-2.0.',
         asar: true,
         directories: { output: 'dist' },
         files: [...pkg.files, 'node_modules/**/*'],
@@ -17,7 +17,7 @@ builder.build({
         win: {
             icon: 'icon.ico',
             executableName: pkg.exeName,
-            signtoolOptions: { publisherName: 'Just A Jad' },
+            signtoolOptions: { publisherName: 'Anime Samani' },
             signAndEditExecutable: true,
             signExecutable: false,
             artifactName: 'Anime-Samani-${version}-Windows-${arch}.${ext}'

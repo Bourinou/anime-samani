@@ -31,11 +31,11 @@ test('Discord decoder rejects excessive frame sizes',()=>{
  const header=Buffer.alloc(8);header.writeUInt32LE(1024*1024+1,4);assert.throws(()=>new Decoder().push(header),/Oversized/);
 });
 test('Discord privacy toggles remove title and episode from the payload',()=>{
- const activity=buildActivity({title:'Private title',episode:'Episode 7',season:'S2',playing:true,url:'https://anime-sama.to/catalogue/private-title/'},{...defaults,rpcShowTitle:false,rpcShowEpisode:false},100,'https://github.com/JustAJad/anime-sarani-desktop');
+ const activity=buildActivity({title:'Private title',episode:'Episode 7',season:'S2',playing:true,url:'https://anime-sama.to/catalogue/private-title/'},{...defaults,rpcShowTitle:false,rpcShowEpisode:false},100,'https://github.com/JustAJad/anime-samani');
  assert.doesNotMatch(JSON.stringify(activity),/Private title|Episode 7|S2/);assert.equal(activity.details,'Anime Samani');assert.equal(activity.timestamps.start,100);assert.equal(activity.buttons[0].url,'https://anime-sama.to/');
 });
 test('Discord templates, episode data and pause state produce bounded bilingual payloads',()=>{
- const activity=buildActivity({title:'A'.repeat(300),episode:'Episode 7',season:'S2',language:'VF',playing:false,url:'https://anime-sama.to/'},{...defaults,language:'en',rpcTemplate:'{title} — {episode}',rpcButtons:false},null,'https://github.com/JustAJad/anime-sarani-desktop');
+ const activity=buildActivity({title:'A'.repeat(300),episode:'Episode 7',season:'S2',language:'VF',playing:false,url:'https://anime-sama.to/'},{...defaults,language:'en',rpcTemplate:'{title} — {episode}',rpcButtons:false},null,'https://github.com/JustAJad/anime-samani');
  assert.equal(activity.details.length,128);assert.match(activity.state,/Browsing Anime Sama/);assert.equal(activity.timestamps,undefined);assert.equal(activity.buttons,undefined);
 });
 test('Discord handshake waits for READY, answers ping, and clears presence on disable',()=>{

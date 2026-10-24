@@ -41,7 +41,7 @@ require('../index');
  await ui('window.samani.preferences({language:"en",alwaysOnTop:true,colorA:"#38bdf8",colorB:"#818cf8",blur:21,reducedMotion:true})');
  await until(()=>window.isAlwaysOnTop(),'always on top');
  await until(async()=>await ui('document.documentElement.lang === "en"'),'English switch');
- assert.match(await ui('document.querySelector("#settings-panel").innerText'),/Make yourself at home/);
+ assert.match(await ui('document.querySelector("#settings-panel").innerText'),/Personalization/);
  assert.equal(await ui('getComputedStyle(document.documentElement).getPropertyValue("--a").trim()'),'#38bdf8');
  await ui('window.samani.preferences({language:"fr",alwaysOnTop:false})');
  await until(()=>!window.isAlwaysOnTop(),'always on top disabled');

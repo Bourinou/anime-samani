@@ -4,8 +4,8 @@
   "exeName": "ANIME_SAMANI",
   "releaseYear": "2023",
   "protocol": "anime-samani",
-  "version": "0.3.0",
-  "description": "Anime Samani : Anime Sama sur votre bureau, avec thèmes, bibliothèque et présence Discord.",
+  "version": "0.3.1",
+  "description": "Anime Sama sur PC, avec des favoris, des fonds personnalisés et Discord.",
   "keywords": [
     "anime-samani",
     "anime-sama",
@@ -15,10 +15,10 @@
     "desktop-customization"
   ],
   "url": "https://anime-sama.to",
-  "homepage": "https://github.com/JustAJad/anime-sarani-desktop#readme",
+  "homepage": "https://github.com/JustAJad/anime-samani#readme",
   "license": "MPL-2.0",
   "author": {
-    "name": "Just A Jad",
+    "name": "Jad",
     "url": "https://github.com/JustAJad"
   },
   "contributors": [
@@ -46,12 +46,12 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JustAJad/anime-sarani-desktop.git"
+    "url": "https://github.com/JustAJad/anime-samani.git"
   },
   "scripts": {
     "start": "electron .",
     "test": "npm run check && node test/navigation.test.js && node test/samani.test.js",
-    "check": "node --check index.js && node --check preload.js && node --check desktop/app.js && node --check desktop/preload.js && node --check lib/navigation.js && node --check lib/preferences.js && node --check lib/presence.js && node --check scripts/release.cjs && node --check build.js",
+    "check": "node --check index.js && node --check preload.js && node --check desktop/app.js && node --check desktop/preload.js && node --check lib/navigation.js && node --check lib/preferences.js && node --check lib/presence.js && node --check scripts/release.cjs && node --check build.js && node --check scripts/cleanup-releases.cjs",
     "build": "node build.js",
     "build:win": "node build.js",
     "build:win:installer": "node build.js --installer",
@@ -76,7 +76,7 @@
     "node": ">=24"
   },
   "bugs": {
-    "url": "https://github.com/JustAJad/anime-sarani-desktop/issues"
+    "url": "https://github.com/JustAJad/anime-samani/issues"
   },
   "inspiration": {
     "repository": "https://github.com/raphael-as/anime-sama-fr-desktop",

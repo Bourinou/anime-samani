@@ -1,136 +1,94 @@
 <div align="center">
   <img src="assets/branding/wordmark.png" alt="Anime Samani" width="760" />
   <h1>Anime Samani</h1>
-  <p><strong>Anime Sama, a little more you.</strong></p>
-  <p>An independent desktop app imagined and maintained by <a href="https://github.com/JustAJad">Just A Jad</a>.</p>
-  <p><a href="README.md">Français</a> · <a href="https://github.com/JustAJad/anime-sarani-desktop/releases">Windows downloads</a> · <a href="CREDITS.md">Credits</a> · <a href="https://github.com/JustAJad/anime-sarani-desktop/issues/new/choose">Report an issue</a></p>
+  <p>Anime Sama on your PC, with a few extras.</p>
+  <p><a href="https://github.com/JustAJad/anime-samani/releases">Download</a> · <a href="README.md">Français</a> · <a href="https://github.com/JustAJad/anime-samani/issues/new/choose">Report an issue</a></p>
 </div>
 
-## Anime Sama, with your touch
+Samani brings [Anime Sama](https://anime-sama.to/) to your desktop, with favorites,
+a background you can change and Discord presence. Browse the site as usual and
+keep the app’s settings close by.
 
-**Anime Samani** keeps the real [Anime Sama website](https://anime-sama.to/) at the
-center and adds a personal desktop space: a local library, themes, animated
-backgrounds and redesigned Discord presence. Its name plays on “sarani,” the idea
-of **a little more**.
+## Installation
 
-Samani continues **AlexAnimateMp4’s original app**. **[raphael-as’s community
-maintenance](https://github.com/raphael-as/anime-sama-fr-desktop)** — including
-domain, Discord and credit updates — also provided inspiration. **Just A Jad**
-created Samani’s logos, identity and desktop changes. [Detailed credits](CREDITS.md).
+For **64-bit Windows 10 or 11**. Open [Releases](https://github.com/JustAJad/anime-samani/releases), expand **Assets**, and choose:
 
-## Download
+- **Setup** to install the app.
+- **Portable** to run it without installing.
+- **Windows.zip** to extract everything yourself and open `ANIME_SAMANI.exe`.
 
-**Windows 10/11 · 64-bit** — visit [Releases](https://github.com/JustAJad/anime-sarani-desktop/releases) and expand **Assets**:
+These are unsigned preview builds, so Windows may show a publisher warning.
+Source code and SHA-256 checksums are included too.
 
-| File | How to use it |
+## What’s in the app
+
+- **Favorites** and recent catalogue pages so they’re easy to find again.
+- **Image or video backgrounds**, with blur, brightness and opacity controls.
+- A few **color palettes**, including the logos’ peach–pink gradient.
+- **Cinema mode**, fullscreen and quick access with `Ctrl + K`.
+- **Discord presence** with the title and episode, if you want to share them.
+- An optional **startup intro**.
+- **French and English**, selectable in settings.
+
+![Samani settings](assets/img/readme/samani-personalization-en.png)
+
+*Screenshot using a test page. The catalogue and videos come from Anime Sama.*
+
+## A few useful settings
+
+In **Personalization → Appearance**, pick an image or video smaller than **250 MB**.
+Background videos stay muted and can pause while you watch an episode. Samani
+keeps a copy on your PC, so moving the original file won’t break the background.
+Supported formats are PNG, JPEG, WebP, MP4 and WebM. If a video won’t play, try WebM.
+
+For **Discord**, open the desktop client, then Samani. It’s already configured;
+you don’t need a token or password. Settings let you hide the title and episode,
+change the text or turn presence off. The preview shows what will be sent; the
+connection status tells you whether Discord is ready.
+
+| Shortcut | Action |
 | --- | --- |
-| `Anime-Samani-…-Setup-x64.exe` | Install Samani and its shortcuts. |
-| `Anime-Samani-…-Portable-x64.exe` | Open Samani without installing it. |
-| `Anime-Samani-…-Windows-x64.zip` | Extract everything and run `ANIME_SAMANI.exe`. |
-| `Anime-Samani-…-Source.zip` | Read or rebuild the matching source. |
+| `Ctrl + K` | Quick access |
+| `Alt + Home` | Home |
+| `Alt + ←` / `Alt + →` | Previous / next page |
+| `Ctrl + R` | Reload or retry |
+| `Ctrl + ,` | Personalization |
+| `Ctrl + Shift + F` | Cinema mode; `Esc` to return |
+| `F11` | Fullscreen |
 
-**Aperçu / Preview** releases await real-world website validation. Builds are
-unsigned, so Windows may display a publisher warning. SHA-256 checksums, source
-and license files accompany each release. Follow builds in [Actions](https://github.com/JustAJad/anime-sarani-desktop/actions).
+## A few things to know
 
-## Make it yours
+Samani’s favorites stay on your PC and are separate from website favorites.
+Recent pages are shortcuts, not second-accurate playback saves. The 0.2 profile
+is kept during updates; other older apps aren’t imported automatically.
 
-| Feature | What you can do |
-| --- | --- |
-| **Samani identity** | See Just A Jad’s original logos and an optional animated startup introduction. |
-| **Your palette** | Use the logos’ peach–pink gradient, try Sakura, Ocean or Midnight, and adjust both colors and the gradient angle. |
-| **Image or video backgrounds** | Import local PNG/JPEG/WebP images or MP4/WebM videos, with blur and brightness controls. Videos are always muted. |
-| **Translucent surfaces** | Adjust surface opacity while preserving the website’s components and layout. |
-| **A calmer desktop** | Pause background videos during playback, reduce motion, or enter cinema mode. |
-| **Local library** | Bookmark the current page and revisit the latest 40 catalogue pages. No Samani account or server receives the library. |
-| **Quick access** | Open shortcuts, favorites and recent pages with `Ctrl + K`. |
-| **Discord presence** | Share title, season, episode and playback state; customize text or hide details. |
-| **French and English** | Start in French and switch all desktop controls to English immediately in settings. |
+The language setting applies to the app. Anime Sama’s text and videos keep the
+website’s language. A real HTTP 500 or an unavailable player may come from the
+website itself. Live playback and a real Discord session still need checking on
+each PC. [Need help?](SUPPORT.md)
 
-![Anime Samani personalization](assets/img/readme/samani-personalization-en.png)
+## Run the project
 
-*Samani’s interface with local test data. The actual website uses a separate native
-web view without access to desktop functions.*
-
-### Custom backgrounds
-
-In **Personalization → Appearance**, choose an image or video smaller than **250 MB**.
-Samani keeps a local copy in its data folder so moving the original file will not
-break the background. Files remain on your computer. Playback depends on the
-file’s codec; WebM is a good lightweight option.
-
-Backgrounds and transparency affect the desktop and compatible website surfaces.
-Website cards, artwork and players keep their own rendering for readability.
-The catalogue is not replaced with a local imitation.
-
-### Discord presence
-
-This release uses the Discord application supplied by Just A Jad:
-`1563568424691437578`. Open **desktop Discord**, then Samani. Check the connection
-status in **Personalization → Discord presence**.
-
-- Show or hide the title and episode. Hiding the title also hides the specific page from the public button.
-- Customize text with `{title}`, `{episode}`, `{season}` and `{language}`.
-- Enable or remove the website and Samani buttons.
-- Disable presence to clear Samani’s activity.
-- The preview works while Discord is closed and does not prove a live connection.
-
-Samani handles reconnection, fragmented packets and throttled updates. Episode
-metadata depends on the page’s available elements. A real Discord session and
-external players still need validation on your machine. No Discord token,
-password or Samani account is required.
-
-## Shortcuts
-
-| Action | Shortcut |
-| --- | --- |
-| Quick access | `Ctrl + K` |
-| Home / back / forward | `Alt + Home` / `Alt + ←` / `Alt + →` |
-| Reload or retry | `Ctrl + R` |
-| Personalization | `Ctrl + ,` |
-| Cinema mode | `Ctrl + Shift + F`; `Esc` to return |
-| Fullscreen | `F11` |
-
-## Data and compatibility
-
-The 0.2 profile directory is retained to preserve website cookies and storage
-through the rebrand. Samani’s local library is separate from website favorites.
-Profiles from AlexAnimateMp4’s or raphael-as’s apps are not imported automatically;
-keep their backups.
-
-The language setting translates **Samani’s desktop and settings**. Anime Sama’s
-titles, videos and text keep the languages offered by the website.
-
-A real **HTTP 500** comes from the website server. Samani distinguishes that from
-connection failures and offers retry actions; it cannot repair the website or an
-unavailable external player. See [SUPPORT.md](SUPPORT.md).
-
-## Build and contribute
-
-With [Node.js 24 LTS](https://nodejs.org/):
+With [Node.js 24](https://nodejs.org/):
 
 ```sh
-git clone https://github.com/JustAJad/anime-sarani-desktop.git
-cd anime-sarani-desktop
+git clone https://github.com/JustAJad/anime-samani.git
+cd anime-samani
 npm ci
-npm test
 npm start
 ```
 
-`npm run test:electron` exercises the actual window against local fixtures and needs
-a graphical desktop. `npm run build:win` creates Portable and ZIP packages; on
-Windows, `npm run build:win:installer` adds Setup. Outputs go to `dist/`.
-GitHub Actions builds Windows packages and publishes preview versions.
+`npm test` runs the checks. `npm run test:electron` opens the app against test
+pages and needs a graphical desktop. `npm run build:win` creates Portable and ZIP
+packages; on Windows, `npm run build:win:installer` adds Setup. Files go to `dist/`.
 
-[Contribution guide](CONTRIBUTING.en.md) · [Changelog](CHANGELOG.md) · [Archived original documentation](UPSTREAM-README.md)
+[Contributing](CONTRIBUTING.en.md) · [Changelog](CHANGELOG.md) · [Credits](CREDITS.md)
 
-## Credits and license
+---
 
-- **AlexAnimateMp4** — original Anime Sama.fr Desktop 0.1.1 application.
-- **raphael-as** — community maintenance and inspiration for domain, Discord and credits.
-- **Just A Jad** — Anime Samani, original logos, visual identity and desktop development.
+Made with ❤️ by [Jad](https://github.com/JustAJad). Thanks to
+[AlexAnimateMp4](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop) for the
+original app and [raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop)
+for keeping it going.
 
-The original history and **[MPL-2.0 license](LICENSE)** are preserved. See
-[NOTICE.md](NOTICE.md) for source and artwork attribution. Samani is independent
-of Anime Sama and Discord; their services and content remain the responsibility
-of their respective operators.
+[MPL-2.0 license](LICENSE). Samani is independent of Anime Sama and Discord.

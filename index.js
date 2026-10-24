@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MPL-2.0
-// Anime Samani — Just A Jad. Original: AlexAnimateMp4. Maintenance inspiration: raphael-as.
+// Anime Samani. Original application: AlexAnimateMp4. See CREDITS.md.
 const { app, BrowserWindow, WebContentsView, ipcMain, Menu, Tray, dialog, shell, protocol, net, nativeTheme } = require('electron');
 const { join, extname, basename } = require('node:path');
 const { pathToFileURL } = require('node:url');

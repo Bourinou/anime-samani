@@ -2,8 +2,8 @@
 
 [English](CONTRIBUTING.en.md)
 
-Préservez les crédits de **Just A Jad**, **AlexAnimateMp4** et **raphael-as**, ainsi
-que la licence MPL-2.0. Les logos de Just A Jad sont dans `assets/branding/`.
+Gardez les crédits des auteurs et la licence MPL-2.0. Les logos sont dans
+`assets/branding/`.
 
 ## Signaler un problème
 
