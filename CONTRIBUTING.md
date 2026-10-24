@@ -1,4 +1,4 @@
-# Contribuer à Anime Samani
+# Pour Contribuer à Anime Samani
 
 [English](CONTRIBUTING.en.md)
 
