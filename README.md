@@ -90,4 +90,4 @@ Fait avec ❤️ par [Just A Jad](https://github.com/JustAJad). Grand merci à
 d’origine et à [raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop)
 pour le travail de son propre fork.
 
-***[Licence MPL-2.0](LICENSE). Samani est un projet indépendant non affilié à Anime Sama et Discord.***
+[Licence MPL-2.0](LICENSE). ***Samani est un projet indépendant non affilié à Anime Sama et Discord.***
