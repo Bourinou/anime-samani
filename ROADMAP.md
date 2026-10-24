@@ -6,17 +6,17 @@ Ideas for the next session. These are plans, not implemented features or deliver
 ## Français
 
 - [ ] **Japonais dans l’interface** : ajouter `desktop/i18n/ja.json`, le choix de langue et vérifier les traductions avec une personne japonophone. Cela concerne Samani, pas la traduction du catalogue ou des vidéos.
-- [ ] **Favoris liés au site** : étudier comment les favoris d’Anime Sama sont stockés, puis relier ajout et suppression à la bibliothèque locale. Prévoir les doublons, les conflits et une sauvegarde avant toute migration. La synchronisation entre appareils demandera une étude séparée.
-- [ ] **Reprendre un épisode** : commencer par retrouver la dernière page et proposer un bouton pour la rouvrir. Vérifier ce qui existe déjà dans les pages récentes.
-- [ ] **Reprise au bon moment** : étudier ensuite les lecteurs actuellement disponibles et leurs API documentées ou messages `postMessage`. Si un lecteur le permet, enregistrer l’anime, l’épisode et le temps de lecture, puis restaurer la position. Tester chaque lecteur ; afficher clairement quand seule la page peut être reprise.
+- [ ] **Favoris liés au site** : Voir comment les favoris d’Anime Sama sont stockés et puis relier les ajouts et les suppressions à la bibliothèque locale. Faire attention aux doublons, les conflits et faire une sauvegarde avant toute migration. La synchronisation entre les appareils demandera du travail...
+- [ ] **Reprendre la lecture d'un épisode** : Commencer par retrouver la dernière page et proposer un bouton pour la rouvrir. Vérifier ce qui existe déjà dans les pages récentes.
+- [ ] **Reprendre au bon timestamp** : Savoir ensuite les lecteurs actuellement disponibles et leurs API documentées ou messages `postMessage` par example. Si un lecteur le permet, on enregistre l’anime, l’épisode et le temps de lecture, puis on restaure la position.
 
-### Points à vérifier
+### Les choses à vérifier
 
-Les pistes de la capture sont des idées à valider, pas une recette déjà vérifiée.
-Les restrictions d’origine des iframes peuvent empêcher l’accès direct au lecteur.
-Conserver `webSecurity`, l’isolation des contextes et le sandbox. Privilégier les
-API prévues par les lecteurs, avec validation de l’origine et du format des messages.
-La présence d’un lecteur dans une ancienne liste ne garantit pas qu’il soit encore disponible.
+- Les pistes de la capture sont des idées à valider, pas une recette déjà vérifiée.
+- Les restrictions d’origine des iframes peuvent empêcher l’accès direct au lecteur.
+- Conserver `webSecurity`, l’isolation des contextes et le sandbox. 
+- Privilégier les API prévues par les lecteurs, avec validation de l’origine et du format des messages.
+- La présence d’un lecteur dans une ancienne liste ne va pas garantir qu’il soit encore disponible.
 
 ## English
 
@@ -27,7 +27,8 @@ La présence d’un lecteur dans une ancienne liste ne garantit pas qu’il soit
 
 ### Things to check
 
-The screenshot contains suggestions to investigate, not verified implementation instructions.
-Cross-origin iframe restrictions may prevent direct player access. Keep `webSecurity`,
-context isolation and sandboxing enabled. Prefer supported player APIs and validate
-message origins and payloads. Older player lists may include services that are no longer available.
+- The screenshot contains suggestions to investigate, not verified implementation instructions.
+- Cross-origin iframe restrictions may prevent direct player access.
+- Keep `webSecurity`, context isolation and sandboxing enabled.
+- Prefer supported player APIs and validate message origins and payloads.
+- Older player lists may include services that are no longer available.
