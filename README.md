@@ -30,9 +30,7 @@ afficher un avertissement. Le code source et les sommes SHA-256 sont aussi fourn
 
 ![Les réglages de Samani](assets/img/readme/samani-personalization.png)
 
-*Capture avec une page de test. Le catalogue et les vidéos viennent du site Anime Sama.*
-
-## Quelques réglages utiles
+## Réglages
 
 Dans **Personnalisation → Apparence**, tu peux choisir une image ou une vidéo de
 moins de **250 Mo**. Les vidéos de fond restent muettes et peuvent se mettre en
@@ -57,15 +55,15 @@ L’aperçu montre ce qui sera envoyé ; l’état de connexion te dit si Discor
 
 ## À savoir
 
-Les favoris de Samani restent sur ton PC, à part de ceux du site. Les pages
+*Les favoris de Samani restent sur ton PC, à part de ceux du site. Les pages
 récentes sont des raccourcis, pas une sauvegarde de la vidéo à la seconde près.
 Le profil de la version 0.2 est conservé lors de la mise à jour ; les autres
-anciennes apps ne sont pas importées automatiquement.
+anciennes apps ne sont pas importées automatiquement.*
 
-Le choix de langue concerne l’app. Les textes et vidéos d’Anime Sama gardent la
+*Le choix de langue concerne l’app. Les textes et vidéos d’Anime Sama gardent la
 langue du site. Une vraie erreur HTTP 500 ou un lecteur indisponible peut venir
 du site lui-même. La lecture en ligne et une vraie session Discord restent à
-vérifier sur chaque PC. [Besoin d’aide ?](SUPPORT.md)
+vérifier sur chaque PC. [Besoin d’aide ?](SUPPORT.md)*
 
 ## Pour lancer le projet
 
@@ -87,9 +85,9 @@ Les fichiers arrivent dans `dist/`.
 
 ---
 
-Fait avec ❤️ par [Jad](https://github.com/JustAJad). Merci à
+Fait avec ❤️ par [Just A Jad](https://github.com/JustAJad). Grand merci à
 [AlexAnimateMp4](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop) pour l’app
 d’origine et à [raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop)
-pour son travail dessus.
+pour le travail de son propre fork.
 
-[Licence MPL-2.0](LICENSE). Samani est un projet indépendant d’Anime Sama et de Discord.
+***[Licence MPL-2.0](LICENSE). Samani est un projet indépendant non affilié à Anime Sama et Discord.***
