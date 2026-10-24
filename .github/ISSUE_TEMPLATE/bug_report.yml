@@ -1,28 +1,27 @@
-name: Report a desktop app problem
-description: Tell us what failed in Anime Sama.to Desktop.
+name: Problème / Bug report
+description: Signaler un problème dans Anime Samani / Report an Anime Samani issue.
 title: "[Bug]: "
 body:
   - type: markdown
     attributes:
-      value: "This repository maintains Just A Jad’s fork of AlexAnimateMp4’s app. Please avoid sharing private browsing data."
+      value: "Merci de ne partager ni jeton, ni cookie, ni profil complet. / Never share tokens, cookies or entire profiles."
   - type: input
-    id: app-version
+    id: version
     attributes:
-      label: App version
-      placeholder: "0.2.0 — Setup or Portable"
+      label: Version de Samani / Samani version
+      placeholder: "0.3.0 — Setup ou Portable"
     validations:
       required: true
   - type: input
-    id: windows-version
+    id: windows
     attributes:
-      label: Windows version
-      placeholder: "Windows 11, 64-bit"
+      label: Version de Windows / Windows version
     validations:
       required: true
   - type: textarea
-    id: steps
+    id: description
     attributes:
-      label: What happened?
-      description: "Include the steps, expected behavior and exact error shown. Does the page work in your normal browser?"
+      label: Étapes, résultat et code exact / Steps, result and exact error
+      description: "La page fonctionne-t-elle dans votre navigateur ? / Does the same page work in your browser?"
     validations:
       required: true

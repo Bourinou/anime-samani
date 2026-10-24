@@ -9,27 +9,27 @@ builder.build({
     config: {
         appId: 'io.github.justajad.animesama',
         productName: pkg.displayName,
-        copyright: 'Original application © 2023 AlexAnimateMp4. Fork © 2026 Just A Jad. MPL-2.0.',
+        copyright: 'Original application © 2023 AlexAnimateMp4. Community maintenance: raphael-as. Anime Samani © 2026 Just A Jad. MPL-2.0.',
         asar: true,
         directories: { output: 'dist' },
         files: [...pkg.files, 'node_modules/**/*'],
-        extraFiles: [{ from: 'NOTICE.md', to: 'NOTICE.md' }, { from: 'LICENSE', to: 'APP-LICENSE.txt' }],
+        extraFiles: [{ from: 'NOTICE.md', to: 'NOTICE.md' }, { from: 'LICENSE', to: 'APP-LICENSE.txt' }, { from: 'CREDITS.md', to: 'CREDITS.md' }],
         win: {
             icon: 'icon.ico',
             executableName: pkg.exeName,
             signtoolOptions: { publisherName: 'Just A Jad' },
             signAndEditExecutable: true,
             signExecutable: false,
-            artifactName: 'Anime-Sama-Just-A-Jad-${version}-Windows-${arch}.${ext}'
+            artifactName: 'Anime-Samani-${version}-Windows-${arch}.${ext}'
         },
-        portable: { artifactName: 'Anime-Sama-Just-A-Jad-${version}-Portable-${arch}.${ext}' },
+        portable: { artifactName: 'Anime-Samani-${version}-Portable-${arch}.${ext}' },
         nsis: {
             oneClick: false,
             perMachine: false,
             allowToChangeInstallationDirectory: true,
             deleteAppDataOnUninstall: false,
             createDesktopShortcut: true,
-            artifactName: 'Anime-Sama-Just-A-Jad-${version}-Setup-${arch}.${ext}'
+            artifactName: 'Anime-Samani-${version}-Setup-${arch}.${ext}'
         }
     }
 }).catch(error => { console.error(error); process.exitCode = 1; });

@@ -1,103 +1,86 @@
-// Local fixtures exercise the real Electron window without contacting the site.
-const { app, BrowserWindow, Menu, session, shell } = require('electron');
-const { mkdirSync, writeFileSync, rmSync } = require('node:fs');
-const { join } = require('node:path');
-const assert = require('node:assert/strict');
-const root = join(__dirname, '..');
-const profilePath = join(root, 'artifacts', 'smoke-profile');
-rmSync(profilePath, { recursive: true, force: true });
-app.setPath('userData', profilePath);
+// Real desktop + native website view, with local fixtures and no live site dependency.
+const {app,BrowserWindow,session,dialog}=require('electron');
+const {join}=require('node:path');
+const {mkdirSync,rmSync,writeFileSync}=require('node:fs');
+const assert=require('node:assert/strict');
+const root=join(__dirname,'..');
+process.env.SAMANI_TEST_PROFILE=join(root,'artifacts','samani-smoke');
+rmSync(process.env.SAMANI_TEST_PROFILE,{recursive:true,force:true});
 app.disableHardwareAcceleration();
-let mode = 'http500';
-let openedExternal;
-shell.openExternal = async url => { openedExternal = url; };
-const problems = [];
-process.on('unhandledRejection', error => problems.push(String(error)));
-process.on('uncaughtException', error => { console.error(error); app.exit(1); });
-const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
-async function until(check, label) {
-    const limit = Date.now() + 20000;
-    while (Date.now() < limit) {
-        if (await Promise.race([Promise.resolve().then(check), delay(1000).then(() => false)])) return;
-        await delay(100);
-    }
-    throw new Error(`Timed out: ${label}`);
-}
-async function main() {
-    await app.whenReady();
-    session.defaultSession.protocol.handle('https', request => {
-        const path = new URL(request.url).pathname;
-        if (mode === 'offline' || path === '/failed-frame') return Response.error();
-        if (mode === 'http500') return new Response('Server failure', { status: 500, headers: { 'content-type': 'text/html' } });
-        if (path === '/missing') return new Response('Missing', { status: 404, headers: { 'content-type': 'text/html' } });
-        return new Response('<!doctype html><title>Fixture</title><h1 id="healthy">Anime Sama fixture</h1><a id="broken" href="/missing">Broken link</a><iframe src="/failed-frame"></iframe>', { headers: { 'content-type': 'text/html' } });
-    });
-    require('../index');
-    let window;
-    await until(() => {
-        window = BrowserWindow.getAllWindows().find(item => /^(https:|file:.*error\.html)/.test(item.webContents.getURL()));
-        return window;
-    }, 'main window');
-    const wc = window.webContents;
-    for (const event of ['did-start-navigation','did-navigate','did-finish-load','did-fail-load','render-process-gone']) wc.on(event, (_event, ...args) => console.log('SMOKE', event, ...args));
-    wc.on('console-message', (_event, details) => console.log('PAGE', details.message));
-    const page = script => wc.executeJavaScript(script);
-    await until(async () => wc.getURL().includes('error.html') && await page('document.getElementById("code")?.textContent === "HTTP 500"'), 'startup HTTP 500 recovery');
-    assert.equal(window.isVisible(), true);
-    assert.match(await page('document.body.innerText'), /Just A Jad/);
-    assert.match(await page('document.body.innerText'), /AlexAnimateMp4/);
-    assert.equal(await page('document.getElementById("retry").href'), 'https://anime-sama.to/');
-    mkdirSync(join(root, 'artifacts'), { recursive: true });
-    await delay(250);
-    writeFileSync(join(root, 'artifacts', 'recovery-preview.png'), (await wc.capturePage()).toPNG());
-    console.log('PASS startup HTTP 500, visible recovery, branding and retry URL');
+let mode='server-error';const problems=[];
+process.on('unhandledRejection',error=>problems.push(String(error)));
+process.on('uncaughtException',error=>{console.error(error);app.exit(1);});
+const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function until(check,label){const deadline=Date.now()+20000;while(Date.now()<deadline){if(await Promise.race([Promise.resolve().then(check),wait(1000).then(()=>false)]))return;await wait(100);}throw new Error('Timed out: '+label);}
+const fixtureReady=app.whenReady().then(()=>{
+ session.defaultSession.protocol.handle('https',request=>{
+  if(new URL(request.url).pathname==='/failed-frame')return Response.error();
+  if(mode==='server-error')return new Response('Error',{status:500,headers:{'content-type':'text/html'}});
+  if(mode==='offline')return Response.error();
+  return new Response('<!doctype html><title>Anime fixture</title><h1>Frieren</h1><select id="selectEpisodes"><option>Épisode 7</option></select><iframe src="/failed-frame"></iframe>',{headers:{'content-type':'text/html'}});
+ });
+});
+require('../index');
+(async()=>{
+ await fixtureReady;let window;
+ await until(()=>{window=BrowserWindow.getAllWindows().find(item=>item.webContents.getURL().includes('/desktop/index.html'));return window;},'desktop window');
+ const ui=code=>window.webContents.executeJavaScript(code);
+ await until(async()=>await ui('Boolean(window.samani && document.querySelector("#error-code")?.textContent.includes("500"))'),'localized startup HTTP 500');
+ assert.equal(await ui('document.documentElement.lang'),'fr');
+ assert.match(await ui('document.querySelector("#error-panel").innerText'),/chargée/);
+ await until(async()=>await ui('document.querySelector("#intro").hidden'),'animated intro finishes');
+ assert.equal(window.isVisible(),true);
+ console.log('PASS French default, logo intro and actual startup HTTP 500 recovery');
+ mode='healthy';await ui('window.samani.navigate("https://anime-sama.to/catalogue/frieren/saison1/vostfr/")');
+ await until(async()=>{const s=await ui('window.samani.bootstrap()');return s.page.title==='Frieren'&&s.page.episode.includes('7')&&!s.loading&&!s.error;},'site metadata');
+ let state=await ui('window.samani.bootstrap()');assert.ok(state.recent.some(item=>item.title==='Frieren'));assert.equal(state.preferences.rpcClientId,'1563568424691437578');
+ await ui('window.samani.library("favorite")');state=await ui('window.samani.bootstrap()');assert.equal(state.favorites.length,1);
+ console.log('PASS native website view, episode observer, recent history, favorites and owned Discord ID');
+ await ui('document.querySelector("[data-panel=settings]").click()');
+ await until(async()=>await ui('!document.querySelector("#settings-panel").hidden'),'settings panel');
+ await ui('window.samani.preferences({language:"en",alwaysOnTop:true,colorA:"#38bdf8",colorB:"#818cf8",blur:21,reducedMotion:true})');
+ await until(()=>window.isAlwaysOnTop(),'always on top');
+ await until(async()=>await ui('document.documentElement.lang === "en"'),'English switch');
+ assert.match(await ui('document.querySelector("#settings-panel").innerText'),/Make yourself at home/);
+ assert.equal(await ui('getComputedStyle(document.documentElement).getPropertyValue("--a").trim()'),'#38bdf8');
+ await ui('window.samani.preferences({language:"fr",alwaysOnTop:false})');
+ await until(()=>!window.isAlwaysOnTop(),'always on top disabled');
+ console.log('PASS instant French/English, appearance persistence and native window setting');
 
-    mode = 'healthy';
-    await page('document.getElementById("retry").click()');
-    await until(async () => wc.getURL() === 'https://anime-sama.to/' && await page('Boolean(document.getElementById("healthy"))'), 'successful retry');
-    await delay(350);
-    assert.equal(wc.getURL(), 'https://anime-sama.to/');
-    console.log('PASS retry recovers; failed iframe leaves the main page usable');
-
-    const Store = require('electron-store');
-    const prefs = new Store({ name: 'settings', watch: true });
-    const namespace = require('../package.json').exeName;
-    prefs.set(`${namespace}.ALWAYS_ON_TOP`, true);
-    await until(() => window.isAlwaysOnTop(), 'Always on top setting applies');
-    prefs.set(`${namespace}.LANGUAGE`, 'fr');
-    await delay(250);
-    assert.equal(window.isAlwaysOnTop(), true);
-    prefs.set(`${namespace}.ALWAYS_ON_TOP`, false);
-    await until(() => !window.isAlwaysOnTop(), 'Always on top setting clears');
-    prefs.set(`${namespace}.LANGUAGE`, 'en');
-    prefs.set(`${namespace}.SAVE_WINDOW_SIZE`, true);
-    await until(() => prefs.get(`${namespace}.WIDTH`) === window.getSize()[0], 'size saving starts');
-    window.setSize(860, 600);
-    await until(() => prefs.get(`${namespace}.WIDTH`) === 860 && prefs.get(`${namespace}.HEIGHT`) === 600, 'resize is saved');
-    prefs.set(`${namespace}.SAVE_WINDOW_SIZE`, false);
-    await until(() => !prefs.has(`${namespace}.WIDTH`) && !prefs.has(`${namespace}.HEIGHT`), 'saved dimensions are cleared');
-    console.log('PASS live settings: Always on top, language independence, resize and dimension cleanup');
-
-    await page('document.getElementById("broken").click()');
-    await until(async () => wc.getURL().includes('error.html') && await page('document.getElementById("code")?.textContent === "HTTP 404"'), 'later HTTP 404');
-    assert.equal(await page('document.getElementById("retry").href'), 'https://anime-sama.to/missing');
-    await page('document.getElementById("browser").click()');
-    await until(() => openedExternal === 'https://anime-sama.to/missing', 'open in browser action');
-    console.log('PASS later HTTP 404 preserves page URL; browser action routes correctly');
-
-    mode = 'offline';
-    await page('document.getElementById("home").click()');
-    await until(async () => wc.getURL().includes('error.html') && await page('document.getElementById("code")?.textContent.includes("-2")'), 'network recovery');
-    assert.doesNotMatch(await page('document.getElementById("code").textContent'), /500/);
-    console.log('PASS real Electron network failure is not mislabeled HTTP 500');
-
-    mode = 'healthy';
-    const reload = Menu.getApplicationMenu().getMenuItemById('app-reload');
-    assert.ok(reload);
-    reload.click();
-    await until(async () => wc.getURL() === 'https://anime-sama.to/' && await page('Boolean(document.getElementById("healthy"))'), 'menu retry after network failure');
-    console.log('PASS reload menu recovers from the error page');
-    assert.deepEqual(problems, []);
-    app.exit(0);
-}
-main().catch(error => { console.error(error); app.exit(1); });
+ dialog.showOpenDialog=async()=>({canceled:false,filePaths:[join(root,'assets','branding','mark.png')]});
+ await ui('window.samani.media("image")');
+ await until(async()=>await ui('document.querySelector("#image-wall").naturalWidth > 0'),'custom image protocol');
+ assert.equal(await ui('document.querySelector("#image-wall").hidden'),false);
+ dialog.showOpenDialog=async()=>({canceled:false,filePaths:[join(root,'test','fixtures','background.webm')]});
+ await ui('window.samani.preferences({reducedMotion:false,pauseBackground:true})');
+ await ui('window.samani.media("video")');
+ await until(async()=>await ui('document.querySelector("#video-wall").readyState >= 2 && !document.querySelector("#video-wall").paused'),'custom video playback');
+ const website=window.contentView.children.find(view=>view.webContents&&view.webContents!==window.webContents);
+ website.webContents.emit('media-started-playing');
+ await until(async()=>await ui('document.querySelector("#video-wall").paused'),'background pauses during playback');
+ website.webContents.emit('media-paused');
+ await until(async()=>await ui('!document.querySelector("#video-wall").paused'),'background resumes');
+ await ui('window.samani.preferences({reducedMotion:true})');
+ await until(async()=>await ui('document.querySelector("#video-wall").paused'),'reduced motion pauses video');
+ console.log('PASS exact logo image, custom video, playback-aware pause and reduced motion');
+ await ui('window.samani.preferences({theme:"samani",colorA:"#ffb45f",colorB:"#ff91a8",background:"gradient",blur:12,reducedMotion:false})');
+ mkdirSync(join(root,'artifacts'),{recursive:true});await wait(250);
+ writeFileSync(join(root,'artifacts','samani-personalization.png'),(await window.webContents.capturePage()).toPNG());
+ await ui('window.samani.preferences({language:"en"})');await wait(200);
+ writeFileSync(join(root,'artifacts','samani-personalization-en.png'),(await window.webContents.capturePage()).toPNG());
+ await ui('window.samani.preferences({language:"fr"})');
+ await ui('document.querySelector("#settings-panel .close-panel").click()');
+ await ui('window.samani.action("cinema")');await until(async()=>await ui('document.body.classList.contains("cinema")'),'cinema');
+ await ui('window.samani.action("cinema")');
+ await ui('window.samani.action("intro-done")');mode='offline';await ui('window.samani.action("reload")');
+ await until(async()=>{const s=await ui('window.samani.bootstrap()');return s.error?.kind==='network';},'actual network error');
+ state=await ui('window.samani.bootstrap()');assert.notEqual(state.error.code,'500');
+ console.log('PASS cinema mode, iframe failures and network errors without false 500');
+ // Local paths and unsupported native actions cannot be granted from website frames.
+ const site=window.contentView.children.find(view=>view.webContents&&view.webContents!==window.webContents);
+ assert.ok(site);assert.equal(await site.webContents.executeJavaScript('typeof window.samani'),'undefined');
+ const before=(await ui('window.samani.bootstrap()')).preferences.media;
+ await ui('window.samani.preferences({media:"../../not-authorized.mp4"})');assert.equal((await ui('window.samani.bootstrap()')).preferences.media,before);
+ assert.deepEqual(problems,[]);console.log('PASS isolated website and local media permission boundary');
+ app.exit(0);
+})().catch(error=>{console.error(error);app.exit(1);});

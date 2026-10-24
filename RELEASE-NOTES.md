@@ -1,32 +1,54 @@
-## Anime Sama.to Desktop 0.2.0 — preview
+# Anime Samani 0.3.0 — Aperçu / Preview
 
-An updated fork maintained by **Just A Jad**, based on **AlexAnimateMp4’s** original
-Anime Sama.fr Desktop 0.1.1. Original credit, history and MPL-2.0 are preserved.
+## Français
 
-### Updated and fixed
+Anime Samani est la nouvelle identité du fork de **Just A Jad**, avec ses logos
+originaux. Crédits conservés à **AlexAnimateMp4** pour l’application d’origine et
+à **raphael-as** pour la maintenance communautaire et l’inspiration.
 
-- Use the current **https://anime-sama.to/** website and migrate old .fr links.
-- Display actual network/HTTP errors instead of turning every load failure into 500.
-- Recover from startup and later navigation failures with Retry, Home and browser actions.
-- Keep cancelled loads and failed video subframes from replacing the whole app.
-- Fix settings change listeners, saved-window-size cleanup, and resize tracking.
-- Add visible navigation, zoom/fullscreen controls and keyboard shortcuts.
-- Add links to this fork’s downloads, source and issue tracker.
-- Update Electron to **45.0.0** and provide native Windows builds with source and checksums.
+- Nouvelle interface de bureau autour du véritable site Anime Sama.to.
+- Introduction animée avec les logos de Just A Jad, désactivable.
+- Palette pêche–rose, trois autres palettes, couleurs et dégradé personnalisables.
+- Fonds image/vidéo locaux, flou, luminosité et opacité des surfaces.
+- Pause du fond pendant la lecture, réduction des animations, mode cinéma.
+- Favoris locaux, pages récentes et palette d’accès rapide `Ctrl + K`.
+- Interface française par défaut, traduction anglaise complète et changement immédiat.
+- RPC Discord reconstruit avec l’identifiant `1563568424691437578`, les métadonnées
+  de lecture, les options de confidentialité, le texte personnalisé et les reconnexions.
+- Corrections conservées pour les vrais codes d’erreur et les réglages de fenêtre.
 
-### Downloads
+**Windows 10/11, 64 bits :** Setup pour installer, Portable pour ouvrir directement,
+ou ZIP à extraire puis `ANIME_SAMANI.exe`. Le code source, les crédits, la licence
+et les sommes SHA-256 sont inclus.
 
-For **Windows 10/11, 64-bit**: choose Setup to install, Portable to run directly,
-or extract the Windows ZIP and run ANIME_SAMA_JUST_A_JAD.exe. The source ZIP,
-NOTICE.md, LICENSE and SHA256SUMS.txt are provided alongside the app.
+Cette version est non signée et reste un aperçu. Les tests automatiques couvrent
+les interfaces, médias locaux et trames RPC ; le site réel, ses lecteurs externes
+et une vraie connexion Discord nécessitent encore une vérification sur votre PC.
+Le contenu du site reste dans sa langue d’origine. Les pages récentes sont des
+raccourcis, pas une sauvegarde de progression vidéo à la seconde.
 
-### Preview status
+## English
 
-This release is unsigned and remains a preview pending real-world Windows and
-live website playback checks. Automated tests use local website fixtures. The
-website’s 2023 profile and Discord integrations are retained but have not all been
-revalidated against the current live site. A genuine HTTP 500 still depends on
-the website operator resolving its server error.
+Anime Samani is **Just A Jad’s** new fork identity, using his original logos.
+**AlexAnimateMp4** remains credited for the original application, and **raphael-as**
+for community maintenance and inspiration.
 
-Original app: https://github.com/AlexAnimateMp4/anime-sama-fr-desktop
-Fork and issues: https://github.com/JustAJad/anime-sama-to-desktop
+- New desktop shell around the real Anime Sama.to website.
+- Optional animated startup with Just A Jad’s logos.
+- Peach–pink default palette, three additional presets, custom colors and gradients.
+- Local image/video backgrounds, blur, brightness and surface-opacity controls.
+- Playback-aware background pause, reduced motion and cinema mode.
+- Local favorites, recent pages and `Ctrl + K` quick access.
+- French by default, complete English desktop translation and immediate switching.
+- Rebuilt Discord RPC using application ID `1563568424691437578`, playback metadata,
+  privacy controls, custom text and automatic reconnection.
+- Retained accurate loading errors and corrected native window preferences.
+
+**Windows 10/11, 64-bit:** choose Setup, Portable, or extract the ZIP and run
+`ANIME_SAMANI.exe`. Matching source, credits, license and SHA-256 checksums are included.
+
+This unsigned preview still needs real-site playback and live Discord validation.
+Automated tests cover the UI, local media and RPC frames. Website content retains
+its original language. Recent pages are shortcuts, not second-accurate video resume.
+
+[Crédits / Credits](https://github.com/JustAJad/anime-sarani-desktop/blob/main/CREDITS.md)

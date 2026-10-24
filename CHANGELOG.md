@@ -1,3 +1,29 @@
+# Historique / Changelog
+
+## 0.3.0 — Anime Samani
+
+### Français
+
+Identité et logos de Just A Jad, crédit à raphael-as pour la maintenance et
+l’inspiration, interface française avec anglais complet, introduction animée,
+thèmes et médias locaux, bibliothèque et accès rapide, mode cinéma et nouveau
+module Discord RPC avec l’application de Just A Jad. Le profil du site de la
+version 0.2 reste dans le même dossier. Tests ajoutés pour les thèmes, les langues,
+les fichiers locaux, les trames RPC et la nouvelle interface native.
+
+### English
+
+Just A Jad’s new identity and logos; raphael-as maintenance/inspiration credit;
+French-first bilingual shell; animated intro; themes and local media; library and
+quick access; cinema mode; and a rebuilt Discord RPC module using Just A Jad’s
+application. The 0.2 website profile directory is retained. Added tests cover
+preferences, language parity, local media, RPC framing and the native shell.
+
+## Archives / Archive
+
+Les notes antérieures sont conservées ci-dessous dans leur langue d’origine.
+Earlier notes are preserved below in their original language.
+
 # Changelog
 
 ## 0.2.0 — Anime Sama.to Desktop fork

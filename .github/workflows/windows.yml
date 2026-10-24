@@ -1,4 +1,4 @@
-name: Windows build
+name: Windows · Tests et versions
 
 on:
   push:
@@ -21,7 +21,7 @@ concurrency:
 
 jobs:
   windows:
-    name: Test and package Windows x64
+    name: Tests et construction Windows x64
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -47,9 +47,9 @@ jobs:
         run: |
           New-Item -ItemType Directory -Force release-assets | Out-Null
           Copy-Item dist/*.exe,dist/*.zip release-assets/
-          Copy-Item NOTICE.md,LICENSE,RELEASE-NOTES.md release-assets/
+          Copy-Item NOTICE.md,LICENSE,CREDITS.md,RELEASE-NOTES.md release-assets/
           $appVersion = (Get-Content package.json | ConvertFrom-Json).version
-          git archive --format=zip --prefix="anime-sama-to-desktop-$appVersion/" --output="release-assets/Anime-Sama-to-$appVersion-Source.zip" HEAD
+          git archive --format=zip --prefix="anime-samani-$appVersion/" --output="release-assets/Anime-Samani-$appVersion-Source.zip" HEAD
           if ($LASTEXITCODE -ne 0) { throw 'Source archive failed' }
           Get-ChildItem release-assets -File | Sort-Object Name | ForEach-Object {
             $hash = (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
@@ -57,13 +57,13 @@ jobs:
           } | Set-Content -Encoding utf8 release-assets/SHA256SUMS.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: Anime-Sama-to-Windows
+          name: Anime-Samani-Windows
           path: release-assets/*
           if-no-files-found: error
           retention-days: 30
 
   release:
-    name: Publish preview downloads
+    name: Publication de l’aperçu
     needs: windows
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish))
     runs-on: ubuntu-latest
@@ -75,7 +75,7 @@ jobs:
           persist-credentials: false
       - uses: actions/download-artifact@v4
         with:
-          name: Anime-Sama-to-Windows
+          name: Anime-Samani-Windows
           path: release-assets
       - name: Publish a new version without replacing existing releases
         run: node scripts/release.cjs

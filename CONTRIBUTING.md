@@ -1,37 +1,45 @@
-# Contributing
+# Contribuer à Anime Samani
 
-This fork maintains AlexAnimateMp4’s original desktop application for Anime Sama.to.
-Keep original-author attribution and the MPL-2.0 license intact.
+[English](CONTRIBUTING.en.md)
 
-## Report a problem
+Préservez les crédits de **Just A Jad**, **AlexAnimateMp4** et **raphael-as**, ainsi
+que la licence MPL-2.0. Les logos de Just A Jad sont dans `assets/branding/`.
 
-Use the repository’s issue form. Include the app version, Windows version, what you
-clicked, what you expected, and the exact error displayed. State whether the same
-page works in your normal browser. Remove personal information from screenshots.
+## Signaler un problème
 
-For a quality-of-life request, explain the task you want to make easier and how
-the proposed change would help. Avoid requesting changes to the website itself:
-this repository maintains the desktop wrapper.
+Indiquez la version de Samani, la version de Windows, les étapes et le code exact
+s’il y en a un. Précisez si la même page fonctionne dans votre navigateur. Pour
+Discord, indiquez l’état affiché dans les réglages, sans partager de jeton ni de
+mot de passe. Voir [SUPPORT.md](SUPPORT.md).
 
-## Work on the app
+## Développer
 
-Use Node.js 24 and npm ci. Keep package-lock.json committed. Run npm test for syntax
-and navigation checks, and npm run test:electron on a graphical desktop for the
-real-window fixture checks. On Windows, run npm run build:win:installer to verify
-packaging. Add focused regression coverage for changes to loading or native app
-behavior. Documentation-only edits do not need new tests.
+Utilisez Node.js 24 et `npm ci`. `npm test` vérifie la navigation, les thèmes,
+les traductions et le protocole RPC. `npm run test:electron` utilise les vraies
+fenêtres Electron avec des pages locales et des fonds de test. Il faut un bureau
+graphique ; sous Linux, un serveur X est nécessaire. Sur Windows,
+`npm run build:win:installer` vérifie les trois formats de distribution.
 
-Send pull requests to main. Describe the visible behavior, the reason for the
-change, and what you tested. Never commit node_modules, build outputs, credentials,
-private profile data or personal browsing history.
+Le site réside dans une `WebContentsView` isolée. L’interface locale reçoit une
+API IPC limitée et validée ; ne donnez pas cette API aux pages distantes. Les
+fichiers de fond passent par le sélecteur natif et un protocole local contrôlé.
 
-## Release a version
+Ajoutez les nouvelles chaînes dans **les deux fichiers** `desktop/i18n/fr.json`
+et `en.json`. Documentez les fonctions en français et en anglais. Gardez les
+contrastes et l’option de réduction des animations. Ajoutez des tests ciblés
+pour les changements de comportement ; les seules retouches de texte n’exigent
+pas de nouveau test.
 
-1. Update package.json and package-lock.json together, and add release notes to CHANGELOG.md and RELEASE-NOTES.md.
-2. Push the changes to main, or run Windows build manually with publish enabled.
-3. The Windows job runs tests, creates Setup/Portable/ZIP files, and attaches the matching source and SHA-256 checksums.
-4. After the build succeeds, the release job creates a pre-release tagged v<version>. Existing release tags are left intact.
-5. Test the download on Windows, including website navigation and playback. Use GitHub’s release editor to remove the pre-release flag only after that validation.
+Ouvrez une proposition vers `main` en décrivant le comportement et les contrôles
+effectués. Ne commitez ni `node_modules`, ni `dist`, ni profils personnels.
 
-The built-in GITHUB_TOKEN handles releases; a personal access token is not needed.
-If GitHub disables workflows on a new fork, enable Actions once in the Actions tab.
+## Publier
+
+Mettez à jour la version de `package.json` et `package-lock.json`, le changelog et
+les notes de version bilingues. Le workflow Windows teste et construit les
+exécutables ; une nouvelle version sur `main` crée ensuite un aperçu avec le
+code source correspondant, les crédits et les sommes SHA-256. Les versions
+existantes ne sont pas remplacées. Le jeton automatique de GitHub suffit.
+
+Validez le site réel, plusieurs lecteurs vidéo et une vraie session Discord
+avant de retirer la mention Aperçu.

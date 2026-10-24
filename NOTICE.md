@@ -1,27 +1,37 @@
-# Attribution and corresponding source
+# Attribution et code source / Attribution and source
 
-**Anime Sama.to Desktop** is an updated fork maintained by **Just A Jad**:
-https://github.com/JustAJad/anime-sama-to-desktop
+**Anime Samani** est imaginé et maintenu par **Just A Jad**, auteur des logos
+et de l’identité de Samani. / Anime Samani is imagined and maintained by
+Just A Jad, who created its original logos and visual identity.
 
-**Original application:** Anime Sama.fr Desktop by **AlexAnimateMp4**
-(Alex Animate Mp4): https://github.com/AlexAnimateMp4/anime-sama-fr-desktop
+Source : https://github.com/JustAJad/anime-sarani-desktop
 
-Based on original release 0.1.1, commit
-78087b29799b0a692ee28b16c78029f44531e015. Original artwork is retained from that
-repository. The original Git history and Mozilla Public License 2.0 are preserved.
+Application originale / Original application : **AlexAnimateMp4**, Anime Sama.fr
+Desktop 0.1.1, commit 78087b29799b0a692ee28b16c78029f44531e015.
+https://github.com/AlexAnimateMp4/anime-sama-fr-desktop
 
-The original source and this fork’s modifications are distributed under MPL-2.0;
-see LICENSE (APP-LICENSE.txt in packaged Windows downloads). Electron and other
-bundled components retain their own license notices.
+Maintenance et inspiration / Maintenance and inspiration : **raphael-as**,
+notamment pour le domaine, la présence Discord et les crédits. / Especially for
+domain, Discord presence and credit maintenance.
+https://github.com/raphael-as/anime-sama-fr-desktop
 
-Fork changes include the anime-sama.to address, accurate loading errors, recovery
-actions, working settings listeners, navigation shortcuts, an updated Electron
-runtime, Windows packaging, and fork-specific branding and documentation.
+Voir / See CREDITS.md pour les références précises / for specific references.
 
-Corresponding source is available in this repository and as the Source.zip asset
-included with each release. To rebuild, install Node.js 24, then run npm ci,
-npm test and npm run build:win. Native Windows builds can also create an installer
-with npm run build:win:installer.
+La source et les modifications sont sous Mozilla Public License 2.0. La licence
+originale est conservée dans LICENSE, ou APP-LICENSE.txt dans la version Windows.
+Source and modifications are under MPL-2.0. The original license is retained as
+LICENSE, or APP-LICENSE.txt in Windows packages. Bundled dependencies retain their
+own license notices.
 
-This is an unofficial desktop wrapper. The Anime Sama website and its content are
-provided by their respective operators; this fork does not operate the website.
+Le code correspondant accompagne chaque version dans l’archive Source.zip et dans
+le dépôt. Reconstruction : Node.js 24, npm ci, npm test, npm run build:win.
+Corresponding source accompanies releases in Source.zip and this repository.
+Rebuild with Node.js 24, npm ci, npm test and npm run build:win.
+
+Les PNG de Just A Jad dans assets/branding sont conservés à l’identique. Les autres
+illustrations historiques proviennent du projet original.
+Just A Jad’s PNGs in assets/branding are preserved unchanged. Historical artwork
+comes from the original project.
+
+Application indépendante : Samani n’exploite ni le site Anime Sama, ni Discord.
+Independent app: Samani does not operate Anime Sama or Discord.

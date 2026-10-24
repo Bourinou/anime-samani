@@ -19,5 +19,5 @@ if (!files.some(file => file.endsWith('Setup-x64.exe')) || !files.some(file => f
 }
 execFileSync('gh', ['release', 'create', tag, ...files,
     '--repo', repository, '--target', commit,
-    '--title', `Anime Sama.to Desktop ${pkg.version} — Preview`,
+    '--title', `Anime Samani ${pkg.version} — Aperçu / Preview`,
     '--notes-file', 'RELEASE-NOTES.md', '--prerelease'], { stdio: 'inherit' });
