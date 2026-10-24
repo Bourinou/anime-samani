@@ -1,13 +1,11 @@
 <div align="center">
   <img src="assets/branding/wordmark.png" alt="Anime Samani" width="760" />
   <h1>Anime Samani</h1>
-  <p>Anime Sama sur ton PC, avec quelques petits plus.</p>
+  <p>Anime Sama, mais en mieux !</p>
   <p><a href="https://github.com/JustAJad/anime-samani/releases">Télécharger</a> · <a href="README.en.md">English</a> · <a href="https://github.com/JustAJad/anime-samani/issues/new/choose">Signaler un souci</a></p>
 </div>
 
-Samani te permet de retrouver [Anime Sama](https://anime-sama.to/) sur ton bureau,
-avec des favoris, un fond à ton goût et une présence Discord. Tu navigues sur le
-site comme d’habitude, et les réglages de l’app restent à portée de main.
+Anime Samani est un fork de l'application de [AlexAnimateMp4](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop), qui te donne plus de fonctionalités !
 
 ## Installation
 
