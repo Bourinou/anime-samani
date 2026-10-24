@@ -1,5 +1,6 @@
-node_modules
-dist
+node_modules/
+dist/
+artifacts/
+.npm-cache/
 CHANGELOG.html
 README.html
-package-lock.json

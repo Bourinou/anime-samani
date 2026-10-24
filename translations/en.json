@@ -126,7 +126,7 @@
         },
         "ERROR": "Error #CODE#"
     },
-    "FOOTER": "#COPYLEFT# #TIME# #NAME##NEW_LINE##CODED# with #HEART# by #AUTHOR# and #CONTRIBUTORS_START#contributors#CONTRIBUTORS_END#.",
+    "FOOTER": "#COPYLEFT# #TIME# #NAME##NEW_LINE#Fork maintained by Just A Jad · Original application by AlexAnimateMp4.",
     "ERROR": {
         "LABEL": "An error has occurred",
         "STATUS": "Status #CODE#",

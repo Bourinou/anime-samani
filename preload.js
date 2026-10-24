@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MPL-2.0
+// Original application: AlexAnimateMp4. Fork maintenance: Just A Jad.
+if (process.isMainFrame && window.location.protocol === "https:" && ["anime-sama.to", "www.anime-sama.to"].includes(window.location.host)) {
 const {
     ipcRenderer
 } = require("electron");
@@ -256,3 +259,4 @@ window.addEventListener("DOMContentLoaded", () => {
         };
     });
 });
+}

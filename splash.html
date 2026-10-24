@@ -1,48 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            html, body {
-                background-color: black;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-                width: fit-content;
-                height: fit-content;
-                -webkit-app-region: drag;
-                user-select: none;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                -webkit-touch-callout: none;
-            }
-
-            .container {
-                padding: 15px;
-                text-align: center;
-            }
-
-            img {
-                animation: zoom-in-zoom-out 3.5s ease infinite;
-            }
-
-            @keyframes zoom-in-zoom-out {
-                0% {
-                    transform: scale(1);
-                }
-                50% {
-                    transform: scale(0.75);
-                }
-                100% {
-                    transform: scale(1);
-                }
-            }
-        </style>
-    </head>
-    <body oncontextmenu="return false;">
-        <div class="container">
-            <img src="./splash.png" style="width: 512px;" draggable="false">
-        </div>
-    </body>
-</html>
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+body { margin:0; background:#10131c; color:#f0f3fa; font-family:system-ui,sans-serif; -webkit-app-region:drag; }
+main { box-sizing:border-box; width:542px; height:132px; padding:22px; display:flex; gap:20px; align-items:center; }
+img { width:72px; height:72px; } h1 { margin:0; font-size:25px; } p { margin:7px 0 0; font-size:12px; color:#a8b1c2; }
+</style></head><body><main><img src="icon.png" alt=""><div><h1>ANIME SAMA.TO</h1><p>Maintenu par Just A Jad · Original par AlexAnimateMp4</p></div></main></body></html>

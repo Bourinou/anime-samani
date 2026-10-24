@@ -1,62 +1,35 @@
-const {
-    resolve,
-    join
-} = require("node:path");
-const builder = require("electron-builder");
-const packagejson = require(resolve(join(__dirname, "package.json")));
-let Platform;
-if (process.platform == "win32") Platform = builder.Platform.WINDOWS;
-/*else if (process.platform == "darwin") Platform = builder.Platform.MAC;
-else if (process.platform == "linux") Platform = builder.Platform.LINUX;*/
-if (typeof Platform != "undefined")(async () => await builder.build({
-    targets: await Platform.createTarget(),
+// SPDX-License-Identifier: MPL-2.0
+// Windows packaging and executable metadata editing also work from Linux.
+const builder = require('electron-builder');
+const pkg = require('./package.json');
+const installer = process.argv.includes('--installer');
+builder.build({
+    targets: builder.Platform.WINDOWS.createTarget(installer ? ['nsis', 'portable', 'zip'] : ['portable', 'zip'], builder.Arch.x64),
+    publish: 'never',
     config: {
-        appId: `com.${String(packagejson.exeName).toLowerCase()}.desktop`,
-        productName: packagejson.displayName,
-        copyright: `${packagejson.license} ${new Date().getFullYear().toString() == packagejson.releaseYear ? packagejson.releaseYear : `${packagejson.releaseYear} - ${new Date().getFullYear()}`} ${packagejson.author.name}`,
-        removePackageScripts: true,
+        appId: 'io.github.justajad.animesama',
+        productName: pkg.displayName,
+        copyright: 'Original application © 2023 AlexAnimateMp4. Fork © 2026 Just A Jad. MPL-2.0.',
+        asar: true,
+        directories: { output: 'dist' },
+        files: [...pkg.files, 'node_modules/**/*'],
+        extraFiles: [{ from: 'NOTICE.md', to: 'NOTICE.md' }, { from: 'LICENSE', to: 'APP-LICENSE.txt' }],
         win: {
-            target: "nsis",
-            icon: "icon.ico",
-            publisherName: packagejson.author.name,
-            artifactName: `${packagejson.exeName}.\${ext}`,
-            executableName: packagejson.exeName,
-            compression: "maximum"
+            icon: 'icon.ico',
+            executableName: pkg.exeName,
+            signtoolOptions: { publisherName: 'Just A Jad' },
+            signAndEditExecutable: true,
+            signExecutable: false,
+            artifactName: 'Anime-Sama-Just-A-Jad-${version}-Windows-${arch}.${ext}'
         },
+        portable: { artifactName: 'Anime-Sama-Just-A-Jad-${version}-Portable-${arch}.${ext}' },
         nsis: {
-            oneClick: true,
-            allowToChangeInstallationDirectory: false,
-            installerIcon: "icon.ico",
-            uninstallerIcon: "icon.ico",
-            installerHeaderIcon: "icon.ico",
-            uninstallDisplayName: packagejson.displayName,
-            artifactName: `${packagejson.exeName}_\${platform}_\${arch}.\${ext}`,
-            deleteAppDataOnUninstall: true,
-            menuCategory: true,
-            createStartMenuShortcut: true,
-            createDesktopShortcut: "always",
-            shortcutName: packagejson.displayName
-        },
-        files: [
-            "!assets",
-            "!dist",
-            "!.gitignore",
-            "!build.js",
-            "!CHANGELOG.md",
-            "!package-lock.json",
-            "!README.md",
-            "**/*",
-            "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
-            "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
-            "!**/node_modules/*.d.ts",
-            "!**/node_modules/.bin",
-            "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
-            "!.editorconfig",
-            "!**/._*",
-            "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
-            "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
-            "!**/{appveyor.yml,.travis.yml,circle.yml}",
-            "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}"
-        ]
+            oneClick: false,
+            perMachine: false,
+            allowToChangeInstallationDirectory: true,
+            deleteAppDataOnUninstall: false,
+            createDesktopShortcut: true,
+            artifactName: 'Anime-Sama-Just-A-Jad-${version}-Setup-${arch}.${ext}'
+        }
     }
-}))();
+}).catch(error => { console.error(error); process.exitCode = 1; });

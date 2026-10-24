@@ -1,0 +1,28 @@
+name: Report a desktop app problem
+description: Tell us what failed in Anime Sama.to Desktop.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: "This repository maintains Just A Jad’s fork of AlexAnimateMp4’s app. Please avoid sharing private browsing data."
+  - type: input
+    id: app-version
+    attributes:
+      label: App version
+      placeholder: "0.2.0 — Setup or Portable"
+    validations:
+      required: true
+  - type: input
+    id: windows-version
+    attributes:
+      label: Windows version
+      placeholder: "Windows 11, 64-bit"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: What happened?
+      description: "Include the steps, expected behavior and exact error shown. Does the page work in your normal browser?"
+    validations:
+      required: true

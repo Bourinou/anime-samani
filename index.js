@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MPL-2.0
+// Original application: AlexAnimateMp4. Fork maintained by Just A Jad.
+const { isSiteUrl, migrateSiteUrl, installNavigation } = require("./lib/navigation");
 const electron = require("electron");
 electron.app.setAppLogsPath();
 if (electron.app.requestSingleInstanceLock()) {
@@ -31,7 +34,7 @@ if (electron.app.requestSingleInstanceLock()) {
     });
     return electron.app.whenReady().then(() => {
         const isDev = "ELECTRON_IS_DEV" in process.env ? parseInt(process.env.ELECTRON_IS_DEV, 10) == 1 && electron.app.isPackaged == false : electron.app.isPackaged == false;
-        const icon = resolve(join(__dirname, "icon.ico"));
+        const icon = resolve(join(__dirname, process.platform === "win32" ? "icon.ico" : "icon.png"));
         const name = packagejson.name;
         const author = packagejson.author;
         const linkProject = String(packagejson.repository.url).split(".git")[0];
@@ -168,11 +171,13 @@ if (electron.app.requestSingleInstanceLock()) {
             webPreferences: {
                 devTools: false,
                 zoomFactor: 1.0 / factor,
-                nativeWindowOpen: true
+                contextIsolation: true,
+                nodeIntegration: false,
+                sandbox: true
             }
         });
         splashWindow.setMenuBarVisibility(false);
-        splashWindow.hookWindowMessage(0x0116, () => {
+        if (process.platform === "win32") splashWindow.hookWindowMessage(0x0116, () => {
             splashWindow.setEnabled(false);
             splashWindow.setEnabled(true);
         });
@@ -196,7 +201,9 @@ if (electron.app.requestSingleInstanceLock()) {
                     webPreferences: {
                         devTools: isDev == true,
                         zoomFactor: 1.0 / factor,
-                        nativeWindowOpen: true,
+                        contextIsolation: true,
+                        nodeIntegration: false,
+                        sandbox: true,
                         preload: resolve(join(__dirname, "preload.js"))
                     }
                 });
@@ -392,28 +399,36 @@ if (electron.app.requestSingleInstanceLock()) {
                     if (result.response == 0) settings.set(`${packagejson.exeName}.ADBLOCK`, true);
                     else settings.set(`${packagejson.exeName}.ADBLOCK`, false);
                 });
-                let errorCode = 500;
+                let errorCode = "LOAD_FAILED";
                 const updateError = () => {
-                    mainWindow.webContents.once("did-fail-load", (event, code) => sendError());
-                    mainWindow.webContents.executeJavaScript(`(() => {const title = document.getElementById("title");const code = document.getElementById("code");const redirect = document.getElementById("redirect");const footer = document.getElementById("footer");if (title) title.innerText = "${getTranslation("ERROR.LABEL")}";if (code) code.innerText = "${String(getTranslation("ERROR.STATUS")).replace("#CODE#", errorCode)}";if (redirect) {redirect.href = "${defaultUrl.base}";redirect.innerText = "${getTranslation("ERROR.REDIRECT")}";}if (footer) footer.innerHTML = "${String(getTranslation("FOOTER")).replace("#COPYLEFT#", "<span style='display:inline-block;transform: rotate(180deg);vertical-align: middle;'>©</span>").replace("#TIME#", new Date().getFullYear().toString() == packagejson.releaseYear ? packagejson.releaseYear : `${packagejson.releaseYear} - ${new Date().getFullYear()}`).replace("#NEW_LINE#", "<br>").replace("#NAME#", `<a id='credits_name' href='${String(linkProject)}' draggable='false'>${String(displayName)} Desktop</a>`).replace("#CODED#", "&lt;/&gt;").replace("#HEART#", "❤").replace("#AUTHOR#", `<a id='credits_author' href='${String(author.url)}' draggable='false'>${String(author.name)}</a>`).replace("#CONTRIBUTORS_START#", `<a id='credits_contributors' href='${String(linkProject)}/graphs/contributors' draggable='false'>`).replace("#CONTRIBUTORS_END#", "</a>")}";})();`);
-                    mainWindow.setTitle(String(getTranslation("TITLE.ERROR")).replace("#CODE#", errorCode));
+                    mainWindow.setTitle(`${displayName} | ${errorCode}`);
                     discordRichPresence.clr();
-                    discordRichPresence.details = getTranslation("ERROR.LABEL");
-                    discordRichPresence.largeImage = "error";
-                    discordRichPresence.largeImageTooltip = String(getTranslation("ERROR.STATUS")).replace("#CODE#", errorCode);
-                    if (settings.get(`${packagejson.exeName}.DISCORD_RICH_PRESENCE`)) discordRichPresence.set();
                 };
-
-                function sendError() {
-                    mainWindow.loadFile(resolve(join(__dirname, "error.html"))).then(() => {
-                        if (!is.number(errorCode)) errorCode = 500;
+                const navigation = installNavigation(mainWindow.webContents, failure => sendError(failure));
+                async function sendError(failure) {
+                    errorCode = failure.code;
+                    const french = String(settings.get(`${packagejson.exeName}.LANGUAGE`)).startsWith("fr");
+                    const query = {
+                        title: french ? "La page ne peut pas être chargée" : "The page could not be loaded",
+                        code: `${failure.kind === "http" ? "HTTP" : french ? "Réseau" : "Network"} ${failure.code}`,
+                        description: failure.description,
+                        url: failure.url,
+                        retry: french ? "Réessayer" : "Retry",
+                        home: french ? "Accueil" : "Home",
+                        browser: french ? "Ouvrir dans le navigateur" : "Open in browser",
+                        note: failure.kind === "http"
+                            ? (french ? "Le site a renvoyé cette erreur. Réessayez plus tard ou ouvrez-le dans votre navigateur." : "The website returned this error. Try again later or open it in your browser.")
+                            : (french ? "Vérifiez votre connexion, puis réessayez." : "Check your connection and try again.")
+                    };
+                    try {
+                        await mainWindow.loadFile(resolve(join(__dirname, "error.html")), { query });
                         updateError();
-                    });
-                };
+                    } catch (error) { console.error("Could not display the recovery page:", error.message); }
+                }
                 electron.app.on("second-instance", (event, argv) => {
                     event.preventDefault();
                     const deepLink = deepLinkToUrl(argv.find(arg => is.deepUrl(arg) == true));
-                    mainWindow.loadURL(deepLink).then(() => mainWindow.webContents.emit("will-navigate", undefined, deepLink));
+                    navigation.load(deepLink);
                     if (isHidden) {
                         mainWindow.show();
                         if (!mainWindow.isAlwaysOnTop()) {
@@ -422,17 +437,54 @@ if (electron.app.requestSingleInstanceLock()) {
                         };
                     };
                 });
-                mainWindow.hookWindowMessage(0x0116, () => {
+                if (process.platform === "win32") mainWindow.hookWindowMessage(0x0116, () => {
                     mainWindow.setEnabled(false);
                     mainWindow.setEnabled(true);
                 });
                 mainWindow.setMenuBarVisibility(false);
-                mainWindow.webContents.setWindowOpenHandler(() => {
-                    return {
-                        action: "deny"
-                    };
+                mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+                    const current = mainWindow.webContents.getURL();
+                    if (current.startsWith("file:") && isSiteUrl(url)) electron.shell.openExternal(url);
+                    else if (isSiteUrl(url)) navigation.load(url);
+                    return { action: "deny" };
                 });
-                settings.onDidChange("START_UP", newValue => {
+                const reloadPage = () => {
+                    if (isSiteUrl(mainWindow.webContents.getURL())) mainWindow.webContents.reload();
+                    else navigation.retry();
+                };
+                const openExternal = url => electron.shell.openExternal(url).catch(error => console.error(error.message));
+                electron.Menu.setApplicationMenu(electron.Menu.buildFromTemplate([
+                    { label: "Anime Sama.to", submenu: [
+                        { id: "app-home", label: "Home / Accueil", accelerator: "Alt+Home", click: () => navigation.load(defaultUrl.base) },
+                        { id: "app-back", label: "Back / Retour", accelerator: "Alt+Left", click: () => {
+                            if (mainWindow.webContents.navigationHistory.canGoBack()) mainWindow.webContents.navigationHistory.goBack();
+                        } },
+                        { id: "app-forward", label: "Forward / Suivant", accelerator: "Alt+Right", click: () => {
+                            if (mainWindow.webContents.navigationHistory.canGoForward()) mainWindow.webContents.navigationHistory.goForward();
+                        } },
+                        { id: "app-reload", label: "Reload / Actualiser", accelerator: "CmdOrCtrl+R", click: reloadPage },
+                        { label: "Open in browser / Ouvrir dans le navigateur", accelerator: "CmdOrCtrl+Shift+B", click: () => {
+                            const url = mainWindow.webContents.getURL();
+                            openExternal(isSiteUrl(url) ? url : defaultUrl.base);
+                        } },
+                        { type: "separator" },
+                        { role: "quit" }
+                    ] },
+                    { label: "View / Affichage", submenu: [{ role: "zoomIn" }, { role: "zoomOut" }, { role: "resetZoom" }, { role: "togglefullscreen", accelerator: "F11" }] },
+                    { label: "Help / Aide", submenu: [
+                        { label: "Downloads / Téléchargements", click: () => openExternal(`${linkProject}/releases`) },
+                        { label: "Report an issue / Signaler un problème", click: () => openExternal(`${linkProject}/issues/new/choose`) },
+                        { label: "Source code / Code source", click: () => openExternal(linkProject) },
+                        { label: "About / À propos", click: () => electron.dialog.showMessageBox(mainWindow, {
+                            title: displayName,
+                            message: `${displayName} — ${packagejson.version}`,
+                            detail: "Fork maintained by Just A Jad.\nOriginal application by AlexAnimateMp4 (0.1.1).\nMozilla Public License 2.0.\nhttps://github.com/JustAJad/anime-sama-to-desktop\nSource and license are included with releases.",
+                            buttons: ["OK"]
+                        }) }
+                    ] }
+                ]));
+                mainWindow.setMenuBarVisibility(true);
+                settings.onDidChange(`${packagejson.exeName}.START_UP`, newValue => {
                     if (newValue) {
                         if (process.platform == "linux") writeFileSync(resolve(join(electron.app.getPath("appData"), "autostart", `${String(packagejson.name).replace("-", "_")}.desktop`)), `[Desktop Entry]\nType=Application\nName=${String(packagejson.displayName).replace("-", "_")}\nVersion=${electron.app.getVersion()}\nExec=${basename(electron.app.getPath("exe"))}\nIcon=${resolve(join(__dirname, "icon.ico")).replace("app.asar", "app.asar.unpacked")}\nComment=${packagejson.description}\nNoDisplay=false\nStartupNotify=false\nTerminal=false\nX-GNOME-Autostart-enabled=true`);
                         else electron.app.setLoginItemSettings({
@@ -446,23 +498,22 @@ if (electron.app.requestSingleInstanceLock()) {
                         });
                     };
                 });
-                settings.onDidChange("DISCORD_RICH_PRESENCE", newValue => {
+                settings.onDidChange(`${packagejson.exeName}.DISCORD_RICH_PRESENCE`, newValue => {
                     if (newValue) mainWindow.webContents.emit("will-navigate", undefined, mainWindow.webContents.getURL());
                     else discordRichPresence.del();
                 });
-                settings.onDidChange("SAVE_WINDOW_SIZE", newValue => {
+                settings.onDidChange(`${packagejson.exeName}.SAVE_WINDOW_SIZE`, newValue => {
                     if (newValue) {
                         const size = mainWindow.getBounds();
                         settings.set(`${packagejson.exeName}.WIDTH`, size.width);
                         settings.set(`${packagejson.exeName}.HEIGHT`, size.height);
                     } else {
-                        settings.delete("WIDTH");
-                        settings.delete("HEIGHT");
+                        settings.delete(`${packagejson.exeName}.WIDTH`);
+                        settings.delete(`${packagejson.exeName}.HEIGHT`);
                     };
                 });
-                settings.onDidChange("LANGUAGE", newValue => mainWindow.setAlwaysOnTop(newValue));
-                settings.onDidChange("ALWAYS_ON_TOP", newValue => mainWindow.setAlwaysOnTop(newValue));
-                settings.onDidChange("ADBLOCK", () => mainWindow.reload());
+                settings.onDidChange(`${packagejson.exeName}.ALWAYS_ON_TOP`, newValue => mainWindow.setAlwaysOnTop(newValue));
+                settings.onDidChange(`${packagejson.exeName}.ADBLOCK`, reloadPage);
                 electron.session.defaultSession.webRequest.onBeforeRequest((details, callback) => {
                     if (settings.get(`${packagejson.exeName}.ADBLOCK`)) {
                         if (new URL(details.url).host.startsWith("pagead")) callback({
@@ -471,7 +522,7 @@ if (electron.app.requestSingleInstanceLock()) {
                         else callback({});
                     } else callback({});
                 });
-                mainWindow.on("resized", () => {
+                mainWindow.on("resize", () => {
                     if (settings.get(`${packagejson.exeName}.SAVE_WINDOW_SIZE`)) {
                         const size = mainWindow.getBounds();
                         settings.set(`${packagejson.exeName}.WIDTH`, size.width);
@@ -481,19 +532,24 @@ if (electron.app.requestSingleInstanceLock()) {
                 mainWindow.on("page-title-updated", event => event.preventDefault());
                 let notWatchEpisode = true;
                 let notWatchScan = true;
-                electron.ipcMain.on("deleteAllHistory", () => profile.set(historyProfile, {}));
-                electron.ipcMain.on("deleteAllWatchlist", () => profile.set(watchlistProfile, {}));
-                electron.ipcMain.on("deleteAllFavorite", () => profile.set(favoriteProfile, {}));
-                electron.ipcMain.on("deleteHistory", (event, url) => {
+                const onSiteMessage = (channel, handler) => electron.ipcMain.on(channel, (event, ...args) => {
+                    if (event.sender !== mainWindow.webContents || !isSiteUrl(event.senderFrame?.url)) return;
+                    if (event.senderFrame !== mainWindow.webContents.mainFrame) return;
+                    handler(event, ...args);
+                });
+                onSiteMessage("deleteAllHistory", () => profile.set(historyProfile, {}));
+                onSiteMessage("deleteAllWatchlist", () => profile.set(watchlistProfile, {}));
+                onSiteMessage("deleteAllFavorite", () => profile.set(favoriteProfile, {}));
+                onSiteMessage("deleteHistory", (event, url) => {
                     if (is.url(url)) profile.delete(`${historyProfile}.${new URL(url).pathname}`);
                 });
-                electron.ipcMain.on("deleteWatchlist", (event, url) => {
+                onSiteMessage("deleteWatchlist", (event, url) => {
                     if (is.url(url)) profile.delete(`${watchlistProfile}.${new URL(url).pathname}`);
                 });
-                electron.ipcMain.on("deleteFavorite", (event, url) => {
+                onSiteMessage("deleteFavorite", (event, url) => {
                     if (is.url(url)) profile.delete(`${favoriteProfile}.${new URL(url).pathname}`);
                 });
-                electron.ipcMain.on("episodeChange", (event, data) => {
+                onSiteMessage("episodeChange", (event, data) => {
                     let profileData = {};
                     const profileName = `${packagejson.exeName}.history.${data.url}`;
                     const profileValue = profile.get(profileName);
@@ -539,7 +595,7 @@ if (electron.app.requestSingleInstanceLock()) {
                     };
                     discordRichPresence.buttons = [];
                     if (data.type != "MOVIE") {
-                        const season = data.season.split("Saison")[1];
+                        const season = String(data.season || "").split("Saison")[1];
                         discordRichPresence.buttons.push({
                             label: getTranslation("ACTIVITY.WATCH.SERIE.BUTTON"),
                             url: `${defaultUrl.base}${data.url}`
@@ -576,7 +632,7 @@ if (electron.app.requestSingleInstanceLock()) {
                     });
                     if (settings.get(`${packagejson.exeName}.DISCORD_RICH_PRESENCE`)) discordRichPresence.set();
                 });
-                electron.ipcMain.on("scanChange", (event, data) => {
+                onSiteMessage("scanChange", (event, data) => {
                     let profileData = {};
                     const profileName = `${packagejson.exeName}.history.${data.url}`;
                     const profileValue = profile.get(profileName);
@@ -621,7 +677,7 @@ if (electron.app.requestSingleInstanceLock()) {
                     };
                     if (settings.get(`${packagejson.exeName}.DISCORD_RICH_PRESENCE`)) discordRichPresence.set();
                 });
-                electron.ipcMain.on("watchlistChange", (event, data) => {
+                onSiteMessage("watchlistChange", (event, data) => {
                     let profileData = {};
                     const profileName = `${packagejson.exeName}.watchlist.${data.url}`;
                     if (!is.json(profile.get(profileName))) {
@@ -630,7 +686,7 @@ if (electron.app.requestSingleInstanceLock()) {
                         profile.set(profileName, profileData);
                     } else profile.delete(profileName);
                 });
-                electron.ipcMain.on("favoriteChange", (event, data) => {
+                onSiteMessage("favoriteChange", (event, data) => {
                     let profileData = {};
                     const profileName = `${packagejson.exeName}.favorite.${data.url}`;
                     if (!is.json(profile.get(profileName))) {
@@ -640,9 +696,15 @@ if (electron.app.requestSingleInstanceLock()) {
                     } else profile.delete(profileName);
                 });
                 mainWindow.webContents.on("will-navigate", (event, url) => {
+                    const migrated = migrateSiteUrl(url);
+                    if (migrated !== url) {
+                        if (event) event.preventDefault();
+                        navigation.load(migrated);
+                        return;
+                    }
                     const validateUrl = new URL(url);
                     const pathName = validateUrl.pathname.endsWith("/") ? validateUrl.pathname.slice(0, validateUrl.pathname.lastIndexOf("/")) : validateUrl.pathname;
-                    if (validateUrl.host == new URL(defaultUrl.base).host) {
+                    if (isSiteUrl(url)) {
                         if (!pathName.startsWith("/catalogue/")) {
                             discordRichPresence.clr();
                             notWatchEpisode = true;
@@ -729,8 +791,8 @@ if (electron.app.requestSingleInstanceLock()) {
                             if (settings.get(`${packagejson.exeName}.DISCORD_RICH_PRESENCE`)) discordRichPresence.set();
                         };
                     } else if (validateUrl.protocol != "file:" || !url.endsWith("error.html")) {
-                        event.preventDefault();
-                        electron.shell.openExternal(url);
+                        if (event) event.preventDefault();
+                        if (["https:", "http:"].includes(validateUrl.protocol)) electron.shell.openExternal(url);
                     };
                 });
 
@@ -892,18 +954,18 @@ if (electron.app.requestSingleInstanceLock()) {
                             submenu: [{
                                 id: "back",
                                 label: getTranslation("TRAY.ACTIONS.BACK"),
-                                enabled: mainWindow.webContents.canGoBack(),
+                                enabled: mainWindow.webContents.navigationHistory.canGoBack(),
                                 click: () => {
                                     mainWindow.webContents.once("did-navigate", (event, url) => mainWindow.webContents.emit("will-navigate", undefined, url));
-                                    mainWindow.webContents.goBack();
+                                    mainWindow.webContents.navigationHistory.goBack();
                                 }
                             }, {
                                 id: "forward",
                                 label: getTranslation("TRAY.ACTIONS.FORWARD"),
-                                enabled: mainWindow.webContents.canGoForward(),
+                                enabled: mainWindow.webContents.navigationHistory.canGoForward(),
                                 click: () => {
                                     mainWindow.webContents.once("did-navigate", (event, url) => mainWindow.webContents.emit("will-navigate", undefined, url));
-                                    mainWindow.webContents.goForward();
+                                    mainWindow.webContents.navigationHistory.goForward();
                                 }
                             }, {
                                 id: "restore",
@@ -916,7 +978,7 @@ if (electron.app.requestSingleInstanceLock()) {
                             }, {
                                 id: "refresh",
                                 label: getTranslation("TRAY.ACTIONS.REFRESH"),
-                                click: () => mainWindow.reload()
+                                click: reloadPage
                             }, {
                                 id: "forceRefresh",
                                 label: getTranslation("TRAY.ACTIONS.FORCE_REFRESH"),
@@ -989,10 +1051,7 @@ if (electron.app.requestSingleInstanceLock()) {
                             submenu: [{
                                 id: "reload",
                                 label: getTranslation("TRAY.ADVANCED.RELOAD"),
-                                click: () => mainWindow.loadURL(defaultUrl.base).then(() => mainWindow.webContents.emit("will-navigate", undefined, defaultUrl.base)).catch((event, code) => {
-                                    errorCode = code;
-                                    sendError();
-                                })
+                                click: () => navigation.load(defaultUrl.base)
                             }, {
                                 id: "restart",
                                 label: getTranslation("TRAY.ADVANCED.RESTART"),
@@ -1110,13 +1169,13 @@ if (electron.app.requestSingleInstanceLock()) {
                             if (forward && mainWindow.isFocused()) forward.click();
                         });
                         if (startHidden && startFullScreen) {
-                            settings.onDidChange("START_HIDDEN", newValue => {
+                            settings.onDidChange(`${packagejson.exeName}.START_HIDDEN`, newValue => {
                                 if (newValue) {
                                     startHidden.checked = true;
                                     settings.set(`${packagejson.exeName}.START_FULL_SCREEN`, false);
                                 } else startHidden.checked = false;
                             });
-                            settings.onDidChange("START_FULL_SCREEN", newValue => {
+                            settings.onDidChange(`${packagejson.exeName}.START_FULL_SCREEN`, newValue => {
                                 if (newValue) {
                                     startFullScreen.checked = true;
                                     settings.set(`${packagejson.exeName}.START_HIDDEN`, false);
@@ -1171,25 +1230,22 @@ if (electron.app.requestSingleInstanceLock()) {
                         tray.setToolTip(displayName);
                         tray.setContextMenu(trayMenu);
                         const udpateStyle = () => {
+                            if (!isSiteUrl(mainWindow.webContents.getURL())) return;
                             mainWindow.webContents.insertCSS("::-webkit-scrollbar {display: none;}div ::-webkit-scrollbar {display: block;}.mt-auto p a {color: #808080;text-decoration: none;transition-property: all;transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);transition-duration: 200ms;}.mt-auto p a:hover {color: #0EA5E9;}footer span a {color: #808080;text-decoration: none;transition-property: all;transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);transition-duration: 200ms;}footer span a:hover {color: #0EA5E9;}");
                             mainWindow.webContents.executeJavaScript(`document.querySelectorAll("a").forEach(item => {item.removeAttribute("target");item.setAttribute("draggable", "false");});let replaceNavFooter = document.querySelector(".mt-auto p");if (replaceNavFooter) {replaceNavFooter.className = "font-semibold";replaceNavFooter.style.cssText = "color: white;text-align: center;";replaceNavFooter.innerHTML = "${String(getTranslation("FOOTER")).replace("#COPYLEFT#", "<span style='display:inline-block;transform: rotate(180deg);vertical-align: middle;'>©</span>").replace("#TIME#", new Date().getFullYear().toString() == packagejson.releaseYear ? packagejson.releaseYear : `${packagejson.releaseYear} - ${new Date().getFullYear()}`).replace("#NEW_LINE#", "<br>").replace("#NAME#", `<a id='credits_name' href='${String(linkProject)}' draggable='false'>${String(displayName)} Desktop</a>`).replace("#CODED#", "&lt;/&gt;").replace("#HEART#", "❤").replace("#AUTHOR#", `<a id='credits_author' href='${String(author.url)}' draggable='false'>${String(author.name)}</a>`).replace("#CONTRIBUTORS_START#", `<a id='credits_contributors' href='${String(linkProject)}/graphs/contributors' draggable='false'>`).replace("#CONTRIBUTORS_END#", "</a>")}";};const replaceFooter = document.querySelector("footer span");if (replaceFooter) {replaceFooter.className = "font-semibold";replaceFooter.style.cssText = "color: white;text-align: center;";replaceFooter.innerHTML = "${String(getTranslation("FOOTER")).replace("#COPYLEFT#", "<span style='display:inline-block;transform: rotate(180deg);vertical-align: middle;'>©</span>").replace("#TIME#", new Date().getFullYear().toString() == packagejson.releaseYear ? packagejson.releaseYear : `${packagejson.releaseYear} - ${new Date().getFullYear()}`).replace("#NEW_LINE#", "<br>").replace("#NAME#", `<a id='credits_name' href='${String(linkProject)}' draggable='false'>${String(displayName)} Desktop</a>`).replace("#CODED#", "&lt;/&gt;").replace("#HEART#", "❤").replace("#AUTHOR#", `<a id='credits_author' href='${String(author.url)}' draggable='false'>${String(author.name)}</a>`).replace("#CONTRIBUTORS_START#", `<a id='credits_contributors' href='${String(linkProject)}/graphs/contributors' draggable='false'>`).replace("#CONTRIBUTORS_END#", "</a>")}";};`);
                         };
                         udpateStyle();
                         mainWindow.webContents.on("did-navigate", (event, url, httpResponseCode) => {
                             const validateUrl = new URL(url);
-                            if (back) back.enabled = mainWindow.webContents.canGoBack();
-                            if (forward) forward.enabled = mainWindow.webContents.canGoForward();
-                            if (httpResponseCode != 200) {
-                                errorCode = httpResponseCode;
-                                event.preventDefault();
-                                sendError();
-                            } else if (validateUrl.protocol == "file:" && url.endsWith("error.html")) updateError();
-                            else if (validateUrl.host == new URL(defaultUrl.base).host) {
+                            if (back) back.enabled = mainWindow.webContents.navigationHistory.canGoBack();
+                            if (forward) forward.enabled = mainWindow.webContents.navigationHistory.canGoForward();
+                            if (validateUrl.protocol === "file:") return;
+                            if (httpResponseCode >= 400) return;
+                            if (isSiteUrl(url)) {
                                 if (profileImport) profileImport.enabled = true;
                                 if (profileExport) profileExport.enabled = true;
                                 udpateStyle();
                                 const pathName = validateUrl.pathname.endsWith("/") ? validateUrl.pathname.slice(0, validateUrl.pathname.lastIndexOf("/")) : validateUrl.pathname;
-                                if (pathName == "/catalogue") mainWindow.webContents.executeJavaScript("document.querySelectorAll(\".form-checkbox\").forEach(element => {if (element.checked) genresChecked.push(element.value);else genresChecked.remove(element.value);});if (genresChecked.length > 0) {$('#nav_pages').hide();$.ajax({url:\"listing_all.php\",method:\"post\",data:{query:undefined},success:function(data){$('#result_catalogue').html(data);const buttonFilter = document.getElementById(\"btnTriList\")if (buttonFilter) buttonFilter.click();}});};");
                             } else {
                                 if (profileImport) profileImport.enabled = false;
                                 if (profileExport) profileExport.enabled = false;
@@ -1204,11 +1260,8 @@ if (electron.app.requestSingleInstanceLock()) {
                         };
                     };
                 };
-                return mainWindow.loadURL(defaultUrl.full).then(() => init(defaultUrl.full)).catch((event, code) => {
-                    errorCode = code;
-                    init();
-                    return sendError();
-                });
+                init();
+                return navigation.load(defaultUrl.full);
             };
             electron.app.on("activate", () => {
                 if (electron.BrowserWindow.getAllWindows().length <= 0) return createWindow();
