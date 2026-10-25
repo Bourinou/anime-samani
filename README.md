@@ -58,28 +58,27 @@ L’aperçu montre ce qui sera envoyé ; l’état de connexion te dit si Discor
 
 ## À savoir
 
-Les favoris restent sur ton PC. Sur une page avec un bouton de favoris compatible,
+*Les favoris restent sur ton PC. Sur une page avec un bouton de favoris compatible,
 les ajouts et retraits sont liés entre Samani et le site. Ce n’est pas une
-synchronisation entre appareils ni un import des anciens favoris du site.
+synchronisation entre appareils ni un import des anciens favoris du site.*
 
-**Reprendre** rouvre le dernier épisode de la bibliothèque. Sur les lecteurs HTML5
+***Reprendre** rouvre le dernier épisode de la bibliothèque. Sur les lecteurs HTML5
 accessibles, Samani garde la position et la restaure. Certains lecteurs externes
-ne la fournissent pas : dans ce cas, seule la page est retrouvée.
+ne la fournissent pas : dans ce cas, seule la page est retrouvée.*
 
-Le chrono Discord de navigation part de l’ouverture de l’app et continue en
+*Le chrono Discord de navigation part de l’ouverture de l’app et continue en
 arrière-plan. Pendant un épisode, la couverture et les infos de lecture prennent
 sa place ; le temps restant n’apparaît que si le lecteur fournit une durée.
-La pause conserve la couverture et retire le compte à rebours.
+La pause conserve la couverture et retire le compte à rebours.*
 
-Avec **Setup**, Samani cherche les nouvelles versions et propose de les télécharger.
+*Avec **Setup**, Samani cherche les nouvelles versions et propose de les télécharger.
 Tu peux aussi vérifier dans **Personnalisation → Bureau → Mises à jour**, puis
 redémarrer pour installer. Portable et ZIP se remplacent manuellement. Les nouvelles
-versions arrivent dans l’app une fois leur construction terminée sur GitHub.
+versions arrivent dans l’app une fois qu'elles sont terminée sur GitHub.*
 
 *Le choix de langue concerne l’app. Les textes et vidéos d’Anime Sama gardent la
 langue du site. Une vraie erreur HTTP 500 ou un lecteur indisponible peut venir
-du site lui-même. La lecture en ligne et une vraie session Discord restent à
-vérifier sur chaque PC. [Besoin d’aide ?](SUPPORT.md)*
+du site lui-même. [Besoin d’aide ?](SUPPORT.md)*
 
 ## Pour lancer le projet
 
