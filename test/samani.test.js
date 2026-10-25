@@ -71,7 +71,8 @@ test('updater checks, downloads and only installs a completed update',async()=>{
  const updates=sandbox.module.exports.installUpdates({isPackaged:true,emit:event=>{if(event==='before-quit')quits++;}},null,()=>notifies++);
  await updates.action('install');assert.equal(installs,0);
  await updates.action('check');assert.equal(checks,1);
- updater.emit('update-available',{version:'1.0.1'});assert.equal(updates.state().version,'1.0.1');
+ updater.emit('update-available',{version:'1.0.2',releaseDate:'2026-10-24T20:00:00Z'});assert.equal(updates.state().status,'current');await updates.action('download');assert.equal(downloads,0);
+ updater.emit('update-available',{version:'1.0.1',releaseDate:'2026-10-26T00:00:00Z'});assert.equal(updates.state().version,'1.0.1');
  await updates.action('download');assert.equal(downloads,1);
  updater.emit('download-progress',{percent:42.4});assert.equal(updates.state().percent,42);
  updater.emit('update-downloaded');await updates.action('install');assert.equal(installs,1);assert.equal(quits,1);assert.ok(notifies>=3);
