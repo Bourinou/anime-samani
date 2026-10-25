@@ -13,7 +13,8 @@ status shown in settings; never share a token or password. See [SUPPORT.md](SUPP
 
 ## Development
 
-Use Node.js 24 and `npm ci`. `npm test` checks navigation, preferences, translations
+Use Node.js 24 and `npm ci`. `npm test` runs ESLint, checks Prettier formatting
+(`npm run format` fixes it), then navigation, preferences, translations
 and the RPC protocol. `npm run test:electron` exercises real Electron windows with
 local website and background fixtures. A graphical desktop is required; on Linux,
 use an X server. On Windows, `npm run build:win:installer` verifies all three

@@ -14,8 +14,9 @@ mot de passe. Voir [SUPPORT.md](SUPPORT.md).
 
 ## Développer
 
-Utilisez Node.js 24 et `npm ci`. `npm test` vérifie la navigation, les thèmes,
-les traductions et le protocole RPC. `npm run test:electron` utilise les vraies
+Utilisez Node.js 24 et `npm ci`. `npm test` lance ESLint, vérifie le formatage
+Prettier (`npm run format` le corrige), puis la navigation, les thèmes, les
+traductions et le protocole RPC. `npm run test:electron` utilise les vraies
 fenêtres Electron avec des pages locales et des fonds de test. Il faut un bureau
 graphique ; sous Linux, un serveur X est nécessaire. Sur Windows,
 `npm run build:win:installer` vérifie les trois formats de distribution.

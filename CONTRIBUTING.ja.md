@@ -10,7 +10,7 @@ Samani と Windows のバージョン、再現手順、エラーコードを書�
 
 ## 開発する
 
-Node.js 24 と `npm ci` を使います。`npm test` はナビゲーション、設定、翻訳、RPC を確認します。`npm run test:electron` は実際の Electron ウィンドウとローカルのテストページ・背景を使います。GUI 環境が必要で、Linux では X サーバーを用意してください。Windows の `npm run build:win:installer` では3種類の配布形式を作成できます。
+Node.js 24 と `npm ci` を使います。`npm test` は ESLint と Prettier の書式（`npm run format` で修正）を確認し、ナビゲーション、設定、翻訳、RPC を検証します。`npm run test:electron` は実際の Electron ウィンドウとローカルのテストページ・背景を使います。GUI 環境が必要で、Linux では X サーバーを用意してください。Windows の `npm run build:win:installer` では3種類の配布形式を作成できます。
 
 サイトは分離された `WebContentsView` 内に表示します。ローカル画面の IPC API は用途を限定し、リクエストを検証しています。リモートページにはこの API を公開しないでください。背景ファイルは OS のファイル選択画面と、管理されたローカルプロトコルを経由させてください。
 
