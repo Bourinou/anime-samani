@@ -1,6 +1,6 @@
 # Aperçu de V1 / V1 preview
 
-[Guide](guide.png) · [Bibliothèque / Library](library.png) · [Setup](setup-sidebar.png)
+[Guide](guide.png) · [Bibliothèque / Library](library.png) · [Setup](setup-sidebar.png) · [Discord](../../assets/img/readme/samani-discord-fr.png)
 
 Captures sur une page de test locale. La couverture est chargée depuis le dépôt d’images utilisé par Anime Sama ; les vidéos restent fournies par les lecteurs du site.
 Screenshots use a local test page. The cover comes from Anime Sama’s image repository; video playback still comes from the website’s players.

@@ -9,9 +9,9 @@ if(!target){document.querySelector('#message').textContent=t.invalid;document.qu
 else{
  const params=new URLSearchParams({url:target.href});const episode=query.get('episode');if(episode)params.set('episode',episode.slice(0,160));
  const app=document.querySelector('#app'),web=document.querySelector('#web');app.href='anime-samani://open?'+params;web.href=target.href;
- let left=false,timer,deadline;
+ let left=false,timer;
  const cancel=()=>{left=true;clearTimeout(timer);};addEventListener('pagehide',cancel);document.addEventListener('visibilitychange',()=>{if(document.hidden)cancel();});
  const fallback=()=>{if(!left&&!document.hidden){if(!document.hasFocus()){timer=setTimeout(fallback,500);return;}location.replace(target.href);}};
- const attempt=()=>{left=false;clearTimeout(timer);deadline=Date.now()+4000;timer=setTimeout(fallback,4000);};
+ const attempt=()=>{left=false;clearTimeout(timer);timer=setTimeout(fallback,4000);};
  app.addEventListener('click',attempt);web.addEventListener('click',()=>clearTimeout(timer));attempt();location.href=app.href;
 }

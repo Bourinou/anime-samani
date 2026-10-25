@@ -10,6 +10,7 @@ for(const button of document.querySelectorAll('.toolbar .icon-button')){const na
 let state, activePanel = '', quickOpen = false, currentTab = 'general', initialized = false, toastTimer, pendingPatch = {}, preferenceTimer;
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
+let backgroundRetries=0,backgroundSource='',backgroundRetryTimer;
 let guideBusy=false,libraryKey='',updateKey='',guideOpen=false,guideIndex=0,transitionId=0,previousFocus;
 const guideSteps=['Welcome','Browse','Library','Appearance','Discord','Watch','Updates'];
 const t = key => state?.dictionary[key] || key;
@@ -33,7 +34,7 @@ function media() {
   const image=$('#image-wall'),video=$('#video-wall');
   image.hidden=p.background!=='image'||!state.mediaUrl;video.hidden=p.background!=='video'||!state.mediaUrl;
   if(!image.hidden&&image.getAttribute('src')!==state.mediaUrl)image.src=state.mediaUrl;
-  if(!video.hidden&&video.getAttribute('src')!==state.mediaUrl){video.src=state.mediaUrl;video.load();}
+  if(!video.hidden&&video.getAttribute('src')!==state.mediaUrl){clearTimeout(backgroundRetryTimer);backgroundSource=state.mediaUrl;backgroundRetries=0;video.src=state.mediaUrl;video.load();}
   syncBackground();
   document.body.classList.toggle('reduce-motion',p.reducedMotion);
 }
@@ -58,8 +59,9 @@ function preferences() {
   $('#rpc-status').textContent=rpcText;$('#rpc-sidebar-status').textContent=rpcText;$('#rpc-pill').title=rpcText;
   $('#rpc-dot').classList.toggle('connected',state.rpcStatus==='connected');
   const p=state.preferences,page=state.page,values={title:p.rpcShowTitle?page.title:'Anime Samani',episode:p.rpcShowEpisode?page.episode:'',season:p.rpcShowEpisode?page.season:'',language:page.language};
-  $('#rpc-preview-title').textContent=(p.rpcTemplate||'{title}').replace(/\{(title|episode|season|language)\}/g,(_m,key)=>values[key]||'').slice(0,128)||'Anime Samani';
-  $('#rpc-preview-state').textContent=[t(page.playing?'playing':'browsing'),values.season,values.episode].filter(Boolean).join(' · ');
+  $('#rpc-preview-title').textContent=page.playing||page.duration>0||page.hasPlayback?values.title:t('browsing');
+  $('#rpc-preview-state').textContent=[page.playing?t('playing'):page.duration>0||page.hasPlayback?t('paused'):t('browsing'),values.season,values.episode].filter(Boolean).join(' · ');
+  const small=$('#rpc-preview-icon');small.hidden=!(page.playing||page.duration>0||page.hasPlayback);small.src='../assets/branding/rpc-'+(page.playing?'play':'pause')+'.png';
 }
 function library() {
  const fingerprint=JSON.stringify([state.favorites,state.recent,state.preferences.language]);if(fingerprint===libraryKey)return;libraryKey=fingerprint;
@@ -158,7 +160,7 @@ $('#quick-button').onclick=showQuick;$('#close-quick').onclick=closeQuick;$('#qu
 $('#quick-input').onkeydown=event=>{if(event.key==='Enter')$('#quick-results button')?.click();};
 document.addEventListener('keydown',event=>{if(event.key==='Escape'){if(guideOpen){finishGuide();return;}if(quickOpen)closeQuick();else if(activePanel)setPanel('');}});
 document.addEventListener('visibilitychange',()=>state&&media());
-$('#video-wall').addEventListener('error',()=>toast(t('invalidMedia')));
+$('#video-wall').addEventListener('error',()=>{const video=$('#video-wall');if(video.hidden||video.getAttribute('src')!==state.mediaUrl||video.error?.code===1)return;if(video.error?.code===2&&backgroundRetries<2){const source=state.mediaUrl,time=video.currentTime;backgroundRetries++;clearTimeout(backgroundRetryTimer);backgroundRetryTimer=setTimeout(()=>{if(state.mediaUrl!==source)return;video.addEventListener('loadedmetadata',()=>{if(Number.isFinite(time)&&time>0)video.currentTime=Math.min(time,video.duration||time);syncBackground();},{once:true});video.load();},backgroundRetries*350);return;}toast(t('backgroundError'));});
 new ResizeObserver(reportBounds).observe($('#site-slot'));
 api.onState(render);api.onCommand(command=>command==='quick'?showQuick():command==='sidebar'?toggleSidebar():setPanel(command));
 call(api.bootstrap()).then(next=>{if(next)render(next);});
@@ -179,7 +181,7 @@ function renderGuide(){
 async function openGuide(){previousFocus=document.activeElement;guideIndex=0;guideOpen=true;await call(api.action('guide-open'));await call(api.panel(true));renderGuide();reveal($('#guide-overlay'),true);$('#guide-next').focus();}
 async function finishGuide(){await animate($('.guide-dialog'),'out');guideOpen=false;$('#guide-overlay').hidden=true;await call(api.action('guide-complete'));await call(api.panel(Boolean(activePanel)));previousFocus?.focus();}
 async function guideMove(offset){if(guideBusy)return;guideBusy=true;await animate($('#guide-content'),'out');guideIndex=Math.max(0,Math.min(guideSteps.length-1,guideIndex+offset));renderGuide();await animate($('#guide-content'));guideBusy=false;}
-$('#guide-skip').onclick=finishGuide;$('#guide-back').onclick=()=>guideMove(-1);$('#guide-next').onclick=()=>guideIndex===guideSteps.length-1?finishGuide():guideMove(1);$('#replay-guide').onclick=openGuide;$('#guide-language').onchange=event=>patch({language:event.target.value});
+$('#guide-skip').onclick=finishGuide;$('#guide-back').onclick=()=>guideMove(-1);$('#guide-next').onclick=()=>guideIndex===guideSteps.length-1?finishGuide():guideMove(1);$('#guide-language').onchange=event=>patch({language:event.target.value});
 document.addEventListener('keydown',event=>{
  if(event.key!=='Tab'||(!guideOpen&&!quickOpen))return;const root=guideOpen?$('.guide-dialog'):$('.quick-dialog');const focusable=[...root.querySelectorAll('button,input,select')].filter(el=>!el.hidden&&!el.disabled&&el.getClientRects().length);const first=focusable[0],last=focusable.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
 });

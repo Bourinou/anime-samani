@@ -11,6 +11,7 @@ builder.build({
         productName: pkg.displayName,
         copyright: 'Anime Samani. Original application © 2023 AlexAnimateMp4. MPL-2.0.',
         asar: true,
+        protocols:[{name:'Anime Samani',schemes:['anime-samani']}],
         publish: [{provider:'github',owner:'JustAJad',repo:'anime-samani'}],
         directories: { output: 'dist' },
         files: [...pkg.files, 'node_modules/**/*'],

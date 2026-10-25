@@ -45,3 +45,5 @@ publishing a new app build.
 
 In-app updates require Setup. Also check the live website, players, Discord and
 updates from a previous installation when changing those features.
+
+RPC links use a small GitHub Pages handoff. See [link handling and deployment](docs/LINKS.md).

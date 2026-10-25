@@ -9,7 +9,9 @@ La première version stable de Samani, pour Windows 10/11 en 64 bits.
 - Guide au premier lancement (avec bouton pour passer), barre latérale réductible avec `Ctrl+B`, menus animés et paramètres organisés par onglets.
 - Favoris par anime avec couvertures et bannière de reprise ; mode cinéma réservé aux épisodes.
 - Fond vidéo corrigé pendant la navigation, nouveau logo et bannières Setup. Le logo de la barre latérale reste le même.
-- Beckman est incluse dans l’app et utilisée sur le site.
+- Beckman reste sur les titres et boutons. Le texte courant retrouve une police sans capitales forcées.
+- RPC simplifié : plus de champ ID, de portail ni de texte à configurer. Boutons Regarder / À propos, icônes lecture/pause et état « En pause ».
+- Les fonds vidéo prennent en charge la lecture par plages d’octets pour les boucles et déplacements dans la vidéo. Le guide ne revient plus après la première utilisation.
 - Le japonais rejoint le français et l’anglais dans les réglages.
 - Un bouton **Reprendre** retrouve le dernier épisode ; la position est conservée sur les lecteurs HTML5 accessibles.
 - Les favoris sont liés au bouton du site sur les pages compatibles.
@@ -28,7 +30,9 @@ Samani’s first stable release, for 64-bit Windows 10/11.
 - Skippable first-run guide, sidebar collapse with `Ctrl+B`, animated menus and settings tabs.
 - Anime-only favorites with covers and a resume banner; cinema restricted to episodes.
 - Background video playback fixed across menus, new logo and Setup artwork. Sidebar branding is preserved.
-- Bundled Beckman font for the app and website.
+- Beckman for headings and buttons, with mixed-case body text.
+- Simplified RPC settings: no ID, portal or editable presence text. Watch / About links, play/pause icons and paused status.
+- Video backgrounds support byte-range reads for looping and seeking. The tour is first-run only.
 - Japanese UI alongside French and English.
 - **Resume** reopens your last episode and restores position on accessible HTML5 players.
 - Favorite additions/removals link to the website button on compatible pages.

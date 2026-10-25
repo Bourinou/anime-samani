@@ -17,6 +17,9 @@
 - [x] Bibliothèque par anime avec couvertures et bannière de reprise / Anime library with covers and resume banner.
 - [x] Nouveaux visuels de l’app et de Setup / New app and Setup artwork.
 
+- [x] RPC lecture/pause et liens vers l’app ou le navigateur / Play/pause RPC and app-or-browser links.
+- [x] Lecture des fonds vidéo par plages d’octets / Byte-range background video playback.
+
 ## À améliorer / Still to improve
 
 - [ ] Faire relire le japonais / Have Japanese reviewed by a native speaker.

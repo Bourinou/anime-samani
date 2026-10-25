@@ -50,3 +50,5 @@ du commit pour éviter de publier une nouvelle version de l’app.
 Les mises à jour intégrées concernent Setup. Vérifiez aussi le site réel, les
 lecteurs, Discord et la mise à jour depuis une installation précédente quand
 vous modifiez ces fonctions.
+
+Les liens RPC passent par une petite page GitHub Pages. Voir [le fonctionnement et le déploiement](docs/LINKS.md).

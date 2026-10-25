@@ -25,13 +25,15 @@ afficher un avertissement. Le code source et les sommes SHA-256 sont aussi fourn
 - Quelques **palettes de couleurs**, dont le dégradé pêche–rose des logos.
 - Un **mode cinéma pendant les épisodes**, le plein écran et un accès rapide avec `Ctrl + K` (clique à côté pour le fermer).
 - Une **présence Discord** avec le titre et l’épisode, si tu veux les partager.
-- Une **intro au démarrage**, que tu peux désactiver, et un **guide de prise en main** que tu peux passer ou revoir dans les paramètres.
+- Une **intro au démarrage**, que tu peux désactiver, et un **guide au premier lancement** que tu peux passer.
 - Le **français, l’anglais et le japonais**, au choix dans les réglages.
-- La police **Beckman** intégrée, sans installation à part.
+- **Beckman** pour les titres et les boutons, avec une police plus lisible pour le texte.
 - **Reprendre** pour rouvrir le dernier épisode, avec la position sauvegardée quand le lecteur le permet.
 - Les **mises à jour dans l’app** avec Setup : téléchargement, puis redémarrage pour les appliquer.
 
 ![Les réglages de Samani](assets/img/readme/samani-personalization.png)
+
+![Les réglages Discord](assets/img/readme/samani-discord-fr.png)
 
 ## Réglages
 
@@ -43,7 +45,7 @@ MP4 et WebM. Si une vidéo ne passe pas, essaie un WebM.
 
 Pour **Discord**, ouvre le client de bureau, puis Samani. L’application est déjà
 configurée : pas besoin de jeton ni de mot de passe. Dans les réglages, tu peux
-masquer le titre et l’épisode, changer le texte ou désactiver la présence.
+masquer le titre et l’épisode, ou désactiver la présence.
 L’aperçu montre ce qui sera envoyé ; l’état de connexion te dit si Discord est prêt.
 
 | Raccourci | Action |
@@ -70,7 +72,10 @@ ne la fournissent pas : dans ce cas, seule la page est retrouvée.*
 *Le chrono Discord de navigation part de l’ouverture de l’app et continue en
 arrière-plan. Pendant un épisode, la couverture et les infos de lecture prennent
 sa place ; le temps restant n’apparaît que si le lecteur fournit une durée.
-La pause conserve la couverture et retire le compte à rebours.*
+La pause garde la couverture, affiche « En pause » avec une petite icône, et retire
+le compte à rebours. Les boutons **Regarder** et **À propos de l’anime** ouvrent
+Samani si elle est installée, sinon Anime Sama dans le navigateur. Le navigateur
+peut demander l’autorisation d’ouvrir l’app.*
 
 *Avec **Setup**, Samani cherche les nouvelles versions et propose de les télécharger.
 Tu peux aussi vérifier dans **Paramètres → Mises à jour**, puis

@@ -25,13 +25,15 @@ Source code and SHA-256 checksums are included too.
 - A few **color palettes**, including the logos’ peach–pink gradient.
 - **Cinema mode on episode pages**, fullscreen and quick access with `Ctrl + K` (click outside to close).
 - **Discord presence** with the title and episode, if you want to share them.
-- An optional **startup intro** and a **first-run guide** you can skip or replay in settings.
+- An optional **startup intro** and a **first-run guide** you can skip.
 - **French, English and Japanese**, selectable in settings.
-- Bundled **Beckman**, with no separate font installation.
+- **Beckman** for headings and buttons, with a readable mixed-case font for other text.
 - **Resume** opens your last episode and restores playback position where supported.
 - **In-app updates** for Setup installations: download, then restart to apply.
 
 ![Samani settings](assets/img/readme/samani-personalization-en.png)
+
+![Discord settings](assets/img/readme/samani-discord-en.png)
 
 ## Settings
 
@@ -42,7 +44,7 @@ Supported formats are PNG, JPEG, WebP, MP4 and WebM. If a video won’t play, tr
 
 For **Discord**, open the desktop client, then Samani. It’s already configured;
 you don’t need a token or password. Settings let you hide the title and episode,
-change the text or turn presence off. The preview shows what will be sent; the
+or turn presence off. The preview shows what will be sent; the
 connection status tells you whether Discord is ready.
 
 | Shortcut | Action |
@@ -67,7 +69,9 @@ also restore the saved position; other players may only reopen the page.*
 
 *Discord’s browsing clock starts with the app and continues in the tray. Watching
 uses the show cover, season and episode, with a countdown when the player supplies
-its duration. Pausing keeps the cover without a countdown.*
+its duration. Pausing keeps the cover, shows a pause icon and status, and removes the countdown.
+**Watch** and **About the anime** open Samani when installed, or Anime Sama in the
+browser otherwise. Your browser may ask permission to open the app.*
 
 ***Setup** checks for updates and prompts to download them. You can also use
 **Settings → Updates**, then restart to install. Portable and ZIP

@@ -20,7 +20,7 @@ test('theme inputs cannot inject CSS or grant local files',()=>{
 test('preference updates preserve untouched settings and validate Discord application IDs',()=>{
  const prior=sanitize({language:'en',rpcClientId:'1563568424691437578',blur:24});
  const after=sanitize({alwaysOnTop:true,rpcClientId:'token-or-script'},prior);
- assert.equal(after.language,'en');assert.equal(after.blur,24);assert.equal(after.alwaysOnTop,true);assert.equal(after.rpcClientId,'1563568424691437578');
+ assert.equal(after.language,'en');assert.equal(after.blur,24);assert.equal(after.alwaysOnTop,true);assert.equal(after.rpcClientId,undefined);assert.equal(after.rpcTemplate,undefined);
 });
 test('Discord decoder handles partial Unicode frames and multiple messages in one packet',()=>{
  const a=encode(1,{evt:'READY',title:'Épisode — 呪術'}),b=encode(3,{nonce:'ping'}),decoder=new Decoder();
@@ -32,10 +32,10 @@ test('Discord decoder rejects excessive frame sizes',()=>{
 });
 test('Discord privacy toggles remove title and episode from the payload',()=>{
  const activity=buildActivity({title:'Private title',episode:'Episode 7',season:'S2',playing:true,url:'https://anime-sama.to/catalogue/private-title/'},{...defaults,rpcShowTitle:false,rpcShowEpisode:false},100,'https://github.com/JustAJad/anime-samani');
- assert.doesNotMatch(JSON.stringify(activity),/Private title|Episode 7|S2/);assert.equal(activity.details,'Anime Samani');assert.equal(activity.timestamps,undefined);assert.equal(activity.buttons[0].url,'https://anime-sama.to/');
+ assert.doesNotMatch(JSON.stringify(activity),/Private title|Episode 7|S2/);assert.match(activity.details,/Anime Samani$/);assert.equal(activity.timestamps,undefined);assert.equal(new URL(activity.buttons[0].url).searchParams.get('url'),'https://anime-sama.to/');
 });
-test('Discord templates, episode data and pause state produce bounded bilingual payloads',()=>{
- const activity=buildActivity({title:'A'.repeat(300),episode:'Episode 7',season:'S2',language:'VF',playing:true,url:'https://anime-sama.to/catalogue/test/'},{...defaults,language:'en',rpcTemplate:'{title} — {episode}',rpcButtons:false},null,'https://github.com/JustAJad/anime-samani');
+test('Fixed Discord text, episode data and pause state produce bounded bilingual payloads',()=>{
+ const activity=buildActivity({title:'A'.repeat(300),episode:'Episode 7',season:'S2',language:'VF',playing:true,url:'https://anime-sama.to/catalogue/test/'},{...defaults,language:'en',rpcButtons:false},null,'https://github.com/JustAJad/anime-samani');
  assert.equal(activity.details.length,128);assert.match(activity.state,/EP7/);assert.equal(activity.timestamps,undefined);assert.equal(activity.buttons,undefined);
 });
 test('Discord handshake waits for READY, answers ping, and clears presence on disable',()=>{
@@ -87,4 +87,15 @@ test('anime favorites use one show identity and reject generic and scan URLs',()
  const a=favoriteEntry({url:'https://anime-sama.to/catalogue/test/saison1/vf/',anime:true,title:'Test'}),b=favoriteEntry({url:'https://anime-sama.to/catalogue/test/saison2/vostfr/',anime:true,title:'Test'});
  assert.equal(a.id,b.id);assert.equal(a.url,'https://anime-sama.to/catalogue/test/');assert.equal(normalizeFavorites([a,b]).length,1);
  assert.equal(normalizeFavorites([{url:'https://anime-sama.to/'}]).length,0);
+});
+
+
+test('Discord watching and pause use localized status, artwork and per-anime app links',()=>{
+ const page={url:'https://anime-sama.to/catalogue/chobits/saison1/vostfr/',title:'Chobits',episode:'Épisode 2',season:'S1',hasPlayback:true,playing:false};
+ for(const [language,label] of [['fr','En pause'],['en','Paused'],['ja','一時停止中']]){
+  const activity=buildActivity(page,{...defaults,language},123,'https://github.com/JustAJad/anime-samani');
+  assert.ok(activity.state.startsWith(label));assert.match(activity.assets.small_image,/rpc-pause.png$/);assert.equal(activity.timestamps,undefined);
+  assert.equal(new URL(activity.buttons[0].url).searchParams.get('url'),page.url);assert.equal(new URL(activity.buttons[1].url).searchParams.get('url'),'https://anime-sama.to/catalogue/chobits/');
+  const playing=buildActivity({...page,playing:true,time:45,duration:1400,rate:1},{...defaults,language},123,'https://github.com/JustAJad/anime-samani');assert.match(playing.assets.small_image,/rpc-play.png$/);assert.ok(playing.timestamps.end>Date.now());
+ }
 });
