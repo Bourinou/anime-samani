@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/branding/app-mark.png" alt="Anime Samani" width="150" />
+  <img src="assets/branding/wordmark.png" alt="Anime Samani" width="760" />
   <h1>Anime Samani</h1>
   <p>Anime Sama、もっと便利に！</p>
   <p><a href="https://github.com/JustAJad/anime-samani/releases">ダウンロード</a> · <a href="README.md">Français</a> · <a href="README.en.md">English</a> · <a href="https://github.com/JustAJad/anime-samani/issues/new/choose">不具合を報告</a></p>
