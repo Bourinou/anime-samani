@@ -1,0 +1,26 @@
+name: Requested release cleanup
+on:
+  push:
+    branches: [v1-refresh]
+    paths: [.github/workflows/requested-cleanup.yml]
+permissions:
+  contents: read
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Remove only the two releases and tags requested by Jad
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/requested-cleanup.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: requested-release-cleanup-record
+          path: requested-cleanup-snapshot.json
+          if-no-files-found: ignore
