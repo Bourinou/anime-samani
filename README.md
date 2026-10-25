@@ -15,7 +15,7 @@ Pour **Windows 10 ou 11, en 64 bits**. Dans les [téléchargements](https://gith
 - **Portable** pour la lancer sans installation.
 - **Windows.zip** pour tout extraire toi-même, puis ouvrir `ANIME_SAMANI.exe`.
 
-Les versions sont encore en aperçu et ne sont pas signées. Windows peut donc
+La V1 est la première version stable. Les téléchargements ne sont pas signés. Windows peut donc
 afficher un avertissement. Le code source et les sommes SHA-256 sont aussi fournis.
 
 ## Ce qu’il y a dans l’app
@@ -26,7 +26,10 @@ afficher un avertissement. Le code source et les sommes SHA-256 sont aussi fourn
 - Un **mode cinéma**, le plein écran et un accès rapide avec `Ctrl + K`.
 - Une **présence Discord** avec le titre et l’épisode, si tu veux les partager.
 - Une **intro au démarrage**, que tu peux désactiver.
-- Le **français et l’anglais**, au choix dans les réglages.
+- Le **français, l’anglais et le japonais**, au choix dans les réglages.
+- La police **Beckman** intégrée, sans installation à part.
+- **Reprendre** pour rouvrir le dernier épisode, avec la position sauvegardée quand le lecteur le permet.
+- Les **mises à jour dans l’app** avec Setup : téléchargement, puis redémarrage pour les appliquer.
 
 ![Les réglages de Samani](assets/img/readme/samani-personalization.png)
 
@@ -55,10 +58,27 @@ L’aperçu montre ce qui sera envoyé ; l’état de connexion te dit si Discor
 
 ## À savoir
 
-*Les favoris de Samani restent sur ton PC, à part de ceux du site. Les pages
-récentes sont des raccourcis, pas une sauvegarde de la vidéo à la seconde près.
-Le profil de la version 0.2 est conservé lors de la mise à jour ; les autres
-anciennes apps ne sont pas importées automatiquement.*
+Les favoris restent sur ton PC. Sur une page avec un bouton de favoris compatible,
+les ajouts et retraits sont liés entre Samani et le site. Ce n’est pas une
+synchronisation entre appareils ni un import des anciens favoris du site.
+
+**Reprendre** rouvre le dernier épisode de la bibliothèque. Sur les lecteurs HTML5
+accessibles, Samani garde la position et la restaure. Certains lecteurs externes
+ne la fournissent pas : dans ce cas, seule la page est retrouvée.
+
+Le chrono Discord de navigation part de l’ouverture de l’app et continue en
+arrière-plan. Pendant un épisode, la couverture et les infos de lecture prennent
+sa place ; le temps restant n’apparaît que si le lecteur fournit une durée.
+La pause conserve la couverture et retire le compte à rebours.
+
+Avec **Setup**, Samani cherche les nouvelles versions et propose de les télécharger.
+Tu peux aussi vérifier dans **Personnalisation → Bureau → Mises à jour**, puis
+redémarrer pour installer. Portable et ZIP se remplacent manuellement. Les pushes
+sur `main` passent les tests et créent automatiquement une version avec ses fichiers
+Windows : modifier GitHub déclenche donc une construction, pas une modification
+immédiate des apps déjà installées.
+
+Le profil de la version 0.2 est conservé lors de la mise à jour.
 
 *Le choix de langue concerne l’app. Les textes et vidéos d’Anime Sama gardent la
 langue du site. Une vraie erreur HTTP 500 ou un lecteur indisponible peut venir

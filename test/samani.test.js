@@ -7,7 +7,7 @@ const { Decoder,encode,Presence,buildActivity } = require('../lib/presence');
 
 test('French and English cover every desktop label and the same complete vocabulary',()=>{
  const fr=require('../desktop/i18n/fr.json'),en=require('../desktop/i18n/en.json');
- assert.deepEqual(Object.keys(fr).sort(),Object.keys(en).sort());
+ assert.deepEqual(Object.keys(fr).sort(),Object.keys(en).sort());assert.deepEqual(Object.keys(en).sort(),Object.keys(require('../desktop/i18n/ja.json')).sort());
  const html=readFileSync('desktop/index.html','utf8');
  for(const match of html.matchAll(/data-(?:i18n|title|placeholder)="([^"]+)"/g))assert.ok(fr[match[1]]&&en[match[1]],match[1]);
  assert.equal(defaults.language,'fr');
@@ -32,11 +32,11 @@ test('Discord decoder rejects excessive frame sizes',()=>{
 });
 test('Discord privacy toggles remove title and episode from the payload',()=>{
  const activity=buildActivity({title:'Private title',episode:'Episode 7',season:'S2',playing:true,url:'https://anime-sama.to/catalogue/private-title/'},{...defaults,rpcShowTitle:false,rpcShowEpisode:false},100,'https://github.com/JustAJad/anime-samani');
- assert.doesNotMatch(JSON.stringify(activity),/Private title|Episode 7|S2/);assert.equal(activity.details,'Anime Samani');assert.equal(activity.timestamps.start,100);assert.equal(activity.buttons[0].url,'https://anime-sama.to/');
+ assert.doesNotMatch(JSON.stringify(activity),/Private title|Episode 7|S2/);assert.equal(activity.details,'Anime Samani');assert.equal(activity.timestamps,undefined);assert.equal(activity.buttons[0].url,'https://anime-sama.to/');
 });
 test('Discord templates, episode data and pause state produce bounded bilingual payloads',()=>{
- const activity=buildActivity({title:'A'.repeat(300),episode:'Episode 7',season:'S2',language:'VF',playing:false,url:'https://anime-sama.to/'},{...defaults,language:'en',rpcTemplate:'{title} — {episode}',rpcButtons:false},null,'https://github.com/JustAJad/anime-samani');
- assert.equal(activity.details.length,128);assert.match(activity.state,/Browsing Anime Sama/);assert.equal(activity.timestamps,undefined);assert.equal(activity.buttons,undefined);
+ const activity=buildActivity({title:'A'.repeat(300),episode:'Episode 7',season:'S2',language:'VF',playing:true,url:'https://anime-sama.to/catalogue/test/'},{...defaults,language:'en',rpcTemplate:'{title} — {episode}',rpcButtons:false},null,'https://github.com/JustAJad/anime-samani');
+ assert.equal(activity.details.length,128);assert.match(activity.state,/EP7/);assert.equal(activity.timestamps,undefined);assert.equal(activity.buttons,undefined);
 });
 test('Discord handshake waits for READY, answers ping, and clears presence on disable',()=>{
  class Socket extends EventEmitter { constructor(){super();this.destroyed=false;this.writes=[];}setTimeout(){}write(packet){this.writes.push(new Decoder().push(packet)[0]);}destroy(){this.destroyed=true;} }
@@ -50,4 +50,30 @@ test('Discord handshake waits for READY, answers ping, and clears presence on di
 test('disabled or unconfigured Discord never attempts to open a socket',()=>{
  let attempts=0;const presence=new Presence({connect:()=>{attempts++;throw new Error('unexpected');}});
  presence.configure(false,'');presence.configure(true,'');assert.equal(presence.status,'unconfigured');assert.equal(attempts,0);presence.stop();
+});
+
+test('browsing session clock is preserved and playback countdown uses actual position',()=>{const repo='https://github.com/JustAJad/anime-samani';for(const url of ['https://anime-sama.to/','https://anime-sama.to/planning/'])assert.equal(buildActivity({url,playing:false},defaults,1234,repo).timestamps.start,1234);const a=buildActivity({url:'https://anime-sama.to/catalogue/test/',playing:true,time:120,duration:1440,rate:1,image:'https://example.com/cover.jpg',season:'S2',episode:'Episode 4'},defaults,1234,repo);assert.ok(Math.abs(a.timestamps.end-Date.now()-1320000)<100);assert.equal(a.assets.large_image,'https://example.com/cover.jpg');assert.match(a.state,/S2.*EP4/);});
+
+test('player snapshots and saved positions reject invalid or out-of-range times',()=>{const {validPosition,progressKey}=require('../lib/playback');assert.ok(validPosition({time:120,duration:1440}));assert.equal(validPosition({time:NaN,duration:1440}),false);assert.equal(validPosition({time:1500,duration:1440}),false);assert.notEqual(progressKey({url:'https://anime-sama.to/a',episode:'EP1'}),progressKey({url:'https://anime-sama.to/a',episode:'EP2'}));});
+
+
+test('paused episodes keep artwork without a countdown and episode privacy hides subtext',()=>{
+ const a=buildActivity({url:'https://anime-sama.to/catalogue/test/',playing:false,time:120,duration:1440,rate:1,title:'Show',episodeTitle:'Secret',image:'https://example.com/cover.jpg'}, {...defaults,rpcShowEpisode:false},1234,'https://github.com/JustAJad/anime-samani');
+ assert.equal(a.timestamps,undefined);assert.equal(a.assets.large_image,'https://example.com/cover.jpg');assert.ok(!a.state.includes('Secret'));
+});
+
+test('updater checks, downloads and only installs a completed update',async()=>{
+ const {readFileSync}=require('node:fs'),vm=require('node:vm'),{EventEmitter}=require('node:events');
+ const updater=new EventEmitter();let checks=0,downloads=0,installs=0,notifies=0,quits=0;
+ updater.checkForUpdates=async()=>{checks++;};updater.downloadUpdate=async()=>{downloads++;};updater.quitAndInstall=()=>installs++;
+ const sandbox={module:{exports:{}},process:{platform:'win32',env:{}},setTimeout:()=>({unref(){}}),require:name=>name==='electron-updater'?{autoUpdater:updater}:{dialog:{showMessageBox:async()=>({response:1})}}};
+ vm.runInNewContext(readFileSync(require.resolve('../lib/updates'),'utf8'),sandbox);
+ const updates=sandbox.module.exports.installUpdates({isPackaged:true,emit:event=>{if(event==='before-quit')quits++;}},null,()=>notifies++);
+ await updates.action('install');assert.equal(installs,0);
+ await updates.action('check');assert.equal(checks,1);
+ updater.emit('update-available',{version:'1.0.1'});assert.equal(updates.state().version,'1.0.1');
+ await updates.action('download');assert.equal(downloads,1);
+ updater.emit('download-progress',{percent:42.4});assert.equal(updates.state().percent,42);
+ updater.emit('update-downloaded');await updates.action('install');assert.equal(installs,1);assert.equal(quits,1);assert.ok(notifies>=3);
+ updater.emit('error',new Error('offline'));assert.equal(updates.state().status,'error');
 });

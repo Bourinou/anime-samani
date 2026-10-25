@@ -1,34 +1,21 @@
 # Pour la suite / Next up
 
-Idées à reprendre lors de la prochaine session. Rien n’est encore promis ni implémenté ici.
-Ideas for the next session. These are plans, not implemented features or delivery promises.
+## Dans la V1 / In V1
 
-## Français
+- [x] Interface française, anglaise et japonaise / French, English and Japanese UI.
+- [x] Police Beckman incluse / Bundled Beckman.
+- [x] Lien avec les boutons de favoris compatibles / Compatible website favorite buttons.
+- [x] Retour au dernier épisode / Reopen the last episode.
+- [x] Position sauvegardée sur les lecteurs HTML5 accessibles / Saved position on accessible HTML5 players.
+- [x] Chronos Discord séparés, couverture et infos d’épisode / Separate Discord timers, covers and episode details.
+- [x] Mises à jour intégrées à Setup / In-app updates with Setup.
 
-- [ ] **Japonais dans l’interface** : ajouter `desktop/i18n/ja.json`, le choix de langue et vérifier les traductions avec une personne japonophone. Cela concerne Samani, pas la traduction du catalogue ou des vidéos.
-- [ ] **Favoris liés au site** : Voir comment les favoris d’Anime Sama sont stockés et puis relier les ajouts et les suppressions à la bibliothèque locale. Faire attention aux doublons, les conflits et faire une sauvegarde avant toute migration. La synchronisation entre les appareils demandera du travail...
-- [ ] **Reprendre la lecture d'un épisode** : Commencer par retrouver la dernière page et proposer un bouton pour la rouvrir. Vérifier ce qui existe déjà dans les pages récentes.
-- [ ] **Reprendre au bon timestamp** : Savoir ensuite les lecteurs actuellement disponibles et leurs API documentées ou messages `postMessage` par example. Si un lecteur le permet, on enregistre l’anime, l’épisode et le temps de lecture, puis on restaure la position.
+## À améliorer / Still to improve
 
-### Les choses à vérifier
+- [ ] Faire relire le japonais / Have Japanese reviewed by a native speaker.
+- [ ] Vérifier chaque hébergeur et élargir la reprise / Test individual hosts and extend resume support.
+- [ ] Import des anciens favoris et synchronisation entre appareils / Historical favorite import and cross-device sync.
+- [ ] Certificat de signature Windows / Windows code signing.
+- [ ] Vérification complète de la mise à jour entre deux installations / Full installed-version update validation.
 
-- Les pistes de la capture sont des idées à valider, pas une recette déjà vérifiée.
-- Les restrictions d’origine des iframes peuvent empêcher l’accès direct au lecteur.
-- Conserver `webSecurity`, l’isolation des contextes et le sandbox. 
-- Privilégier les API prévues par les lecteurs, avec validation de l’origine et du format des messages.
-- La présence d’un lecteur dans une ancienne liste ne va pas garantir qu’il soit encore disponible.
-
-## English
-
-- [ ] **Japanese UI**: add `desktop/i18n/ja.json`, a language option, and have the translation reviewed by a Japanese speaker. This translates Samani, not the website catalogue or videos.
-- [ ] **Link website favorites**: investigate Anime Sama’s storage, then connect additions and removals to the local library. Handle duplicates and conflicts, and back up data before migration. Cross-device sync needs a separate design.
-- [ ] **Resume an episode**: start with reopening the last episode page. Check what the recent-pages feature already provides.
-- [ ] **Resume at the saved timestamp**: investigate currently available players and their documented APIs or `postMessage` interfaces. Where supported, save anime, episode and playback time, then restore the position. Test each player and clearly distinguish page-only resume from timestamp resume.
-
-### Things to check
-
-- The screenshot contains suggestions to investigate, not verified implementation instructions.
-- Cross-origin iframe restrictions may prevent direct player access.
-- Keep `webSecurity`, context isolation and sandboxing enabled.
-- Prefer supported player APIs and validate message origins and payloads.
-- Older player lists may include services that are no longer available.
+Conserver le sandbox, l’isolation des contextes et `webSecurity`. / Keep sandboxing, context isolation and `webSecurity` enabled.

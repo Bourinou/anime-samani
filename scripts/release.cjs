@@ -3,7 +3,7 @@
 const { execFileSync } = require('node:child_process');
 const { readdirSync } = require('node:fs');
 const { join } = require('node:path');
-const pkg = require('../package.json');
+const pkg = require('../release-assets/package-info.json');
 const repository = process.env.GITHUB_REPOSITORY;
 const commit = process.env.GITHUB_SHA;
 if (!repository || !commit) throw new Error('Run releases through the Windows build workflow.');
@@ -19,5 +19,5 @@ if (!files.some(file => file.endsWith('Setup-x64.exe')) || !files.some(file => f
 }
 execFileSync('gh', ['release', 'create', tag, ...files,
     '--repo', repository, '--target', commit,
-    '--title', `Anime Samani ${pkg.version} — Aperçu / Preview`,
-    '--notes-file', 'RELEASE-NOTES.md', '--prerelease'], { stdio: 'inherit' });
+    '--title', `Anime Samani ${pkg.version}`,
+    '--notes-file', 'RELEASE-NOTES.md'], { stdio: 'inherit' });

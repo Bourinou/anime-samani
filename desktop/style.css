@@ -3,3 +3,5 @@
 .nav-icon svg{width:19px;height:19px;display:block}.icon-button svg{width:17px;height:17px;display:block}.brand img{filter:drop-shadow(0 0 1px #ffbcc077)}
 
 input{accent-color:var(--a)}
+
+@font-face{font-family:Beckman;src:url('../assets/fonts/Beckman-FREE.otf') format('opentype');font-display:swap}body,button,input,select{font-family:Beckman,"Segoe UI",system-ui,sans-serif}.presence-preview img{object-fit:cover;object-position:center;border-radius:9px}

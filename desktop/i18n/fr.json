@@ -41,7 +41,7 @@
   "retry": "Réessayer",
   "network": "Connexion",
   "welcome": "Ta bibliothèque",
-  "libraryNote": "Tes raccourcis restent sur ce PC.",
+  "libraryNote": "Tes favoris et tes derniers épisodes, sur ce PC.",
   "favorites": "Favoris",
   "recent": "Reprendre la navigation",
   "noFavorites": "Pas encore de favoris. Clique sur l’étoile pour en ajouter.",
@@ -114,5 +114,18 @@
   "nowPlaying": "Lecture en cours",
   "focusHint": "Échap pour revenir",
   "commandHint": "Accès rapide avec Ctrl + K",
-  "problem": "Une erreur est survenue."
+  "problem": "Une erreur est survenue.",
+  "updates": "Mises à jour",
+  "checkUpdate": "Vérifier",
+  "downloadUpdate": "Télécharger",
+  "installUpdate": "Redémarrer et installer",
+  "updateIdle": "Aucune vérification effectuée.",
+  "updateChecking": "Recherche d’une mise à jour…",
+  "updateAvailable": "Une mise à jour est disponible.",
+  "updateDownloading": "Téléchargement…",
+  "updateDownloaded": "Prête à installer.",
+  "updateCurrent": "L’application est à jour.",
+  "updateError": "La vérification a échoué. Réessaie plus tard.",
+  "updateUnsupported": "La mise à jour intégrée nécessite la version Windows installée.",
+  "resume": "Reprendre"
 }

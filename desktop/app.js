@@ -48,6 +48,7 @@ function preferences() {
   $('#rpc-preview-state').textContent=[t(page.playing?'playing':'browsing'),values.season,values.episode].filter(Boolean).join(' · ');
 }
 function library() {
+  $('#resume-episode').hidden=!state.recent.some(item=>item.episode);
   for(const [key,items] of [['favorites',state.favorites],['recent',state.recent]]){
     const container=$(`#${key}-list`);container.replaceChildren();
     if(!items.length){const empty=document.createElement('p');empty.className='empty-state';empty.textContent=t(key==='favorites'?'noFavorites':'noRecent');container.append(empty);}
@@ -77,6 +78,10 @@ function render(next) {
   if(activePanel && state.panel===false && !quickOpen)activePanel='';
   translate();media();preferences();library();panels();
   $('#version').textContent=state.version;
+  const updateKeys={unsupported:'updateUnsupported',checking:'updateChecking',available:'updateAvailable',downloading:'updateDownloading',downloaded:'updateDownloaded',current:'updateCurrent',error:'updateError'};
+  $('#update-status').textContent=t(updateKeys[state.update?.status]||'updateIdle')+(state.update?.percent?' '+state.update.percent+'%':'');
+  $('#download-update').hidden=state.update?.status!=='available';$('#install-update').hidden=state.update?.status!=='downloaded';
+  const cover=document.querySelector('.presence-preview img');cover.onerror=()=>{cover.onerror=null;cover.src='../assets/branding/mark.png';};cover.src=(state.page.playing||state.page.duration>0)&&state.preferences.rpcShowTitle&&state.page.image?state.page.image:'../assets/branding/mark.png';
   $('#page-title').textContent=state.page.title||'anime-sama.to';
   $('#page-status').textContent=state.error?t('errorTitle'):state.loading?t('loading'):t('ready');
   $('#play-status').textContent=state.page.playing?'● '+t('nowPlaying'):'';
@@ -131,3 +136,7 @@ $('#video-wall').addEventListener('error',()=>toast(t('invalidMedia')));
 new ResizeObserver(reportBounds).observe($('#site-slot'));
 api.onState(render);api.onCommand(command=>command==='quick'?showQuick():setPanel(command));
 call(api.bootstrap()).then(next=>{if(next)render(next);});
+
+$('#check-update').onclick=()=>call(api.update('check'));$('#download-update').onclick=()=>call(api.update('download'));$('#install-update').onclick=()=>call(api.update('install'));
+
+$('#resume-episode').onclick=()=>navigate('resume');

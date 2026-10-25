@@ -15,7 +15,7 @@ For **64-bit Windows 10 or 11**. Open [Releases](https://github.com/JustAJad/ani
 - **Portable** to run it without installing.
 - **Windows.zip** to extract everything yourself and open `ANIME_SAMANI.exe`.
 
-These are unsigned preview builds, so Windows may show a publisher warning.
+V1 is the first stable release. Downloads are unsigned, so Windows may show a publisher warning.
 Source code and SHA-256 checksums are included too.
 
 ## Features
@@ -26,7 +26,10 @@ Source code and SHA-256 checksums are included too.
 - **Cinema mode**, fullscreen and quick access with `Ctrl + K`.
 - **Discord presence** with the title and episode, if you want to share them.
 - An optional **startup intro**.
-- **French and English**, selectable in settings.
+- **French, English and Japanese**, selectable in settings.
+- Bundled **Beckman**, with no separate font installation.
+- **Resume** opens your last episode and restores playback position where supported.
+- **In-app updates** for Setup installations: download, then restart to apply.
 
 ![Samani settings](assets/img/readme/samani-personalization-en.png)
 
@@ -56,9 +59,22 @@ connection status tells you whether Discord is ready.
 
 ## Note
 
-*Samani’s favorites stay on your PC and are separate from website favorites.
-Recent pages are shortcuts, not second-accurate playback saves. The 0.2 profile
-is kept during updates; other older apps aren’t imported automatically.*
+Favorites stay on your PC. On pages with a compatible favorite button, additions
+and removals are linked between Samani and the website. This does not import old
+website favorites or sync across devices.
+
+**Resume** opens the last episode from your library. Accessible HTML5 players
+also restore the saved position; other players may only reopen the page.
+
+Discord’s browsing clock starts with the app and continues in the tray. Watching
+uses the show cover, season and episode, with a countdown when the player supplies
+its duration. Pausing keeps the cover without a countdown.
+
+**Setup** checks for updates and prompts to download them. You can also use
+**Personalization → Desktop → Updates**, then restart to install. Portable and ZIP
+builds need manual replacement. Each push to `main` runs checks and publishes a new
+build automatically; installed apps receive it after the build finishes.
+The 0.2 profile is preserved during updates.
 
 *The language setting applies to the app. Anime Sama’s text and videos keep the
 website’s language. A real HTTP 500 or an unavailable player may come from the

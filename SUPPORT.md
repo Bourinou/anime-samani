@@ -15,9 +15,11 @@ L’aperçu de présence ne remplace pas la vérification dans Discord.
 luminosité et de réduction des animations, et l’option de pause pendant la lecture.
 Les vidéos sont volontairement muettes. Essayez un fichier WebM court.
 
-**Bibliothèque :** elle reste locale et distincte des favoris du site. Les pages
-récentes sont des raccourcis ; elles ne stockent pas de vidéo et ne garantissent
-pas la reprise à la seconde près.
+**Bibliothèque :** les boutons de favoris compatibles sont liés au site, sur le PC
+courant. La reprise à la seconde dépend du lecteur. Aucun fichier vidéo n’est enregistré.
+
+**Mises à jour :** utiliser Setup, puis Personnalisation → Bureau → Mises à jour.
+Portable et ZIP se mettent à jour manuellement.
 
 **Signaler :** utilisez Aide → Signaler un problème. Indiquez version, Windows,
 étapes, résultat attendu et code exact. Retirez vos informations personnelles des
@@ -38,8 +40,11 @@ for checking Discord itself.
 and pause-during-playback settings. Videos are intentionally muted. Try a short
 WebM file.
 
-**Library:** it is local and separate from website favorites. Recent pages are
-shortcuts; they do not store videos or guarantee second-accurate playback resume.
+**Library:** compatible website favorite buttons are linked on this PC. Timestamp
+resume depends on the player. No video files are saved.
+
+**Updates:** use Setup, then Personalization → Desktop → Updates. Portable and ZIP
+builds need manual updates.
 
 **Report:** use Help → Report an issue. Include app version, Windows, steps,
 expected behavior and exact error. Remove personal data from screenshots. Never

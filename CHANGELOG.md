@@ -1,5 +1,12 @@
 # Historique / Changelog
 
+## 1.0.0
+
+Beckman, japonais, reprise du dernier épisode et de la position sur lecteurs compatibles,
+favoris liés au site, chronos et couvertures Discord, mises à jour intégrées à Setup.
+/ Beckman, Japanese UI, episode/position resume on supported players, linked website
+favorites, Discord clocks and covers, and in-app Setup updates.
+
 ## 0.3.1
 
 Textes et crédits simplifiés, liens mis à jour et anciens noms de téléchargement

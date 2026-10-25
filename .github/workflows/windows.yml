@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       publish:
-        description: Publish a preview release after a successful build
+        description: Publish a release after a successful build
         type: boolean
         default: false
 
@@ -33,6 +33,11 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
+      - name: Stamp update version
+        if: github.event_name != 'pull_request'
+        run: node scripts/version.cjs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run regression tests
         run: npm test
       - name: Exercise the actual Electron window
@@ -46,10 +51,11 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force release-assets | Out-Null
-          Copy-Item dist/*.exe,dist/*.zip release-assets/
+          Copy-Item dist/*.exe,dist/*.zip,dist/*.yml,dist/*.blockmap release-assets/
           Copy-Item NOTICE.md,LICENSE,CREDITS.md,RELEASE-NOTES.md release-assets/
           $appVersion = (Get-Content package.json | ConvertFrom-Json).version
-          git archive --format=zip --prefix="anime-samani-$appVersion/" --output="release-assets/Anime-Samani-$appVersion-Source.zip" HEAD
+          node scripts/source.cjs
+          python -c "import subprocess,zipfile; from pathlib import Path; z=zipfile.ZipFile('release-assets/Anime-Samani-$appVersion-Source.zip','w',zipfile.ZIP_DEFLATED); [z.write(p,'anime-samani-$appVersion/'+p) for p in subprocess.check_output(['git','ls-files'],text=True).splitlines() if Path(p).is_file()]; z.close()"
           if ($LASTEXITCODE -ne 0) { throw 'Source archive failed' }
           Get-ChildItem release-assets -File | Sort-Object Name | ForEach-Object {
             $hash = (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
@@ -63,7 +69,7 @@ jobs:
           retention-days: 30
 
   release:
-    name: Publication de l’aperçu
+    name: Publication de la version
     needs: windows
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish))
     runs-on: ubuntu-latest

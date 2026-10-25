@@ -41,7 +41,7 @@
   "retry": "Retry",
   "network": "Connection",
   "welcome": "Your library",
-  "libraryNote": "Your shortcuts stay on this PC.",
+  "libraryNote": "Your favorites and recent episodes, on this PC.",
   "favorites": "Favorites",
   "recent": "Continue browsing",
   "noFavorites": "No favorites yet. Click the star to add one.",
@@ -114,5 +114,18 @@
   "nowPlaying": "Now playing",
   "focusHint": "Esc to return",
   "commandHint": "Quick access with Ctrl + K",
-  "problem": "Something went wrong."
+  "problem": "Something went wrong.",
+  "updates": "Updates",
+  "checkUpdate": "Check for updates",
+  "downloadUpdate": "Download update",
+  "installUpdate": "Restart and install",
+  "updateIdle": "No check yet.",
+  "updateChecking": "Checking for updates…",
+  "updateAvailable": "An update is available.",
+  "updateDownloading": "Downloading…",
+  "updateDownloaded": "Ready to install.",
+  "updateCurrent": "You are up to date.",
+  "updateError": "The check failed. Try again later.",
+  "updateUnsupported": "In-app updates require the installed Windows version.",
+  "resume": "Resume"
 }
