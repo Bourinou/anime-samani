@@ -33,8 +33,6 @@ Source code and SHA-256 checksums are included too.
 
 ![Samani settings](assets/img/readme/samani-personalization-en.png)
 
-*Screenshot using a test page. The catalogue and videos come from Anime Sama.*
-
 ## Settings
 
 In **Personalization → Appearance**, pick an image or video smaller than **250 MB**.
