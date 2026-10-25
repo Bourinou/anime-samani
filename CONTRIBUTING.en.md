@@ -1,6 +1,6 @@
 # Contributing to Anime Samani
 
-[Français](CONTRIBUTING.md)
+[Français](CONTRIBUTING.md) · [日本語](CONTRIBUTING.ja.md)
 
 Keep the authors’ credits and the MPL-2.0 license. The logos are in
 `assets/branding/`.
@@ -23,8 +23,8 @@ The website lives in an isolated `WebContentsView`. The local shell receives a
 limited validated IPC API; do not expose it to remote pages. Background files
 must pass through the native picker and controlled local media protocol.
 
-Add strings to **both** `desktop/i18n/fr.json` and `en.json`, and document features
-in French and English. Preserve contrast and reduced-motion support. Add focused
+Add strings to **all three** files: `desktop/i18n/fr.json`, `en.json` and `ja.json`.
+Document features in French, English and Japanese. Preserve contrast and reduced-motion support. Add focused
 regression tests for behavioral changes; text-only edits do not need new tests.
 
 Send pull requests to `main` with visible behavior and verification details.
@@ -32,10 +32,15 @@ Never commit `node_modules`, `dist` or personal profiles.
 
 ## Releases
 
-Update both package versions, the changelog and bilingual release notes. The
-Windows workflow tests and builds executables, then publishes a new version from
-`main` as a preview with matching source, credits and SHA-256 checksums. Existing
-release versions are not overwritten. GitHub’s automatic token is sufficient.
+Update the changelog and release notes in all three languages. Each push to
+`main` runs the Windows tests and build, then publishes a stable release with
+matching source, credits and SHA-256 checksums. The workflow picks the next patch
+version when needed; for a new major or minor version, update `package.json` and
+`package-lock.json`. Existing releases are not overwritten. GitHub’s automatic
+token is sufficient.
 
-Check the real website, several external players and a real Discord session
-before removing the Preview flag.
+For documentation-only commits, add `[skip ci]` to the commit message to avoid
+publishing a new app build.
+
+In-app updates require Setup. Also check the live website, players, Discord and
+updates from a previous installation when changing those features.

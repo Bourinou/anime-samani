@@ -1,6 +1,6 @@
 # Pour Contribuer à Anime Samani
 
-[English](CONTRIBUTING.en.md)
+[English](CONTRIBUTING.en.md) · [日本語](CONTRIBUTING.ja.md)
 
 Gardez les crédits des auteurs et la licence MPL-2.0. Les logos sont dans
 `assets/branding/`.
@@ -24,8 +24,8 @@ Le site réside dans une `WebContentsView` isolée. L’interface locale reçoit
 API IPC limitée et validée ; ne donnez pas cette API aux pages distantes. Les
 fichiers de fond passent par le sélecteur natif et un protocole local contrôlé.
 
-Ajoutez les nouvelles chaînes dans **les deux fichiers** `desktop/i18n/fr.json`
-et `en.json`. Documentez les fonctions en français et en anglais. Gardez les
+Ajoutez les nouvelles chaînes dans **les trois fichiers** `desktop/i18n/fr.json`,
+`en.json` et `ja.json`. Documentez les fonctions en français, en anglais et en japonais. Gardez les
 contrastes et l’option de réduction des animations. Ajoutez des tests ciblés
 pour les changements de comportement ; les seules retouches de texte n’exigent
 pas de nouveau test.
@@ -35,11 +35,17 @@ effectués. Ne commitez ni `node_modules`, ni `dist`, ni profils personnels.
 
 ## Publier
 
-Mettez à jour la version de `package.json` et `package-lock.json`, le changelog et
-les notes de version bilingues. Le workflow Windows teste et construit les
-exécutables ; une nouvelle version sur `main` crée ensuite un aperçu avec le
-code source correspondant, les crédits et les sommes SHA-256. Les versions
-existantes ne sont pas remplacées. Le jeton automatique de GitHub suffit.
+Mettez à jour le changelog et les notes de version dans les trois langues.
+Le workflow Windows teste et construit l’app à chaque push sur `main`, puis
+publie une version stable avec le code source, les crédits et les sommes SHA-256.
+Il choisit automatiquement le prochain numéro de correctif si nécessaire ; pour
+une nouvelle version majeure ou mineure, mettez à jour `package.json` et
+`package-lock.json`. Les versions existantes ne sont pas remplacées.
+Le jeton automatique de GitHub suffit.
 
-Validez le site réel, plusieurs lecteurs vidéo et une vraie session Discord
-avant de retirer la mention Aperçu.
+Pour les changements de documentation uniquement, ajoutez `[skip ci]` au message
+du commit pour éviter de publier une nouvelle version de l’app.
+
+Les mises à jour intégrées concernent Setup. Vérifiez aussi le site réel, les
+lecteurs, Discord et la mise à jour depuis une installation précédente quand
+vous modifiez ces fonctions.

@@ -1,5 +1,7 @@
 # Anime Samani 1.0 — V1
 
+[日本語](RELEASE-NOTES.ja.md)
+
 ## Français
 
 La première version stable de Samani, pour Windows 10/11 en 64 bits.

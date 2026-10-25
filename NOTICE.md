@@ -1,5 +1,7 @@
 # Attribution et source / Attribution and source
 
+[日本語](NOTICE.ja.md)
+
 Anime Samani — https://github.com/JustAJad/anime-samani
 
 - Application originale / Original application : **AlexAnimateMp4**, Anime Sama.fr Desktop 0.1.1.

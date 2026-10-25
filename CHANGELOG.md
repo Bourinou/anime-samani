@@ -1,5 +1,7 @@
 # Historique / Changelog
 
+[日本語](CHANGELOG.ja.md)
+
 ## 1.0.0
 
 Beckman, japonais, reprise du dernier épisode et de la position sur lecteurs compatibles,

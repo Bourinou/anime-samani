@@ -1,5 +1,7 @@
 # Aide / Support
 
+[日本語](SUPPORT.ja.md)
+
 ## Français
 
 **Erreur au chargement :** réessayez, ouvrez la page dans le navigateur et comparez.

@@ -2,16 +2,16 @@
   <img src="assets/branding/wordmark.png" alt="Anime Samani" width="760" />
   <h1>Anime Samani</h1>
   <p>Anime Sama, mais en mieux !</p>
-  <p><a href="https://github.com/JustAJad/anime-samani/releases">Télécharger</a> · <a href="README.en.md">English</a> · <a href="https://github.com/JustAJad/anime-samani/issues/new/choose">Signaler un souci</a></p>
+  <p><a href="https://github.com/JustAJad/anime-samani/releases">Télécharger</a> · <a href="README.en.md">English</a> · <a href="README.ja.md">日本語</a> · <a href="https://github.com/JustAJad/anime-samani/issues/new/choose">Signaler un souci</a></p>
 </div>
 
-Anime Samani est un fork de l'application de [AlexAnimateMp4](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop), qui te donne plus de fonctionalités !
+Anime Samani est un fork de l'application de [AlexAnimateMp4](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop), qui te donne plus de fonctionnalités !
 
 ## Installation
 
 Pour **Windows 10 ou 11, en 64 bits**. Dans les [téléchargements](https://github.com/JustAJad/anime-samani/releases), ouvre **Assets** et choisis :
 
-- **Setup** pour installer l’app.
+- **Setup** pour installer l’app et recevoir les mises à jour.
 - **Portable** pour la lancer sans installation.
 - **Windows.zip** pour tout extraire toi-même, puis ouvrir `ANIME_SAMANI.exe`.
 
@@ -73,12 +73,8 @@ La pause conserve la couverture et retire le compte à rebours.
 
 Avec **Setup**, Samani cherche les nouvelles versions et propose de les télécharger.
 Tu peux aussi vérifier dans **Personnalisation → Bureau → Mises à jour**, puis
-redémarrer pour installer. Portable et ZIP se remplacent manuellement. Les pushes
-sur `main` passent les tests et créent automatiquement une version avec ses fichiers
-Windows : modifier GitHub déclenche donc une construction, pas une modification
-immédiate des apps déjà installées.
-
-Le profil de la version 0.2 est conservé lors de la mise à jour.
+redémarrer pour installer. Portable et ZIP se remplacent manuellement. Les nouvelles
+versions arrivent dans l’app une fois leur construction terminée sur GitHub.
 
 *Le choix de langue concerne l’app. Les textes et vidéos d’Anime Sama gardent la
 langue du site. Une vraie erreur HTTP 500 ou un lecteur indisponible peut venir
@@ -101,7 +97,7 @@ pages de test et demande un bureau graphique. `npm run build:win` crée le
 portable et le ZIP ; sur Windows, `npm run build:win:installer` ajoute Setup.
 Les fichiers arrivent dans `dist/`.
 
-[Contribuer](CONTRIBUTING.md) · [Historique](CHANGELOG.md) · [Crédits](CREDITS.md)
+[Contribuer](CONTRIBUTING.md) · [Historique](CHANGELOG.md) · [Pour la suite](ROADMAP.md) · [Crédits](CREDITS.md)
 
 ---
 

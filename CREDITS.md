@@ -1,5 +1,7 @@
 # Merci ❤️ / Thank you ❤️
 
+[日本語](CREDITS.ja.md)
+
 Fait avec ❤️ par [Jad](https://github.com/JustAJad).
 Made with ❤️ by Jad.
 

@@ -2,7 +2,7 @@
   <img src="assets/branding/wordmark.png" alt="Anime Samani" width="760" />
   <h1>Anime Samani</h1>
   <p>Anime Sama, but better!</p>
-  <p><a href="https://github.com/JustAJad/anime-samani/releases">Download</a> · <a href="README.md">Français</a> · <a href="https://github.com/JustAJad/anime-samani/issues/new/choose">Report an issue</a></p>
+  <p><a href="https://github.com/JustAJad/anime-samani/releases">Download</a> · <a href="README.md">Français</a> · <a href="README.ja.md">日本語</a> · <a href="https://github.com/JustAJad/anime-samani/issues/new/choose">Report an issue</a></p>
 </div>
 
 Samani is a fork of [AlexAnimateMp4's](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop) desktop app, and brings many more features!
@@ -11,7 +11,7 @@ Samani is a fork of [AlexAnimateMp4's](https://github.com/AlexAnimateMp4/anime-s
 
 For **64-bit Windows 10 or 11**. Open [Releases](https://github.com/JustAJad/anime-samani/releases), expand **Assets**, and choose:
 
-- **Setup** to install the app.
+- **Setup** to install the app and receive updates.
 - **Portable** to run it without installing.
 - **Windows.zip** to extract everything yourself and open `ANIME_SAMANI.exe`.
 
@@ -72,9 +72,8 @@ its duration. Pausing keeps the cover without a countdown.
 
 **Setup** checks for updates and prompts to download them. You can also use
 **Personalization → Desktop → Updates**, then restart to install. Portable and ZIP
-builds need manual replacement. Each push to `main` runs checks and publishes a new
-build automatically; installed apps receive it after the build finishes.
-The 0.2 profile is preserved during updates.
+builds need manual replacement. New versions reach the app once their build on
+GitHub is finished.
 
 *The language setting applies to the app. Anime Sama’s text and videos keep the
 website’s language. A real HTTP 500 or an unavailable player may come from the
@@ -96,7 +95,7 @@ npm start
 pages and needs a graphical desktop. `npm run build:win` creates Portable and ZIP
 packages; on Windows, `npm run build:win:installer` adds Setup. Files go to `dist/`.
 
-[Contributing](CONTRIBUTING.en.md) · [Changelog](CHANGELOG.md) · [Credits](CREDITS.md)
+[Contributing](CONTRIBUTING.en.md) · [Changelog](CHANGELOG.md) · [Next up](ROADMAP.md) · [Credits](CREDITS.md)
 
 ---
 
