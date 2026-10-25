@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/branding/wordmark.png" alt="Anime Samani" width="760" />
+  <img src="assets/branding/app-mark.png" alt="Anime Samani" width="150" />
   <h1>Anime Samani</h1>
   <p>Anime Sama, but better!</p>
   <p><a href="https://github.com/JustAJad/anime-samani/releases">Download</a> · <a href="README.md">Français</a> · <a href="README.ja.md">日本語</a> · <a href="https://github.com/JustAJad/anime-samani/issues/new/choose">Report an issue</a></p>
@@ -20,12 +20,12 @@ Source code and SHA-256 checksums are included too.
 
 ## Features
 
-- **Favorites** and recent catalogue pages so they’re easy to find again.
+- **Anime favorites** with covers and a banner to resume your last episode.
 - **Image or video backgrounds**, with blur, brightness and opacity controls.
 - A few **color palettes**, including the logos’ peach–pink gradient.
-- **Cinema mode**, fullscreen and quick access with `Ctrl + K`.
+- **Cinema mode on episode pages**, fullscreen and quick access with `Ctrl + K` (click outside to close).
 - **Discord presence** with the title and episode, if you want to share them.
-- An optional **startup intro**.
+- An optional **startup intro** and a **first-run guide** you can skip or replay in settings.
 - **French, English and Japanese**, selectable in settings.
 - Bundled **Beckman**, with no separate font installation.
 - **Resume** opens your last episode and restores playback position where supported.
@@ -35,7 +35,7 @@ Source code and SHA-256 checksums are included too.
 
 ## Settings
 
-In **Personalization → Appearance**, pick an image or video smaller than **250 MB**.
+In **Settings → Personalization**, pick an image or video smaller than **250 MB**.
 Background videos stay muted and can pause while you watch an episode. Samani
 keeps a copy on your PC, so moving the original file won’t break the background.
 Supported formats are PNG, JPEG, WebP, MP4 and WebM. If a video won’t play, try WebM.
@@ -51,7 +51,8 @@ connection status tells you whether Discord is ready.
 | `Alt + Home` | Home |
 | `Alt + ←` / `Alt + →` | Previous / next page |
 | `Ctrl + R` | Reload or retry |
-| `Ctrl + ,` | Personalization |
+| `Ctrl + ,` | Settings |
+| `Ctrl + B` | Collapse / expand the sidebar |
 | `Ctrl + Shift + F` | Cinema mode; `Esc` to return |
 | `F11` | Fullscreen |
 
@@ -69,7 +70,7 @@ uses the show cover, season and episode, with a countdown when the player suppli
 its duration. Pausing keeps the cover without a countdown.*
 
 ***Setup** checks for updates and prompts to download them. You can also use
-**Personalization → Desktop → Updates**, then restart to install. Portable and ZIP
+**Settings → Updates**, then restart to install. Portable and ZIP
 builds need manual replacement. New versions reach the app once their build on
 GitHub is finished.*
 

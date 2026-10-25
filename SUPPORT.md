@@ -20,7 +20,7 @@ Les vidéos sont volontairement muettes. Essayez un fichier WebM court.
 **Bibliothèque :** les boutons de favoris compatibles sont liés au site, sur le PC
 courant. La reprise à la seconde dépend du lecteur. Aucun fichier vidéo n’est enregistré.
 
-**Mises à jour :** utiliser Setup, puis Personnalisation → Bureau → Mises à jour.
+**Mises à jour :** utiliser Setup, puis Paramètres → Mises à jour.
 Portable et ZIP se mettent à jour manuellement.
 
 **Signaler :** utilisez Aide → Signaler un problème. Indiquez version, Windows,
@@ -45,7 +45,7 @@ WebM file.
 **Library:** compatible website favorite buttons are linked on this PC. Timestamp
 resume depends on the player. No video files are saved.
 
-**Updates:** use Setup, then Personalization → Desktop → Updates. Portable and ZIP
+**Updates:** use Setup, then Settings → Updates. Portable and ZIP
 builds need manual updates.
 
 **Report:** use Help → Report an issue. Include app version, Windows, steps,

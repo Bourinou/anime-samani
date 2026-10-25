@@ -77,3 +77,13 @@ test('updater checks, downloads and only installs a completed update',async()=>{
  updater.emit('update-downloaded');await updates.action('install');assert.equal(installs,1);assert.equal(quits,1);assert.ok(notifies>=3);
  updater.emit('error',new Error('offline'));assert.equal(updates.state().status,'error');
 });
+
+
+test('anime favorites use one show identity and reject generic and scan URLs',()=>{
+ const {animeIdentity,favoriteEntry,normalizeFavorites}=require('../lib/library');
+ for(const url of ['https://anime-sama.to/','https://anime-sama.to/catalogue/','https://anime-sama.to/catalogue/test/scan/vf/','https://other.test/catalogue/test/'])assert.equal(animeIdentity(url),null);
+ assert.equal(favoriteEntry({url:'https://anime-sama.to/catalogue/test/',anime:false}),null);
+ const a=favoriteEntry({url:'https://anime-sama.to/catalogue/test/saison1/vf/',anime:true,title:'Test'}),b=favoriteEntry({url:'https://anime-sama.to/catalogue/test/saison2/vostfr/',anime:true,title:'Test'});
+ assert.equal(a.id,b.id);assert.equal(a.url,'https://anime-sama.to/catalogue/test/');assert.equal(normalizeFavorites([a,b]).length,1);
+ assert.equal(normalizeFavorites([{url:'https://anime-sama.to/'}]).length,0);
+});

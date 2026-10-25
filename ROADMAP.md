@@ -13,6 +13,10 @@
 - [x] Mises à jour intégrées à Setup / In-app updates with Setup.
 - [x] Documentation en français, anglais et japonais / French, English and Japanese documentation.
 
+- [x] Guide de démarrage, animations et barre latérale réductible / First-run guide, animations and collapsible sidebar.
+- [x] Bibliothèque par anime avec couvertures et bannière de reprise / Anime library with covers and resume banner.
+- [x] Nouveaux visuels de l’app et de Setup / New app and Setup artwork.
+
 ## À améliorer / Still to improve
 
 - [ ] Faire relire le japonais / Have Japanese reviewed by a native speaker.

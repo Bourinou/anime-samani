@@ -5,7 +5,7 @@
 [Jad](https://github.com/JustAJad) が ❤️ を込めて制作。
 
 - **[AlexAnimateMp4](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop)**：元のアプリを作ってくれて、ありがとう。
-- **[raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop)**：更新を続け、Samani を作るきっかけをくれて、ありがとう。
+- **[raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop)**：自身のフォークでの開発と改良に、ありがとう！
 
 提供されたロゴの PNG は `assets/branding/` にそのまま保存しています。Windows のアイコンは、そのロゴの形式とサイズを変換したものです。
 

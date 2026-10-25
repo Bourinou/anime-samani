@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/branding/wordmark.png" alt="Anime Samani" width="760" />
+  <img src="assets/branding/app-mark.png" alt="Anime Samani" width="150" />
   <h1>Anime Samani</h1>
   <p>Anime Sama, mais en mieux !</p>
   <p><a href="https://github.com/JustAJad/anime-samani/releases">Télécharger</a> · <a href="README.en.md">English</a> · <a href="README.ja.md">日本語</a> · <a href="https://github.com/JustAJad/anime-samani/issues/new/choose">Signaler un souci</a></p>
@@ -20,12 +20,12 @@ afficher un avertissement. Le code source et les sommes SHA-256 sont aussi fourn
 
 ## Ce qu’il y a dans l’app
 
-- Des **favoris** et les dernières pages du catalogue pour les retrouver facilement.
+- Des **favoris réservés aux animes**, avec leurs couvertures et une bannière pour reprendre le dernier épisode.
 - Des **fonds image ou vidéo**, avec flou, luminosité et transparence réglables.
 - Quelques **palettes de couleurs**, dont le dégradé pêche–rose des logos.
-- Un **mode cinéma**, le plein écran et un accès rapide avec `Ctrl + K`.
+- Un **mode cinéma pendant les épisodes**, le plein écran et un accès rapide avec `Ctrl + K` (clique à côté pour le fermer).
 - Une **présence Discord** avec le titre et l’épisode, si tu veux les partager.
-- Une **intro au démarrage**, que tu peux désactiver.
+- Une **intro au démarrage**, que tu peux désactiver, et un **guide de prise en main** que tu peux passer ou revoir dans les paramètres.
 - Le **français, l’anglais et le japonais**, au choix dans les réglages.
 - La police **Beckman** intégrée, sans installation à part.
 - **Reprendre** pour rouvrir le dernier épisode, avec la position sauvegardée quand le lecteur le permet.
@@ -35,7 +35,7 @@ afficher un avertissement. Le code source et les sommes SHA-256 sont aussi fourn
 
 ## Réglages
 
-Dans **Personnalisation → Apparence**, tu peux choisir une image ou une vidéo de
+Dans **Paramètres → Personnalisation**, tu peux choisir une image ou une vidéo de
 moins de **250 Mo**. Les vidéos de fond restent muettes et peuvent se mettre en
 pause pendant un épisode. Samani garde une copie du fichier sur ton PC ; déplacer
 l’original ne casse donc pas ton fond. Les formats acceptés sont PNG, JPEG, WebP,
@@ -52,7 +52,8 @@ L’aperçu montre ce qui sera envoyé ; l’état de connexion te dit si Discor
 | `Alt + Home` | Accueil |
 | `Alt + ←` / `Alt + →` | Page précédente / suivante |
 | `Ctrl + R` | Actualiser ou réessayer |
-| `Ctrl + ,` | Personnalisation |
+| `Ctrl + ,` | Paramètres |
+| `Ctrl + B` | Réduire / ouvrir la barre latérale |
 | `Ctrl + Maj + F` | Mode cinéma ; `Échap` pour revenir |
 | `F11` | Plein écran |
 
@@ -72,7 +73,7 @@ sa place ; le temps restant n’apparaît que si le lecteur fournit une durée.
 La pause conserve la couverture et retire le compte à rebours.*
 
 *Avec **Setup**, Samani cherche les nouvelles versions et propose de les télécharger.
-Tu peux aussi vérifier dans **Personnalisation → Bureau → Mises à jour**, puis
+Tu peux aussi vérifier dans **Paramètres → Mises à jour**, puis
 redémarrer pour installer. Portable et ZIP se remplacent manuellement. Les nouvelles
 versions arrivent dans l’app une fois qu'elles sont terminée sur GitHub.*
 

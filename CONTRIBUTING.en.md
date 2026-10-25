@@ -34,10 +34,11 @@ Never commit `node_modules`, `dist` or personal profiles.
 
 Update the changelog and release notes in all three languages. Each push to
 `main` runs the Windows tests and build, then publishes a stable release with
-matching source, credits and SHA-256 checksums. The workflow picks the next patch
-version when needed; for a new major or minor version, update `package.json` and
-`package-lock.json`. Existing releases are not overwritten. GitHub’s automatic
-token is sufficient.
+matching source, credits and SHA-256 checksums when the release version is new.
+Package versions are explicit: rebuilding V1 keeps 1.0.0. Set the same version in
+`package.json` and `package-lock.json` when preparing a future release. Existing
+releases are not overwritten; prepare a test build before changing a published
+release. GitHub’s automatic token is sufficient.
 
 For documentation-only commits, add `[skip ci]` to the commit message to avoid
 publishing a new app build.

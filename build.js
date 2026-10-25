@@ -27,6 +27,12 @@ builder.build({
         portable: { artifactName: 'Anime-Samani-${version}-Portable-${arch}.${ext}' },
         nsis: {
             oneClick: false,
+            installerHeader: 'assets/installer/header.bmp',
+            installerSidebar: 'assets/installer/sidebar.bmp',
+            uninstallerSidebar: 'assets/installer/sidebar.bmp',
+            installerLanguages: ['fr_FR','en_US','ja_JP'],
+            language: '1036',
+            displayLanguageSelector: true,
             perMachine: false,
             allowToChangeInstallationDirectory: true,
             deleteAppDataOnUninstall: false,

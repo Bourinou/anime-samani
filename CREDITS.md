@@ -6,7 +6,7 @@ Fait avec ❤️ par [Jad](https://github.com/JustAJad).
 Made with ❤️ by Jad.
 
 - **[AlexAnimateMp4](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop)** : merci pour l’app d’origine. / Thank you for the original app.
-- **[raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop)** : merci pour les mises à jour et le travail qui a donné envie de continuer. / Thank you for the updates and for keeping the project going.
+- **[raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop)** : merci pour son travail sur son propre fork de l’app ! / Thank you for your work on your own fork of the app!
 
 Les PNG des logos sont dans `assets/branding/`,
 sans modification ; l’icône Windows en est une conversion de format et de tailles.
