@@ -43,6 +43,10 @@ pause pendant un épisode. Samani garde une copie du fichier sur ton PC ; dépla
 l’original ne casse donc pas ton fond. Les formats acceptés sont PNG, JPEG, WebP,
 MP4 et WebM. Si une vidéo ne passe pas, essaie un WebM.
 
+Si Anime Sama change d’adresse, va dans **Paramètres → Général → Domaine du site** :
+saisis le nouveau domaine ou clique sur **Chercher sur anime-sama.pw** pour choisir
+dans la liste officielle. Tes favoris et reprises suivent automatiquement.
+
 Pour **Discord**, ouvre le client de bureau, puis Samani. L’application est déjà
 configurée : pas besoin de jeton ni de mot de passe. Dans les réglages, tu peux
 masquer le titre et l’épisode, ou désactiver la présence.
