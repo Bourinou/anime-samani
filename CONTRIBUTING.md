@@ -37,10 +37,11 @@ effectués. Ne commitez ni `node_modules`, ni `dist`, ni profils personnels.
 
 Mettez à jour le changelog et les notes de version dans les trois langues.
 Le workflow Windows teste et construit l’app à chaque push sur `main`, puis
-publie une version stable avec le code source, les crédits et les sommes SHA-256.
-Il choisit automatiquement le prochain numéro de correctif si nécessaire ; pour
-une nouvelle version majeure ou mineure, mettez à jour `package.json` et
-`package-lock.json`. Les versions existantes ne sont pas remplacées.
+publie les nouveaux numéros de version avec le code source, les crédits et les sommes SHA-256.
+Les versions de `package.json` et `package-lock.json` sont explicites : un
+rebuild de V1 reste en 1.0.0. Une publication portant un numéro déjà utilisé
+ne remplace pas les fichiers existants. Préparez un build de test avant toute
+modification d’une version publiée.
 Le jeton automatique de GitHub suffit.
 
 Pour les changements de documentation uniquement, ajoutez `[skip ci]` au message
@@ -49,3 +50,5 @@ du commit pour éviter de publier une nouvelle version de l’app.
 Les mises à jour intégrées concernent Setup. Vérifiez aussi le site réel, les
 lecteurs, Discord et la mise à jour depuis une installation précédente quand
 vous modifiez ces fonctions.
+
+Les liens RPC passent par une petite page GitHub Pages. Voir [le fonctionnement et le déploiement](docs/LINKS.md).

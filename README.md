@@ -20,22 +20,24 @@ afficher un avertissement. Le code source et les sommes SHA-256 sont aussi fourn
 
 ## Ce qu’il y a dans l’app
 
-- Des **favoris** et les dernières pages du catalogue pour les retrouver facilement.
+- Des **favoris réservés aux animes**, avec leurs couvertures et une bannière pour reprendre le dernier épisode.
 - Des **fonds image ou vidéo**, avec flou, luminosité et transparence réglables.
 - Quelques **palettes de couleurs**, dont le dégradé pêche–rose des logos.
-- Un **mode cinéma**, le plein écran et un accès rapide avec `Ctrl + K`.
+- Un **mode cinéma pendant les épisodes**, le plein écran et un accès rapide avec `Ctrl + K` (clique à côté pour le fermer).
 - Une **présence Discord** avec le titre et l’épisode, si tu veux les partager.
-- Une **intro au démarrage**, que tu peux désactiver.
+- Une **intro au démarrage**, que tu peux désactiver, et un **guide au premier lancement** que tu peux passer.
 - Le **français, l’anglais et le japonais**, au choix dans les réglages.
-- La police **Beckman** intégrée, sans installation à part.
+- **Beckman** pour les titres et les boutons, avec une police plus lisible pour le texte.
 - **Reprendre** pour rouvrir le dernier épisode, avec la position sauvegardée quand le lecteur le permet.
 - Les **mises à jour dans l’app** avec Setup : téléchargement, puis redémarrage pour les appliquer.
 
 ![Les réglages de Samani](assets/img/readme/samani-personalization.png)
 
+![Les réglages Discord](assets/img/readme/samani-discord-fr.png)
+
 ## Réglages
 
-Dans **Personnalisation → Apparence**, tu peux choisir une image ou une vidéo de
+Dans **Paramètres → Personnalisation**, tu peux choisir une image ou une vidéo de
 moins de **250 Mo**. Les vidéos de fond restent muettes et peuvent se mettre en
 pause pendant un épisode. Samani garde une copie du fichier sur ton PC ; déplacer
 l’original ne casse donc pas ton fond. Les formats acceptés sont PNG, JPEG, WebP,
@@ -43,7 +45,7 @@ MP4 et WebM. Si une vidéo ne passe pas, essaie un WebM.
 
 Pour **Discord**, ouvre le client de bureau, puis Samani. L’application est déjà
 configurée : pas besoin de jeton ni de mot de passe. Dans les réglages, tu peux
-masquer le titre et l’épisode, changer le texte ou désactiver la présence.
+masquer le titre et l’épisode, ou désactiver la présence.
 L’aperçu montre ce qui sera envoyé ; l’état de connexion te dit si Discord est prêt.
 
 | Raccourci | Action |
@@ -52,7 +54,8 @@ L’aperçu montre ce qui sera envoyé ; l’état de connexion te dit si Discor
 | `Alt + Home` | Accueil |
 | `Alt + ←` / `Alt + →` | Page précédente / suivante |
 | `Ctrl + R` | Actualiser ou réessayer |
-| `Ctrl + ,` | Personnalisation |
+| `Ctrl + ,` | Paramètres |
+| `Ctrl + B` | Réduire / ouvrir la barre latérale |
 | `Ctrl + Maj + F` | Mode cinéma ; `Échap` pour revenir |
 | `F11` | Plein écran |
 
@@ -69,10 +72,13 @@ ne la fournissent pas : dans ce cas, seule la page est retrouvée.*
 *Le chrono Discord de navigation part de l’ouverture de l’app et continue en
 arrière-plan. Pendant un épisode, la couverture et les infos de lecture prennent
 sa place ; le temps restant n’apparaît que si le lecteur fournit une durée.
-La pause conserve la couverture et retire le compte à rebours.*
+La pause garde la couverture, affiche « En pause » avec une petite icône, et retire
+le compte à rebours. Les boutons **Regarder** et **À propos de l’anime** ouvrent
+Samani si elle est installée, sinon Anime Sama dans le navigateur. Le navigateur
+peut demander l’autorisation d’ouvrir l’app.*
 
 *Avec **Setup**, Samani cherche les nouvelles versions et propose de les télécharger.
-Tu peux aussi vérifier dans **Personnalisation → Bureau → Mises à jour**, puis
+Tu peux aussi vérifier dans **Paramètres → Mise à jour**, puis
 redémarrer pour installer. Portable et ZIP se remplacent manuellement. Les nouvelles
 versions arrivent dans l’app une fois qu'elles sont terminée sur GitHub.*
 
@@ -104,5 +110,7 @@ Fait avec ❤️ par [Just A Jad](https://github.com/JustAJad). Grand merci à
 [AlexAnimateMp4](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop) pour l’app
 d’origine et à [raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop)
 pour le travail de son propre fork.
+
+Discord : **justajade**. Merci aussi à l’équipe [Anime Sama](https://anime-sama.to/) pour le site et son travail !
 
 [Licence MPL-2.0](LICENSE). ***Samani est un projet indépendant non affilié à Anime Sama et Discord.***

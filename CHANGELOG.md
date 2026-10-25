@@ -4,6 +4,12 @@
 
 ## 1.0.0
 
+Lecture/pause et liens Regarder / À propos dans Discord, réglages RPC simplifiés,
+texte courant sans capitales forcées, guide au premier lancement uniquement,
+lecture des fonds vidéo par plages d’octets et nouvelles captures.
+/ Discord play/pause and Watch / About links, simpler RPC settings, mixed-case body
+text, a first-run-only tour, byte-range video backgrounds and fresh screenshots.
+
 Beckman, japonais, reprise du dernier épisode et de la position sur lecteurs compatibles,
 favoris liés au site, chronos et couvertures Discord, mises à jour intégrées à Setup.
 / Beckman, Japanese UI, episode/position resume on supported players, linked website

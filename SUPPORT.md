@@ -10,8 +10,9 @@ pour charger la page. Samani ne peut pas réparer un serveur ou un lecteur exter
 
 **Discord :** ouvrez le client de bureau, vérifiez que l’activité est autorisée dans
 les réglages de confidentialité Discord, puis consultez l’état dans Samani.
-L’identifiant configuré est `1563568424691437578`. Aucun jeton n’est nécessaire.
-L’aperçu de présence ne remplace pas la vérification dans Discord.
+Le RPC est déjà configuré ; aucun identifiant ni jeton n’est à saisir.
+L’aperçu de présence ne remplace pas la vérification dans Discord. Discord peut
+masquer les boutons sur ta propre activité : vérifie aussi depuis un autre compte.
 
 **Fond noir ou vidéo immobile :** vérifiez le format et le codec, les réglages de
 luminosité et de réduction des animations, et l’option de pause pendant la lecture.
@@ -20,7 +21,7 @@ Les vidéos sont volontairement muettes. Essayez un fichier WebM court.
 **Bibliothèque :** les boutons de favoris compatibles sont liés au site, sur le PC
 courant. La reprise à la seconde dépend du lecteur. Aucun fichier vidéo n’est enregistré.
 
-**Mises à jour :** utiliser Setup, puis Personnalisation → Bureau → Mises à jour.
+**Mise à jour :** utiliser Setup, puis Paramètres → Mise à jour.
 Portable et ZIP se mettent à jour manuellement.
 
 **Signaler :** utilisez Aide → Signaler un problème. Indiquez version, Windows,
@@ -34,9 +35,9 @@ come from website responses; connection errors describe a failure to load the
 page. Samani cannot repair the website or an unavailable external player.
 
 **Discord:** open the desktop client, allow activity sharing in Discord privacy
-settings, and check Samani’s status. The configured application ID is
-`1563568424691437578`; no token is needed. The presence preview is not a substitute
-for checking Discord itself.
+settings, and check Samani’s status. RPC is already configured; you do not need to enter an ID or token. The presence preview is not a substitute
+for checking Discord itself. Discord may hide buttons on your own activity; check
+from another account as well.
 
 **Black background or paused video:** check format/codec, brightness, reduced motion
 and pause-during-playback settings. Videos are intentionally muted. Try a short
@@ -45,9 +46,22 @@ WebM file.
 **Library:** compatible website favorite buttons are linked on this PC. Timestamp
 resume depends on the player. No video files are saved.
 
-**Updates:** use Setup, then Personalization → Desktop → Updates. Portable and ZIP
+**Update:** use Setup, then Settings → Update. Portable and ZIP
 builds need manual updates.
 
 **Report:** use Help → Report an issue. Include app version, Windows, steps,
 expected behavior and exact error. Remove personal data from screenshots. Never
 publish cookies, entire profiles or secret credentials.
+
+## Liens Discord / Discord links
+
+Les boutons passent par une petite page HTTPS qui propose d’ouvrir Samani.
+Setup enregistre le lien `anime-samani://` à l’installation ; les versions
+portables le font au premier lancement. Si l’app a été déplacée, relance-la
+pour remettre ce lien à jour. Sans l’app, le navigateur ouvre Anime Sama.
+Une confirmation peut être demandée par le navigateur.
+
+The buttons use a small HTTPS page to open Samani. Setup registers the
+`anime-samani://` link during installation; portable builds register it when
+first launched. If you move the app, launch it again to update that registration.
+Without the app, the page falls back to Anime Sama. Browsers may ask for confirmation.

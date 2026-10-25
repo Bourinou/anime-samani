@@ -51,8 +51,8 @@
   },
   "scripts": {
     "start": "electron .",
-    "test": "npm run check && node test/navigation.test.js && node test/samani.test.js",
-    "check": "node --check index.js && node --check preload.js && node --check desktop/app.js && node --check desktop/preload.js && node --check lib/navigation.js && node --check lib/preferences.js && node --check lib/presence.js && node --check scripts/release.cjs && node --check build.js && node --check scripts/cleanup-releases.cjs && node --check lib/playback.js && node --check lib/updates.js && node --check scripts/version.cjs && node --check scripts/source.cjs",
+    "test": "npm run check && node test/navigation.test.js && node test/samani.test.js && node test/media-links.test.js && node test/maintenance.test.js",
+    "check": "node --check index.js && node --check preload.js && node --check desktop/app.js && node --check desktop/preload.js && node --check lib/navigation.js && node --check lib/preferences.js && node --check lib/presence.js && node --check scripts/release.cjs && node --check build.js && node --check scripts/cleanup-releases.cjs && node --check lib/playback.js && node --check lib/updates.js && node --check scripts/version.cjs && node --check scripts/source.cjs && node --check lib/library.js && node --check lib/media.js && node --check lib/links.js && node --check handoff/open/app.js && node --check scripts/tidy-repository.cjs",
     "build": "node build.js",
     "build:win": "node build.js",
     "build:win:installer": "node build.js --installer",

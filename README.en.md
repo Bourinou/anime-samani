@@ -20,29 +20,31 @@ Source code and SHA-256 checksums are included too.
 
 ## Features
 
-- **Favorites** and recent catalogue pages so they’re easy to find again.
+- **Anime favorites** with covers and a banner to resume your last episode.
 - **Image or video backgrounds**, with blur, brightness and opacity controls.
 - A few **color palettes**, including the logos’ peach–pink gradient.
-- **Cinema mode**, fullscreen and quick access with `Ctrl + K`.
+- **Cinema mode on episode pages**, fullscreen and quick access with `Ctrl + K` (click outside to close).
 - **Discord presence** with the title and episode, if you want to share them.
-- An optional **startup intro**.
+- An optional **startup intro** and a **first-run guide** you can skip.
 - **French, English and Japanese**, selectable in settings.
-- Bundled **Beckman**, with no separate font installation.
+- **Beckman** for headings and buttons, with a readable mixed-case font for other text.
 - **Resume** opens your last episode and restores playback position where supported.
 - **In-app updates** for Setup installations: download, then restart to apply.
 
 ![Samani settings](assets/img/readme/samani-personalization-en.png)
 
+![Discord settings](assets/img/readme/samani-discord-en.png)
+
 ## Settings
 
-In **Personalization → Appearance**, pick an image or video smaller than **250 MB**.
+In **Settings → Personalization**, pick an image or video smaller than **250 MB**.
 Background videos stay muted and can pause while you watch an episode. Samani
 keeps a copy on your PC, so moving the original file won’t break the background.
 Supported formats are PNG, JPEG, WebP, MP4 and WebM. If a video won’t play, try WebM.
 
 For **Discord**, open the desktop client, then Samani. It’s already configured;
 you don’t need a token or password. Settings let you hide the title and episode,
-change the text or turn presence off. The preview shows what will be sent; the
+or turn presence off. The preview shows what will be sent; the
 connection status tells you whether Discord is ready.
 
 | Shortcut | Action |
@@ -51,7 +53,8 @@ connection status tells you whether Discord is ready.
 | `Alt + Home` | Home |
 | `Alt + ←` / `Alt + →` | Previous / next page |
 | `Ctrl + R` | Reload or retry |
-| `Ctrl + ,` | Personalization |
+| `Ctrl + ,` | Settings |
+| `Ctrl + B` | Collapse / expand the sidebar |
 | `Ctrl + Shift + F` | Cinema mode; `Esc` to return |
 | `F11` | Fullscreen |
 
@@ -66,10 +69,12 @@ also restore the saved position; other players may only reopen the page.*
 
 *Discord’s browsing clock starts with the app and continues in the tray. Watching
 uses the show cover, season and episode, with a countdown when the player supplies
-its duration. Pausing keeps the cover without a countdown.*
+its duration. Pausing keeps the cover, shows a pause icon and status, and removes the countdown.
+**Watch** and **About the anime** open Samani when installed, or Anime Sama in the
+browser otherwise. Your browser may ask permission to open the app.*
 
 ***Setup** checks for updates and prompts to download them. You can also use
-**Personalization → Desktop → Updates**, then restart to install. Portable and ZIP
+**Settings → Update**, then restart to install. Portable and ZIP
 builds need manual replacement. New versions reach the app once their build on
 GitHub is finished.*
 
@@ -96,9 +101,11 @@ packages; on Windows, `npm run build:win:installer` adds Setup. Files go to `dis
 
 ---
 
-Made with ❤️ by [Jad](https://github.com/JustAJad). Huge thanks to
+Made with ❤️ by [Just A Jad](https://github.com/JustAJad). Huge thanks to
 [AlexAnimateMp4](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop) for the
 original app and [raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop)
 for keeping it going with his own fork.
+
+Discord: **justajade**. Thanks also to the [Anime Sama team](https://anime-sama.to/) for the website and their work!
 
 [MPL-2.0 license](LICENSE). ***Samani is an independent project, not affiliated to Anime Sama and Discord.***

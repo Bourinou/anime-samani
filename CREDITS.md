@@ -2,11 +2,14 @@
 
 [日本語](CREDITS.ja.md)
 
-Fait avec ❤️ par [Jad](https://github.com/JustAJad).
-Made with ❤️ by Jad.
+Fait avec ❤️ par [Just A Jad](https://github.com/JustAJad).
+Made with ❤️ by [Just A Jad](https://github.com/JustAJad).
 
+Discord : **justajade**.
+
+- **[Anime Sama](https://anime-sama.to/)** : merci à toute l’équipe pour le site et son travail ! / Thanks to the whole team for the website and their work!
 - **[AlexAnimateMp4](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop)** : merci pour l’app d’origine. / Thank you for the original app.
-- **[raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop)** : merci pour les mises à jour et le travail qui a donné envie de continuer. / Thank you for the updates and for keeping the project going.
+- **[raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop)** : merci pour son travail sur son propre fork de l’app ! / Thank you for your work on your own fork of the app!
 
 Les PNG des logos sont dans `assets/branding/`,
 sans modification ; l’icône Windows en est une conversion de format et de tailles.
