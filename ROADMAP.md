@@ -19,5 +19,3 @@
 - [ ] Vérifier chaque hébergeur et élargir la reprise / Test individual hosts and extend resume support.
 - [ ] Import des anciens favoris et synchronisation entre appareils / Historical favorite import and cross-device sync.
 - [ ] Faire une vérification complète de la mise à jour entre deux installations / A full installed-version update validation to check.
-
-Conserver le sandbox, l’isolation des contextes et `webSecurity`. / Keep sandboxing, context isolation and `webSecurity` enabled.
