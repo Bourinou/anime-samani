@@ -15,7 +15,7 @@ For **64-bit Windows 10 or 11**. Open [Releases](https://github.com/JustAJad/ani
 - **Portable** to run it without installing.
 - **Windows.zip** to extract everything yourself and open `ANIME_SAMANI.exe`.
 
-V1 is the first stable release. Downloads are unsigned, so Windows may show a publisher warning.
+V1 is the first stable release. Downloads are unsigned, so Windows may show you a SmartScreen or UAC unknown publisher warning.
 Source code and SHA-256 checksums are included too.
 
 ## Features
@@ -57,28 +57,27 @@ connection status tells you whether Discord is ready.
 | `Ctrl + Shift + F` | Cinema mode; `Esc` to return |
 | `F11` | Fullscreen |
 
-## Note
+## To Note
 
-Favorites stay on your PC. On pages with a compatible favorite button, additions
+*Favorites stay on your PC. On pages with a compatible favorite button, additions
 and removals are linked between Samani and the website. This does not import old
-website favorites or sync across devices.
+website favorites or sync across devices.*
 
-**Resume** opens the last episode from your library. Accessible HTML5 players
-also restore the saved position; other players may only reopen the page.
+***Resume** opens the last episode from your library. Accessible HTML5 players
+also restore the saved position; other players may only reopen the page.*
 
-Discord’s browsing clock starts with the app and continues in the tray. Watching
+*Discord’s browsing clock starts with the app and continues in the tray. Watching
 uses the show cover, season and episode, with a countdown when the player supplies
-its duration. Pausing keeps the cover without a countdown.
+its duration. Pausing keeps the cover without a countdown.*
 
-**Setup** checks for updates and prompts to download them. You can also use
+***Setup** checks for updates and prompts to download them. You can also use
 **Personalization → Desktop → Updates**, then restart to install. Portable and ZIP
 builds need manual replacement. New versions reach the app once their build on
-GitHub is finished.
+GitHub is finished.*
 
 *The language setting applies to the app. Anime Sama’s text and videos keep the
 website’s language. A real HTTP 500 or an unavailable player may come from the
-website itself. Live playback and a real Discord session still need checking on
-each PC. [Need help?](SUPPORT.md)*
+website itself. [Need help?](SUPPORT.md)*
 
 ## Run the project
 
