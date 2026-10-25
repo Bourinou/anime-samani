@@ -85,7 +85,6 @@
   "rpcShowEpisode": "シーズンと話数を表示",
   "rpcButtons": "リンクボタンを表示",
   "rpcPreview": "プレゼンスのプレビュー",
-  "rpcPreviewNote": "プレビューは Discord への接続を保証しません。",
   "rpcDisabled": "Discord RPC - 無効",
   "rpcUnconfigured": "Discord RPC - アプリIDが必要です",
   "rpcConnecting": "Discord RPC - 接続中…",
@@ -96,7 +95,7 @@
   "playing": "再生中",
   "browsing": "Anime Sama を閲覧中",
   "creditsTitle": "ありがとう ❤️",
-  "creditsIntro": "Jad が ❤️ を込めて制作。",
+  "creditsIntro": "❤️を込めて制作：",
   "creditAlex": "オリジナルのアプリ",
   "creditRaphael": "自身のフォークでの開発と改良に感謝！",
   "source": "ソースコード",
@@ -141,5 +140,6 @@
   "guideUpdatesTitle": "準備完了！",
   "guideUpdatesBody": "設定 → 更新から新しいバージョンを確認できます。Setup版は更新をダウンロードし、再起動して適用できます。Portable版とZIP版は手動で置き換えてください。設定は自動保存されます。それでは、楽しんでください！",
   "paused": "一時停止中",
-  "backgroundError": "背景動画の再生を再開できませんでした。再読み込みするか、別の動画を選んでください。"
+  "backgroundError": "背景動画の再生を再開できませんでした。再読み込みするか、別の動画を選んでください。",
+  "creditAnimeSama": "サイトの制作と運営に携わるチームのみなさんに感謝！"
 }

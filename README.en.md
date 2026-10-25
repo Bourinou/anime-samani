@@ -74,7 +74,7 @@ its duration. Pausing keeps the cover, shows a pause icon and status, and remove
 browser otherwise. Your browser may ask permission to open the app.*
 
 ***Setup** checks for updates and prompts to download them. You can also use
-**Settings → Updates**, then restart to install. Portable and ZIP
+**Settings → Update**, then restart to install. Portable and ZIP
 builds need manual replacement. New versions reach the app once their build on
 GitHub is finished.*
 
@@ -101,9 +101,11 @@ packages; on Windows, `npm run build:win:installer` adds Setup. Files go to `dis
 
 ---
 
-Made with ❤️ by [Jad](https://github.com/JustAJad). Huge thanks to
+Made with ❤️ by [Just A Jad](https://github.com/JustAJad). Huge thanks to
 [AlexAnimateMp4](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop) for the
 original app and [raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop)
 for keeping it going with his own fork.
+
+Discord: **justajade**. Thanks also to the [Anime Sama team](https://anime-sama.to/) for the website and their work!
 
 [MPL-2.0 license](LICENSE). ***Samani is an independent project, not affiliated to Anime Sama and Discord.***

@@ -21,7 +21,7 @@ La première version stable de Samani, pour Windows 10/11 en 64 bits.
 Choisis **Setup-x64.exe** pour les mises à jour intégrées. Portable et ZIP restent disponibles, avec mise à jour manuelle. L’application est non signée.
 La reprise et le temps restant dépendent du lecteur. Les favoris restent locaux, sans synchronisation entre appareils. La lecture sur les hébergeurs et l’affichage dans un vrai client Discord restent à vérifier sur ton PC ; le cycle complet de mise à jour demande une installation et une version suivante.
 
-Fait avec ❤️ par Jad. Merci à AlexAnimateMp4 pour l’app d’origine et à raphael-as pour son travail sur son fork.
+Fait avec ❤️ par [Just A Jad](https://github.com/JustAJad). Merci à AlexAnimateMp4 pour l’app d’origine et à raphael-as pour son travail sur son fork.
 
 ## English
 
@@ -42,4 +42,8 @@ Samani’s first stable release, for 64-bit Windows 10/11.
 Choose **Setup-x64.exe** for in-app updates. Portable and ZIP require manual updates. Downloads are unsigned.
 Resume and countdown support depend on the player. Favorites are local, without cross-device sync. Live hosts and Discord display still need checking on your PC; a full update cycle needs an installed build and a subsequent version.
 
-Made with ❤️ by Jad. Thanks to AlexAnimateMp4 for the original app and raphael-as for the work on his fork.
+Made with ❤️ by [Just A Jad](https://github.com/JustAJad). Thanks to AlexAnimateMp4 for the original app and raphael-as for the work on his fork.
+
+[Anime Sama](https://anime-sama.to/) — Merci à toute l’équipe pour le site ! / Thanks to the website team! / サイト運営チームに感謝！
+
+Discord : **justajade**.

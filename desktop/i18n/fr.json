@@ -85,7 +85,6 @@
   "rpcShowEpisode": "Afficher la saison et l’épisode",
   "rpcButtons": "Afficher les boutons de liens",
   "rpcPreview": "Aperçu de votre présence",
-  "rpcPreviewNote": "L’aperçu ne confirme pas la connexion à Discord.",
   "rpcDisabled": "Discord RPC - Désactivé",
   "rpcUnconfigured": "Discord RPC - Identifiant requis",
   "rpcConnecting": "Discord RPC - Connexion…",
@@ -96,7 +95,7 @@
   "playing": "En lecture",
   "browsing": "Sur Anime Sama",
   "creditsTitle": "Merci ❤️",
-  "creditsIntro": "Fait avec ❤️ par Jad.",
+  "creditsIntro": "Fait avec ❤️ par",
   "creditAlex": "L’app d’origine",
   "creditRaphael": "Pour son travail sur son propre fork de l’app !",
   "source": "Code source",
@@ -107,8 +106,8 @@
   "nowPlaying": "Lecture en cours",
   "focusHint": "Échap pour revenir",
   "problem": "Une erreur est survenue.",
-  "updates": "Mises à jour",
-  "checkUpdate": "Vérifier",
+  "updates": "Mise à jour",
+  "checkUpdate": "Chercher une mise à jour",
   "downloadUpdate": "Télécharger",
   "installUpdate": "Redémarrer et installer",
   "updateIdle": "Aucune vérification effectuée.",
@@ -139,7 +138,8 @@
   "guideWatchTitle": "Place à ton épisode",
   "guideWatchBody": "Le mode cinéma est disponible uniquement sur une page d’épisode. Utilise le bouton en bas ou Ctrl+Maj+F ; Échap fait revenir la barre latérale. F11 passe en plein écran. Dans Paramètres → Bureau, tu peux garder Samani au premier plan, le lancer au démarrage ou le fermer dans la barre système.",
   "guideUpdatesTitle": "Prêt pour la suite",
-  "guideUpdatesBody": "Paramètres → Mises à jour permet de chercher les nouvelles versions. Setup peut télécharger une mise à jour et redémarrer pour l’installer. Portable et ZIP se remplacent manuellement. Tes réglages sont enregistrés automatiquement. Bon visionnage !",
+  "guideUpdatesBody": "Paramètres → Mise à jour permet de chercher les nouvelles versions. Setup peut télécharger une mise à jour et redémarrer pour l’installer. Portable et ZIP se remplacent manuellement. Tes réglages sont enregistrés automatiquement. Bon visionnage !",
   "paused": "En pause",
-  "backgroundError": "Le fond vidéo n’a pas pu reprendre. Essaie de le recharger ou de choisir une autre vidéo."
+  "backgroundError": "Le fond vidéo n’a pas pu reprendre. Essaie de le recharger ou de choisir une autre vidéo.",
+  "creditAnimeSama": "Merci à toute l’équipe pour le site et son travail !"
 }

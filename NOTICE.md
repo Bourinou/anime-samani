@@ -8,7 +8,9 @@ Anime Samani — https://github.com/JustAJad/anime-samani
   https://github.com/AlexAnimateMp4/anime-sama-fr-desktop
 - Maintenance et inspiration / Maintenance and inspiration : **raphael-as**.
   https://github.com/raphael-as/anime-sama-fr-desktop
-- Samani et ses logos / Samani and its logos : **Jad**.
+- Samani et ses logos / Samani and its logos : **Just A Jad**.
+
+- Site Anime Sama / Anime Sama website : **équipe Anime Sama / Anime Sama team** — https://anime-sama.to/
 
 Les références sont dans [CREDITS.md](CREDITS.md). Les PNG des logos sont conservés
 à l’identique ; les anciennes illustrations viennent du projet d’origine.

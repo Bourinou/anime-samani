@@ -2,8 +2,11 @@
 
 [Français / English](CREDITS.md) · [日本語 README](README.ja.md)
 
-[Jad](https://github.com/JustAJad) が ❤️ を込めて制作。
+[Just A Jad](https://github.com/JustAJad) が ❤️ を込めて制作。
 
+Discord：**justajade**。
+
+- **[Anime Sama](https://anime-sama.to/)**：サイト制作・運営チームのみなさんに感謝！
 - **[AlexAnimateMp4](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop)**：元のアプリを作ってくれて、ありがとう。
 - **[raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop)**：自身のフォークでの開発と改良に、ありがとう！
 

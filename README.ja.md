@@ -80,6 +80,8 @@ npm start
 
 ---
 
-[Jad](https://github.com/JustAJad) が ❤️ を込めて制作。元のアプリを作った [AlexAnimateMp4](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop) と、自身のフォークをメンテナンスしてきた [raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop) に感謝！
+[Just A Jad](https://github.com/JustAJad) が ❤️ を込めて制作。元のアプリを作った [AlexAnimateMp4](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop) と、自身のフォークをメンテナンスしてきた [raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop) に感謝！
+
+Discord：**justajade**。[Anime Sama](https://anime-sama.to/)のサイト制作・運営チームにも感謝！
 
 [MPL-2.0 ライセンス](LICENSE)。***Samani は独立したプロジェクトで、Anime Sama および Discord の公式アプリではありません。***

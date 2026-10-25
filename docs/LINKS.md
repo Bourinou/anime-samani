@@ -16,8 +16,7 @@ propre choix d’épisode lorsque le lien s’ouvre dans le navigateur.
 
 Le workflow `.github/workflows/handoff.yml` déploie seulement `handoff/` avec
 GitHub Pages. Il ne publie pas l’app Windows. L’administrateur doit activer
-**Pages → Source : GitHub Actions** et autoriser `v1-refresh` pour les tests,
-puis `main` pour la version finale, dans l’environnement `github-pages`.
+**Pages → Source : GitHub Actions** et autoriser `main` pour la version publiée, dans l’environnement `github-pages`.
 Le workflow demande uniquement la lecture du code et les droits Pages/OIDC.
 Aucun jeton utilisateur n’est à ajouter.
 
@@ -34,8 +33,7 @@ again. Watch links preserve the page and episode in Samani; the website controls
 its own episode selection on browser fallback.
 
 The handoff workflow deploys only `handoff/`, not Windows releases. Enable
-**Pages → Source: GitHub Actions** and allow `v1-refresh` for testing and `main`
-for production in the `github-pages` environment. No user token is required.
+**Pages → Source: GitHub Actions** and allow `main` for production in the `github-pages` environment. No user token is required.
 
 ## 日本語
 
@@ -48,6 +46,5 @@ RPCボタンは `https://justajad.github.io/anime-samani/open/` を経由しま�
 エピソード名は160文字までで、アプリでも再検証します。Samaniではページと
 エピソードを引き継ぎますが、ブラウザーではサイト側のエピソード選択に従います。
 
-管理者はPagesのソースをGitHub Actionsにし、`github-pages` 環境でテスト用の
-`v1-refresh` と本番用の `main` を許可してください。ワークフローは案内ページ
+管理者はPagesのソースをGitHub Actionsにし、`github-pages` 環境で`main` を許可してください。ワークフローは案内ページ
 だけを公開し、Windowsアプリは公開しません。ユーザーのトークンは不要です。

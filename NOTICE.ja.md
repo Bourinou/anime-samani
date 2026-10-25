@@ -8,7 +8,9 @@ Anime Samani — https://github.com/JustAJad/anime-samani
   https://github.com/AlexAnimateMp4/anime-sama-fr-desktop
 - メンテナンスと着想：**raphael-as**。
   https://github.com/raphael-as/anime-sama-fr-desktop
-- Samani とそのロゴ：**Jad**。
+- Samani とそのロゴ：**Just A Jad**。
+
+- サイト制作・運営：**Anime Samaチーム** — https://anime-sama.to/
 
 出典は[クレジット](CREDITS.ja.md)に記載しています。提供されたロゴの PNG は変更していません。以前の画像素材は元のプロジェクトに由来します。
 

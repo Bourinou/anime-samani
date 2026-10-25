@@ -1,8 +1,8 @@
 name: Discord link handoff page
 on:
   push:
-    branches: [main, v1-refresh]
-    paths: [handoff/**, .github/workflows/handoff.yml]
+    branches: [main]
+    paths: [handoff/**, .github/workflows/handoff.yml, scripts/tidy-repository.cjs]
   workflow_dispatch:
 permissions:
   contents: read
@@ -34,3 +34,20 @@ jobs:
           path: handoff
       - uses: actions/deploy-pages@v4
         id: deploy
+
+  tidy:
+    if: github.ref == 'refs/heads/main'
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      deployments: write
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Keep the live deployment and remove the merged review branch
+        run: node scripts/tidy-repository.cjs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

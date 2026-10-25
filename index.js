@@ -160,6 +160,8 @@ const startup = async () => {
     else if(action==='intro-done'){intro=false;visibility();}
     else if(action==='fullscreen')window.setFullScreen(!window.isFullScreen());
     else if(action==='source')safeExternal(repository);
+    else if(action==='jad')safeExternal('https://github.com/JustAJad');
+    else if(action==='anime-sama')safeExternal('https://anime-sama.to/');
     else if(action==='alex')safeExternal('https://github.com/AlexAnimateMp4/anime-sama-fr-desktop');
     else if(action==='raphael')safeExternal('https://github.com/raphael-as/anime-sama-fr-desktop');
     else if(action==='downloads')safeExternal(`${repository}/releases`);

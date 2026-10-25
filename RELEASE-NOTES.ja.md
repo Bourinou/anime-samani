@@ -20,4 +20,8 @@
 
 再生位置の復元と残り時間の表示はプレイヤーに依存します。お気に入りはローカル保存で、端末間の同期には対応していません。実際の動画ホストと Discord の表示は、お使いの PC で確認してください。更新の一連の動作の確認には、インストール済みの版と、その次の版が必要です。
 
-Jad が ❤️ を込めて制作。元のアプリを作った AlexAnimateMp4 と、自身のフォークをメンテナンスしてきた raphael-as に感謝！
+[Just A Jad](https://github.com/JustAJad) が ❤️ を込めて制作。元のアプリを作った AlexAnimateMp4 と、自身のフォークをメンテナンスしてきた raphael-as に感謝！
+
+[Anime Sama](https://anime-sama.to/) — Merci à toute l’équipe pour le site ! / Thanks to the website team! / サイト運営チームに感謝！
+
+Discord : **justajade**.

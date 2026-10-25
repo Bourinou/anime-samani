@@ -78,7 +78,7 @@ Samani si elle est installée, sinon Anime Sama dans le navigateur. Le navigateu
 peut demander l’autorisation d’ouvrir l’app.*
 
 *Avec **Setup**, Samani cherche les nouvelles versions et propose de les télécharger.
-Tu peux aussi vérifier dans **Paramètres → Mises à jour**, puis
+Tu peux aussi vérifier dans **Paramètres → Mise à jour**, puis
 redémarrer pour installer. Portable et ZIP se remplacent manuellement. Les nouvelles
 versions arrivent dans l’app une fois qu'elles sont terminée sur GitHub.*
 
@@ -110,5 +110,7 @@ Fait avec ❤️ par [Just A Jad](https://github.com/JustAJad). Grand merci à
 [AlexAnimateMp4](https://github.com/AlexAnimateMp4/anime-sama-fr-desktop) pour l’app
 d’origine et à [raphael-as](https://github.com/raphael-as/anime-sama-fr-desktop)
 pour le travail de son propre fork.
+
+Discord : **justajade**. Merci aussi à l’équipe [Anime Sama](https://anime-sama.to/) pour le site et son travail !
 
 [Licence MPL-2.0](LICENSE). ***Samani est un projet indépendant non affilié à Anime Sama et Discord.***

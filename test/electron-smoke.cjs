@@ -1,5 +1,5 @@
 // Real desktop + native website view, with local fixtures and no live site dependency.
-const {app,BrowserWindow,session,dialog}=require('electron');
+const {app,BrowserWindow,session,dialog,shell}=require('electron');
 const {join}=require('node:path');
 const {mkdirSync,rmSync,writeFileSync,readFileSync,existsSync}=require('node:fs');
 const assert=require('node:assert/strict');
@@ -7,7 +7,7 @@ const root=join(__dirname,'..');
 process.env.SAMANI_TEST_PROFILE=join(root,'artifacts','samani-smoke');
 rmSync(process.env.SAMANI_TEST_PROFILE,{recursive:true,force:true});
 app.disableHardwareAcceleration();
-let mode='server-error';const problems=[];
+let mode='server-error';const problems=[],openedLinks=[];shell.openExternal=async url=>openedLinks.push(url);
 process.on('unhandledRejection',error=>problems.push(String(error)));
 process.on('uncaughtException',error=>{console.error(error);app.exit(1);});
 const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
@@ -163,6 +163,15 @@ require('../index');
  assert.equal(await ui('document.querySelector("#update-spinner").hidden'),false);assert.equal(await ui('document.querySelector("#check-update").disabled'),true);
  window.webContents.send('samani:state',{...beforeState,update:{status:'current'}});await wait(100);assert.equal(await ui('document.querySelector("#update-spinner").hidden'),true);
  console.log('PASS home/manga cannot be favorited or use cinema, anime banners, and updater loading state');
+ await ui('document.querySelector("[data-panel=about]").click()');await until(async()=>await ui('!document.querySelector("#about-panel").hidden'),'credits');
+ assert.equal(await ui('Boolean(document.querySelector("[data-i18n=rpcPreviewNote]"))'),false);
+ assert.equal(await ui('document.querySelector("[data-i18n=updates]").textContent'),'Mise à jour');
+ await ui('document.querySelector("[data-action=jad]").click()');await ui('document.querySelector("[data-action=anime-sama]").click()');
+ await until(()=>openedLinks.includes('https://github.com/JustAJad')&&openedLinks.includes('https://anime-sama.to/'),'credit links');
+ assert.match(await ui('document.querySelector("#about-panel").innerText'),/Just A Jad/);assert.match(await ui('document.querySelector("#about-panel").innerText'),/justajade/);
+ await wait(350);writeFileSync(join(root,'artifacts','samani-credits.png'),(await window.webContents.capturePage()).toPNG());
+ console.log('PASS Just A Jad, Discord handle, Anime Sama team credit and singular update label');
+
  app.emit('second-instance',{},['ANIME_SAMANI.exe','anime-samani://open?'+new URLSearchParams({url:'https://anime-sama.to/catalogue/frieren/saison1/vostfr/',episode:'Épisode 7'})]);
  await until(async()=>(await ui('window.samani.bootstrap()')).page.episode==='Épisode 7','deep link reaches existing app');
  console.log('PASS validated episode links reach the running app');
